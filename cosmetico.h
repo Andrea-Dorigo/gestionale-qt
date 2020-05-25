@@ -13,7 +13,7 @@ public:
   virtual Cosmetico(unsigned short id, string nome, string descrizione, double prezzo, Sesso genere, string applicazione);
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
-  virtual string mostraCosmetico() const;
+  virtual string mostraProdotto() const;
   virtual ~Cosmetico();
 };
 
