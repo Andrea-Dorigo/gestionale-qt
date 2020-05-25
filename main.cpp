@@ -6,6 +6,6 @@ using std::cout;
 
 
 int main {
-  Cosmetico c();
+  Cosmetico c(1,"Amido di riso","descrizione",10,Uomo,"applicare in faccia");
   c.mostraProdotto();
 }
