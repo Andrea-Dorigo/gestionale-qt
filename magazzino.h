@@ -1,7 +1,7 @@
 #ifndef MAGAZZINO_H
 #define MAGAZZINO_H
 
-#include "prodotti.h"
+#include "prodotto.h"
 
 class Magazzino {
 private:
