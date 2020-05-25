@@ -3,9 +3,7 @@
 
 using std::string;
 
-enum Sesso { "Uomo",
-             "Donna",
-             "Unisex" };
+enum Sesso { "Uomo", "Donna", "Unisex" };
 
 class Cosmetico {
 private:
