@@ -11,9 +11,9 @@ private:
   string _applicazione;
 public:
   virtual Cosmetico(unsigned short id, string nome, string descrizione, double prezzo, Sesso genere, string applicazione);
-  virtual Cosmetico* clone();
-  virtual double calcoloPrezzo();
-  virtual string mostraCosmetico();
+  virtual Cosmetico* clone() const;
+  virtual double calcoloPrezzo() const;
+  virtual string mostraCosmetico() const;
   virtual ~Cosmetico();
 };
 
