@@ -12,7 +12,7 @@ private:
   Sesso _sesso;
   string _applicazione;
 public:
-  Cosmetico(unsigned int id, string nome, string descrizione, double prezzo, Sesso sesso, string applicazione);
+  Cosmetico(unsigned short id, string nome, string descrizione, double prezzo, Sesso sesso, string applicazione);
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
   virtual string mostraProdotto() const;
