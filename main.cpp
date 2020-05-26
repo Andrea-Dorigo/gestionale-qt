@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cosmetico.cpp"
+#include "cosmetico.h"
 
 // using std::string;
 // using std::cout;
