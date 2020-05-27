@@ -1,6 +1,7 @@
 #ifndef MAGAZZINO_H
 #define MAGAZZINO_H
 
+#include <list>
 #include "prodotto.h"
 
 class Magazzino {
@@ -15,6 +16,7 @@ private:
     Prodotto* operator->() const;
     Prodotto& operator*() const;
   };
+
   std::list<SmartP> sp;
 public:
   Magazzino();
