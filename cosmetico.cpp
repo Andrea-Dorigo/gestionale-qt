@@ -17,11 +17,11 @@ std::string attributeToString(Target t){
   return s;
 }
 
-
-Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione) :
-Prodotto(id, nome, descrizione, prezzo),
-_target(target),
-_applicazione(applicazione) {}
+Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione)
+  : Prodotto(id, nome, descrizione, prezzo)
+  , _target(target)
+  , _applicazione(applicazione)
+  {}
 Cosmetico::~Cosmetico() {}
 
 Cosmetico* Cosmetico::clone() const {
@@ -36,4 +36,20 @@ std::string Cosmetico::mostraProdotto() const{
   // return "{ \"prodotto\" : [\n   {\"nome\": \"" + getNome() + "\"},\n]}";
   std::string s = "{ \"prodotto\" : [\n   {\"id\": \"" + attributeToString(getId()) + "\"},\n   {\"nome\": \"" + attributeToString(getNome()) + "\"},\n   {\"descrizione\": \"" + attributeToString(getDescrizione()) + "\"},\n   {\"prezzo\": \"" + attributeToString(getPrezzo()) + "\"},\n   {\"target\": \"" + attributeToString(_target) + "\"},\n   {\"Applicazione\": \"" + attributeToString(_applicazione) + "\"},\n]}";
   return s;
+}
+
+/* getters */
+Target getTarget() const {
+  return _target;
+}
+std::string getApplicazione() const {
+  return _applicazione;
+}
+
+/* setters */
+void setTarget(Target target) {
+  _target = target;
+}
+void setApplicazione(std::string applicazione) {
+  _applicazione = applicazione;
 }
