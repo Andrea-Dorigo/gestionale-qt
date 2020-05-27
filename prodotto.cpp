@@ -1,17 +1,19 @@
 #include "prodotto.h"
 
-// template <>
-// std::string attributeToString(unsigned short i){
-//   return std::to_string(i);
-// }
-// template <>
-// std::string attributeToString(std::string s){
-//   return s;
-// }
-// template <>
-// std::string attributeToString(double d){
-//   return std::to_string(d);
-// }
+/*
+template <>
+std::string attributeToString(unsigned short i) {
+  return std::to_string(i);
+}
+template <>
+std::string attributeToString(std::string s) {
+  return s;
+}
+template <>
+std::string attributeToString(double d) {
+  return std::to_string(d);
+}
+*/
 
 Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double prezzo)
   : _id(id)
