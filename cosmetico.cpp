@@ -17,3 +17,19 @@ double Cosmetico::calcoloPrezzo() const {
 std::string Cosmetico::mostraProdotto() const{
   return "{ \"prodotto\" : [\n   {\"nome\": \"" + getNome() + "\"},\n]}";
 }
+
+/* getters */
+Target getTarget() const {
+  return _target;
+}
+std::string getApplicazione() const {
+  return _applicazione;
+}
+
+/* setters */
+void setTarget(Target target) {
+  _target = target;
+}
+void setApplicazione(std::string applicazione) {
+  _applicazione = applicazione;
+}
