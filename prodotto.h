@@ -11,10 +11,21 @@ private:
   double _prezzo;
 public:
   Prodotto(unsigned short id, std::string nome, std::string descrizione, double prezzo=0.0);
+  virtual ~Prodotto();
+
   virtual Prodotto* clone() const=0;
   virtual double calcoloPrezzo() const=0;
   virtual std::string mostraProdotto() const=0;
-  virtual ~Prodotto();
+
+  unsigned short getId() const;
+  std::string getNome() const;
+  std::string getDescrizione() const;
+  double getPrezzo() const;
+
+  void setId(unsigned short id);
+  void setNome(std::string nome);
+  void setDescrizione(std::string descrizione);
+  void setPrezzo(double prezzo);
 };
 
 #endif // PRODOTTO_H
