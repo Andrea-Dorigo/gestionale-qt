@@ -1,20 +1,16 @@
 #include "cosmetico.h"
 
-template <>
-std::string attributeToString(Target t){
+// template <>
+std::string Cosmetico::targetToString(Target t) const{
   std::string s;
   switch (t) {
     case UOMO:
-      s="Uomo";
-      break;
+      return "Uomo";
     case DONNA:
-      s="Donna";
-      break;
+      return "Donna";
     case UNISEX:
-      s="Unisex";
-      break;
+      return "Unisex"
   }
-  return s;
 }
 
 Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione)
@@ -33,9 +29,14 @@ double Cosmetico::calcoloPrezzo() const {
 }
 
 std::string Cosmetico::mostraProdotto() const {
-  std::string s = Prodotto::mostraProdotto() + "   {\"target\": \"" + attributeToString(_target) + "\"},\n   {\"applicazione\": \"" + attributeToString(_applicazione) + "\"},\n]}";
-  return s;
+  std::stringstream ss;
+  ss << Prodotto::mostraProdotto() << "   {\"target\": \"" << targetToString(_target) << "\"},\n   {\"applicazione\": \"" << _applicazione << "\"},\n]}";
+  return ss.str();
 }
+
+// std::string targetToString(Target target) const {
+//   return TargetMapForward[target];
+// }
 
 /* getters */
 Target Cosmetico::getTarget() const {

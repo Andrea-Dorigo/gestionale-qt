@@ -1,17 +1,17 @@
 #include "prodotto.h"
 
-template <>
-std::string attributeToString(unsigned short i){
-  return std::to_string(i);
-}
-template <>
-std::string attributeToString(std::string s){
-  return s;
-}
-template <>
-std::string attributeToString(double d){
-  return std::to_string(d);
-}
+// template <>
+// std::string attributeToString(unsigned short i){
+//   return std::to_string(i);
+// }
+// template <>
+// std::string attributeToString(std::string s){
+//   return s;
+// }
+// template <>
+// std::string attributeToString(double d){
+//   return std::to_string(d);
+// }
 
 Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double prezzo)
   : _id(id)
@@ -24,8 +24,9 @@ Prodotto::~Prodotto() {}
 // Prodotto* Prodotto::clone() const {} //=0
 // double Prodotto::calcoloPrezzo() const {} //=0
 std::string Prodotto::mostraProdotto() const {
-  std::string s = "{ \"prodotto\" : [\n   {\"id\": \"" + attributeToString(_id) + "\"},\n   {\"nome\": \"" + attributeToString(_nome) + "\"},\n   {\"descrizione\": \"" + attributeToString(_descrizione) + "\"},\n   {\"prezzo\": \"" + attributeToString(_prezzo) + "\"},\n";
-  return s;
+  std::stringstream ss;
+  ss << "{ \"prodotto\" : [\n   {\"id\": \"" << _id  << "\"},\n   {\"nome\": \"" << _nome << "\"},\n   {\"descrizione\": \"" << _descrizione << "\"},\n   {\"prezzo\": \"" << _prezzo << "\"},\n";
+  return ss.str();
 } //=0
 
 /* getters */
