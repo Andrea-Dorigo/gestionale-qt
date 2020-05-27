@@ -18,7 +18,7 @@ private:
   std::list<SmartP> sp;
 public:
   Magazzino();
-  void MostraTutto();
+  void mostraTutto();
 };
 
 #endif // MAGAZZINO_H
