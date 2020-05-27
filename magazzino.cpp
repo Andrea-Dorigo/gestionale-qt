@@ -28,5 +28,4 @@ Prodotto& Magazzino::SmartP::operator*() const {
   return *p;
 }
 
-Magazzino::Magazzino() {}
 void Magazzino::mostraTutto() {}

@@ -19,7 +19,6 @@ private:
 
   std::list<SmartP> sp;
 public:
-  Magazzino();
   void mostraTutto();
 };
 
