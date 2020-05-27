@@ -23,7 +23,10 @@ Prodotto::~Prodotto() {}
 
 // Prodotto* Prodotto::clone() const {} //=0
 // double Prodotto::calcoloPrezzo() const {} //=0
-// std::string Prodotto::mostraProdotto() const {} //=0
+std::string Prodotto::mostraProdotto() const {
+  std::string s = "{ \"prodotto\" : [\n   {\"id\": \"" + attributeToString(_id) + "\"},\n   {\"nome\": \"" + attributeToString(_nome) + "\"},\n   {\"descrizione\": \"" + attributeToString(_descrizione) + "\"},\n   {\"prezzo\": \"" + attributeToString(_prezzo) + "\"},\n";
+  return s;
+} //=0
 
 /* getters */
 unsigned short Prodotto::getId() const {

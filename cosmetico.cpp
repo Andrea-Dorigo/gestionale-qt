@@ -32,24 +32,23 @@ double Cosmetico::calcoloPrezzo() const {
   return 0.0;
 }
 
-std::string Cosmetico::mostraProdotto() const{
-  // return "{ \"prodotto\" : [\n   {\"nome\": \"" + getNome() + "\"},\n]}";
-  std::string s = "{ \"prodotto\" : [\n   {\"id\": \"" + attributeToString(getId()) + "\"},\n   {\"nome\": \"" + attributeToString(getNome()) + "\"},\n   {\"descrizione\": \"" + attributeToString(getDescrizione()) + "\"},\n   {\"prezzo\": \"" + attributeToString(getPrezzo()) + "\"},\n   {\"target\": \"" + attributeToString(_target) + "\"},\n   {\"Applicazione\": \"" + attributeToString(_applicazione) + "\"},\n]}";
+std::string Cosmetico::mostraProdotto() const {
+  std::string s = Prodotto::mostraProdotto() + "   {\"target\": \"" + attributeToString(_target) + "\"},\n   {\"applicazione\": \"" + attributeToString(_applicazione) + "\"},\n]}";
   return s;
 }
 
 /* getters */
-Target getTarget() const {
+Target Cosmetico::getTarget() const {
   return _target;
 }
-std::string getApplicazione() const {
+std::string Cosmetico::getApplicazione() const {
   return _applicazione;
 }
 
 /* setters */
-void setTarget(Target target) {
+void Cosmetico::setTarget(Target target) {
   _target = target;
 }
-void setApplicazione(std::string applicazione) {
+void Cosmetico::setApplicazione(std::string applicazione) {
   _applicazione = applicazione;
 }
