@@ -4,17 +4,16 @@ Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizion
 Prodotto(id, nome, descrizione, prezzo),
 _target(target),
 _applicazione(applicazione) {}
+Cosmetico::~Cosmetico() {}
 
 Cosmetico* Cosmetico::clone() const {
   return new Cosmetico(*this);
 }
 
 double Cosmetico::calcoloPrezzo() const {
-  return calcoloPrezzo();
+  return 0.0;
 }
 
 std::string Cosmetico::mostraProdotto() const{
-  return _applicazione;
+  return "{ \"prodotto\" : [\n   {\"nome\": \"" + getNome() + "\"},\n]}";
 }
-
-Cosmetico::~Cosmetico() {}

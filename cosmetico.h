@@ -1,5 +1,6 @@
 #ifndef COSMETICO_H
 #define COSMETICO_H
+
 #include "prodotto.h"
 
 enum Target {Uomo, Donna, Unisex};
@@ -10,10 +11,12 @@ private:
   std::string _applicazione;
 public:
   Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione);
+  virtual ~Cosmetico();
+
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
   virtual std::string mostraProdotto() const;
-  virtual ~Cosmetico();
+
 };
 
 #endif // COSMETICO_H
