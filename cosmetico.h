@@ -2,19 +2,17 @@
 #define COSMETICO_H
 #include "prodotto.h"
 
-using std::string;
-
-enum Sesso {Uomo, Donna, Unisex};
+enum Target {Uomo, Donna, Unisex};
 
 class Cosmetico : public Prodotto {
 private:
-  Sesso _sesso;
-  string _applicazione;
+  Target _target;
+  std::string _applicazione;
 public:
-  Cosmetico(unsigned short id, string nome, string descrizione, double prezzo, Sesso sesso, string applicazione);
+  Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione);
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
-  virtual string mostraProdotto() const;
+  virtual std::string mostraProdotto() const;
   virtual ~Cosmetico();
 };
 

@@ -4,12 +4,12 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
 _id(id),
 _nome(nome),
 _descrizione(descrizione),
-_prezzo(prezzo){}
+_prezzo(prezzo) {}
 Prodotto::~Prodotto() {}
 
-Prodotto* Prodotto::clone() const {}
-double Prodotto::calcoloPrezzo() const {}
-std::string Prodotto::mostraProdotto() const {}
+// Prodotto* Prodotto::clone() const {}
+// double Prodotto::calcoloPrezzo() const {}
+// std::string Prodotto::mostraProdotto() const {}
 
 unsigned short Prodotto::getId() const {return _id;}
 std::string Prodotto::getNome() const {return _nome;}
