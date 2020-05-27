@@ -15,12 +15,15 @@ SmartP& Magazzino::SmartP::operator=(const SmartP& s) {
   }
   return *this;
 }
+
 Magazzino::SmartP::~SmartP() {
   if(p) delete p;
 }
+
 Prodotto* Magazzino::SmartP::operator->() const {
   return p::
 }
+
 Prodotto& Magazzino::SmartP::operator*() const {
   return *p;
 }
