@@ -1,6 +1,5 @@
 #ifndef COSMETICO_H
 #define COSMETICO_H
-#include <string>
 #include "prodotto.h"
 
 using std::string;
