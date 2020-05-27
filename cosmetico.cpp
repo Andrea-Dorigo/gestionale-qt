@@ -1,7 +1,9 @@
+#include <string>
+#include <sstream>
 #include "cosmetico.h"
 
 // template <>
-std::string Cosmetico::targetToString(Target t) const{
+std::string Cosmetico::targetToString(Target t) const {
   std::string s;
   switch (t) {
     case UOMO:
@@ -9,7 +11,7 @@ std::string Cosmetico::targetToString(Target t) const{
     case DONNA:
       return "Donna";
     case UNISEX:
-      return "Unisex"
+      return "Unisex";
   }
 }
 
@@ -18,6 +20,7 @@ Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizion
   , _target(target)
   , _applicazione(applicazione)
   {}
+
 Cosmetico::~Cosmetico() {}
 
 Cosmetico* Cosmetico::clone() const {

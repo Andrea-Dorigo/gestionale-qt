@@ -1,3 +1,5 @@
+#include <string>
+#include <sstream>
 #include "prodotto.h"
 
 /*
@@ -21,6 +23,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
   , _descrizione(descrizione)
   , _prezzo(prezzo)
   {}
+
 Prodotto::~Prodotto() {}
 
 // Prodotto* Prodotto::clone() const {} //=0

@@ -1,6 +1,7 @@
 #ifndef COSMETICO_H
 #define COSMETICO_H
 
+#include <string>
 #include <map>
 #include "prodotto.h"
 

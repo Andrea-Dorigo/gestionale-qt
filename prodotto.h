@@ -2,7 +2,6 @@
 #define PRODOTTO_H
 
 #include <string>
-#include <sstream>
 
 /*
   template <class Attribute>
