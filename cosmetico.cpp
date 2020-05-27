@@ -1,9 +1,11 @@
 #include "cosmetico.h"
 
-Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione) :
-Prodotto(id, nome, descrizione, prezzo),
-_target(target),
-_applicazione(applicazione) {}
+Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione)
+  : Prodotto(id, nome, descrizione, prezzo)
+  , _target(target)
+  , _applicazione(applicazione)
+  {}
+
 Cosmetico::~Cosmetico() {}
 
 Cosmetico* Cosmetico::clone() const {
