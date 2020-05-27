@@ -3,6 +3,16 @@
 
 #include <string>
 
+template <class Attribute>
+std::string attributeToString(Attribute a) {return "tipo non trovato";}
+template <>
+std::string attributeToString(unsigned short i);
+template <>
+std::string attributeToString(std::string s);
+template <>
+std::string attributeToString(double d);
+
+
 class Prodotto {
 private:
   unsigned short _id;

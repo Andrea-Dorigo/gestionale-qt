@@ -3,7 +3,11 @@
 
 #include "prodotto.h"
 
-enum Target {Uomo, Donna, Unisex};
+enum Target {UOMO, DONNA, UNISEX};
+
+template <>
+std::string attributeToString(Target t);
+
 
 class Cosmetico : public Prodotto {
 private:
