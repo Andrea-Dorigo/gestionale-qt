@@ -25,10 +25,6 @@ std::string Cosmetico::mostraProdotto() const {
   return ss.str();
 }
 
-// std::string targetToString(Target target) const {
-//   return TargetMapForward[target];
-// }
-
 // template <>
 std::string Cosmetico::targetToString(Target t) const {
   std::string s;
@@ -48,6 +44,12 @@ std::string Cosmetico::targetToString(Target t) const {
 void Cosmetico::to_json(nlohmann::json& j, const Cosmetico& p) {
     j = nlohmann::json{{"Target", p.getTarget()}, {"applicazione", p.getApplicazione()}};
 }
+
+/*
+std::string targetToString(Target target) const {
+  return TargetMapForward[target];
+}
+*/
 
 /* getters */
 Target Cosmetico::getTarget() const {
