@@ -12,6 +12,8 @@ std::string Cosmetico::targetToString(Target t) const {
       return "Donna";
     case UNISEX:
       return "Unisex";
+    default:
+      return "";
   }
 }
 
