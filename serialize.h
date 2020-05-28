@@ -1,9 +1,10 @@
 #ifndef SERIALIZE_H
 #define SERIALIZE_H
 
-Class Serialize {
+class Serialize {
 public:
-  
+  void read();
+  void write();
 };
 
 #endif // SERIALIZE_H
