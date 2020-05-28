@@ -3,21 +3,6 @@
 #include "nlohmann/json.hpp"
 #include "cosmetico.h"
 
-// template <>
-std::string Cosmetico::targetToString(Target t) const {
-  std::string s;
-  switch (t) {
-    case UOMO:
-      return "Uomo";
-    case DONNA:
-      return "Donna";
-    case UNISEX:
-      return "Unisex";
-    default:
-      return "";
-  }
-}
-
 Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione)
   : Prodotto(id, nome, descrizione, prezzo)
   , _target(target)
@@ -43,6 +28,21 @@ std::string Cosmetico::mostraProdotto() const {
 // std::string targetToString(Target target) const {
 //   return TargetMapForward[target];
 // }
+
+// template <>
+std::string Cosmetico::targetToString(Target t) const {
+  std::string s;
+  switch (t) {
+    case UOMO:
+      return "Uomo";
+    case DONNA:
+      return "Donna";
+    case UNISEX:
+      return "Unisex";
+    default:
+      return "";
+  }
+}
 
 // https://github.com/nlohmann/json#basic-usage
 void Cosmetico::to_json(nlohmann::json& j, const Cosmetico& p) {
