@@ -28,11 +28,15 @@ Prodotto::~Prodotto() {}
 
 // Prodotto* Prodotto::clone() const {} //=0
 // double Prodotto::calcoloPrezzo() const {} //=0
-// std::string Prodotto::mostraProdotto() const {
-//   std::stringstream ss;
-//   ss << "{ \"prodotto\" : [\n   {\"id\": \"" << _id  << "\"},\n   {\"nome\": \"" << _nome << "\"},\n   {\"descrizione\": \"" << _descrizione << "\"},\n   {\"prezzo\": \"" << _prezzo << "\"},\n";
-//   return ss.str();
-// } //=0
+
+/* da spostare in classe serializzazione */
+/*
+std::string Prodotto::mostraProdotto() const {
+  std::stringstream ss;
+  ss << "{ \"prodotto\" : [\n   {\"id\": \"" << _id  << "\"},\n   {\"nome\": \"" << _nome << "\"},\n   {\"descrizione\": \"" << _descrizione << "\"},\n   {\"prezzo\": \"" << _prezzo << "\"},\n";
+  return ss.str();
+} //=0
+*/
 
 /* getters */
 unsigned short Prodotto::getId() const {

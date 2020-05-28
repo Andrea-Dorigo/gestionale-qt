@@ -1,6 +1,6 @@
 #include <iostream>
 #include "cosmetico.h"
-#include "nlohmann/json.hpp"
+//#include "nlohmann/json.hpp"
 
 int main() {
   /* costruttori a cui fare riferimento
