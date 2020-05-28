@@ -7,9 +7,14 @@
 
 // read a JSON file and return a json element
 nlohmann::json Serialize::read(const std::string& nome_file) {
-  std::ifstream i(nome_file);
   nlohmann::json j;
-  i >> j;
+  try {
+    std::ifstream i(nome_file);
+    i >> j;
+  } //se non esiste il file allora crealo vuoto
+  catch(const nlohmann::detail::parse_error e) {
+    std::ofstream o(nome_file);
+  }
   return j;
 }
 
