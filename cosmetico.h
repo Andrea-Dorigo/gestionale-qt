@@ -24,7 +24,7 @@ public:
   virtual ~Cosmetico();
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
-  virtual std::string mostraProdotto() const;
+  // virtual std::string mostraProdotto() const;
   std::string targetToString(Target target) const;
   void to_json(nlohmann::json& j, const Cosmetico& p);
 

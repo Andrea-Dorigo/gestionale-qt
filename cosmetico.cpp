@@ -18,32 +18,32 @@ Cosmetico* Cosmetico::clone() const {
 double Cosmetico::calcoloPrezzo() const {
   return 0.0;
 }
-
-std::string Cosmetico::mostraProdotto() const {
-  std::stringstream ss;
-  ss << Prodotto::mostraProdotto() << "   {\"target\": \"" << targetToString(_target) << "\"},\n   {\"applicazione\": \"" << _applicazione << "\"},\n]}";
-  return ss.str();
-}
+//
+// std::string Cosmetico::mostraProdotto() const {
+//   std::stringstream ss;
+//   ss << Prodotto::mostraProdotto() << "   {\"target\": \"" << targetToString(_target) << "\"},\n   {\"applicazione\": \"" << _applicazione << "\"},\n]}";
+//   return ss.str();
+// }
 
 // template <>
-std::string Cosmetico::targetToString(Target t) const {
-  std::string s;
-  switch (t) {
-    case UOMO:
-      return "Uomo";
-    case DONNA:
-      return "Donna";
-    case UNISEX:
-      return "Unisex";
-    default:
-      return "";
-  }
-}
+// std::string Cosmetico::targetToString(Target t) const {
+//   std::string s;
+//   switch (t) {
+//     case UOMO:
+//       return "Uomo";
+//     case DONNA:
+//       return "Donna";
+//     case UNISEX:
+//       return "Unisex";
+//     default:
+//       return "";
+//   }
+// }
 
 // https://github.com/nlohmann/json#basic-usage
-void Cosmetico::to_json(nlohmann::json& j, const Cosmetico& p) {
-    j = nlohmann::json{{"Target", p.getTarget()}, {"applicazione", p.getApplicazione()}};
-}
+// void Cosmetico::to_json(nlohmann::json& j, const Cosmetico& p) {
+//     j = nlohmann::json{{"Target", p.getTarget()}, {"applicazione", p.getApplicazione()}};
+// }
 
 /*
 std::string targetToString(Target target) const {

@@ -25,7 +25,7 @@ public:
   virtual ~Prodotto();
   virtual Prodotto* clone() const=0;
   virtual double calcoloPrezzo() const=0;
-  virtual std::string mostraProdotto() const=0;
+  // virtual std::string mostraProdotto() const=0;
   /* getters */
   unsigned short getId() const;
   std::string getNome() const;
