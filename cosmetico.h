@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include "nlohmann/json.hpp"
 #include "prodotto.h"
 
 enum Target {UOMO, DONNA, UNISEX};
@@ -23,7 +24,9 @@ public:
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
   virtual std::string mostraProdotto() const;
-  std::string targetToString(Target target) const ;
+  std::string targetToString(Target target) const;
+  void to_json(nlohmann::json& j, const Cosmetico& p);
+
   /* getters */
   Target getTarget() const;
   std::string getApplicazione() const;

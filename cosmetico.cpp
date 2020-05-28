@@ -1,5 +1,6 @@
 #include <string>
 #include <sstream>
+#include "nlohmann/json.hpp"
 #include "cosmetico.h"
 
 // template <>
@@ -42,6 +43,11 @@ std::string Cosmetico::mostraProdotto() const {
 // std::string targetToString(Target target) const {
 //   return TargetMapForward[target];
 // }
+
+// https://github.com/nlohmann/json#basic-usage
+void Cosmetico::to_json(nlohmann::json& j, const Cosmetico& p) {
+    j = nlohmann::json{{"Target", p.getTarget()}, {"applicazione", p.getApplicazione()}};
+}
 
 /* getters */
 Target Cosmetico::getTarget() const {
