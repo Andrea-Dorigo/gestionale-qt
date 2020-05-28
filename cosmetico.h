@@ -7,11 +7,12 @@
 #include "prodotto.h"
 
 enum Target {UOMO, DONNA, UNISEX};
+
 // std::map<Target, std::string> TargetMapForward = {{UOMO, "Uomo"}, {DONNA, "donna"}, {UNISEX, "Unisex"}};
 
 /*
-  template <>
-  std::string attributeToString(Target t);
+template <>
+std::string attributeToString(Target t);
 */
 
 class Cosmetico : public Prodotto {
