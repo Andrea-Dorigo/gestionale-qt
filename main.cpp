@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cosmetico.h"
+#include "magazzino.h"
 //#include "nlohmann/json.hpp"
 
 int main() {
@@ -15,6 +16,7 @@ int main() {
   //nlohmann::json documento; //non funziona anche se dovrebbe
   //c.to_json(documento, c);
   //std::cout << documento << std::endl;
+
 
   return 0;
 }

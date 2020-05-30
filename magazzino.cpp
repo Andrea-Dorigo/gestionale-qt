@@ -1,6 +1,6 @@
 #include "magazzino.h"
 
-Magazzino::SmartP::SmartP(Prodotto* q=nullptr)
+Magazzino::SmartP::SmartP(Prodotto* q)
   : p(q!=nullptr ? q->clone() : nullptr)
   {}
 
@@ -8,7 +8,7 @@ Magazzino::SmartP::SmartP(const SmartP& s)
   : p(s.p!=nullptr ? (s.p)->clone() : nullptr)
   {}
 
-SmartP& Magazzino::SmartP::operator=(const SmartP& s) {
+Magazzino::SmartP& Magazzino::SmartP::operator=(const SmartP& s) {
   if(this != &s) {
     if(p) delete p;
     p = (s.p!=nullptr ? (s.p)->clone() : nullptr);

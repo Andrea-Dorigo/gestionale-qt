@@ -9,7 +9,7 @@ private:
   class SmartP {
   public:
     Prodotto* p;
-    SmartP(Prodotto* q=nullptr);
+    SmartP(Prodotto* q);
     SmartP(const SmartP& s);
     SmartP& operator=(const SmartP& s);
     ~SmartP();
