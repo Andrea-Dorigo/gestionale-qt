@@ -67,3 +67,7 @@ void Cosmetico::setTarget(Target target) {
 void Cosmetico::setApplicazione(std::string applicazione) {
   _applicazione = applicazione;
 }
+
+// Cosmetico& Cosmetico::operator*() const{
+//   return *_target;
+// }

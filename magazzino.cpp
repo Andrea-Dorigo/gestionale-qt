@@ -27,5 +27,22 @@ Prodotto* Magazzino::SmartP::operator->() const {
 Prodotto& Magazzino::SmartP::operator*() const {
   return *p;
 }
+bool Magazzino::insert(Prodotto* p) {
+  sp.push_back(p);
+  return true;
+}
 
-void Magazzino::mostraTutto() {}
+
+
+
+
+bool Magazzino::mostraProdotto(Prodotto* p) {
+  Serialize s;
+  nlohmann::json prodotto;
+  prodotto["id"] = p->getId();
+  prodotto["nome"] = p->getNome();
+  prodotto["descrizione"] = p->getDescrizione();
+  prodotto["prezzo"] = p->getPrezzo();
+  s.Serialize::write("prodotto.json", prodotto);
+  return true;
+}

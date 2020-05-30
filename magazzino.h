@@ -3,6 +3,8 @@
 
 #include <list>
 #include "prodotto.h"
+#include "nlohmann/json.hpp"
+#include "serialize.h"
 
 class Magazzino {
 private:
@@ -19,7 +21,9 @@ private:
 
   std::list<SmartP> sp;
 public:
-  void mostraTutto();
+  //inserisce un prodotto nel magazzino
+  bool insert(Prodotto* p);
+  bool mostraProdotto(Prodotto* p);
 };
 
 #endif // MAGAZZINO_H

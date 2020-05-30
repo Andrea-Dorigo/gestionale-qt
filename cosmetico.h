@@ -24,6 +24,7 @@ public:
   virtual ~Cosmetico();
   virtual Cosmetico* clone() const;
   virtual double calcoloPrezzo() const;
+  // Cosmetico& operator*() const;
   /* da spostare in classe serializzazione */
   // virtual std::string mostraProdotto() const;
   // std::string targetToString(Target target) const;

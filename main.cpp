@@ -1,7 +1,9 @@
 #include <iostream>
+// #include <string>
 #include "cosmetico.h"
 #include "magazzino.h"
-//#include "nlohmann/json.hpp"
+// #include "nlohmann/json.hpp"
+// #include "serialize.h"
 
 int main() {
   /* costruttori a cui fare riferimento
@@ -10,6 +12,17 @@ int main() {
   */
 
   Cosmetico c(1, "NomeProdotto", "DescrizioneProdotto", 10.50, UOMO, "ApplicazioneCosmetico");
+  Cosmetico* p = &c;
+  Magazzino m;
+  bool a,b;
+  std::cout << a <<b<< std::endl;
+  a=m.Magazzino::insert(p);
+  b=m.Magazzino::mostraProdotto(p);
+  std::cout << a <<b<< std::endl;
+
+
+
+
   // std::cout << c.mostraProdotto() << std::endl;
 
   //Cosmetico c(1, "nome", "descrizione", 0.5, DONNA, "applicazione");
