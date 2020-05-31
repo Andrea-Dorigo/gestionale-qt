@@ -31,7 +31,17 @@ bool Magazzino::insert(Prodotto* p) {
   sp.push_back(p);
   return true;
 }
-
+bool Magazzino::deleteProdotto(int id) {
+  Prodotto* q = nullptr;
+  for (auto it = sp.begin(); it != sp.end(); it++){
+    if((*it)->getId() == id){
+      it=sp.erase(it);
+      //--it; non serve perche' tanto facciamo il return
+      return true;
+    }
+    else return false;
+  }
+}
 
 
 

@@ -14,11 +14,12 @@ int main() {
   Cosmetico c(1, "NomeProdotto", "DescrizioneProdotto", 10.50, UOMO, "ApplicazioneCosmetico");
   Cosmetico* p = &c;
   Magazzino m;
-  bool a,b;
-  std::cout << a <<b<< std::endl;
+  bool a,b,d;
+  std::cout << a << b << d <<std::endl;
   a=m.Magazzino::insert(p);
   b=m.Magazzino::mostraProdotto(p);
-  std::cout << a <<b<< std::endl;
+  d=m.Magazzino::deleteProdotto(1);
+  std::cout << a << b << d <<std::endl;
 
 
 
