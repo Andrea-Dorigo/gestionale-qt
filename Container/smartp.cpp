@@ -7,3 +7,7 @@ SmartP::SmartP(Prodotto* q)
 SmartP::SmartP(const SmartP& s)
   : p(s.p ? (s.p)->clone() : nullptr)
   {}
+
+SmartP::~SmartP() {
+    if(p) delete p;
+}
