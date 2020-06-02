@@ -2,21 +2,6 @@
 #include <sstream>
 #include "prodotto.h"
 
-/*
-template <>
-std::string attributeToString(unsigned short i) {
-  return std::to_string(i);
-}
-template <>
-std::string attributeToString(std::string s) {
-  return s;
-}
-template <>
-std::string attributeToString(double d) {
-  return std::to_string(d);
-}
-*/
-
 Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double prezzo)
   : _id(id)
   , _nome(nome)
@@ -26,11 +11,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
 
 Prodotto::~Prodotto() {}
 
-// Prodotto* Prodotto::clone() const {} //=0
-// double Prodotto::calcoloPrezzo() const {} //=0
-
-/* da spostare in classe serializzazione */
-/*
+/* da spostare in classe serializzazione
 std::string Prodotto::mostraProdotto() const {
   std::stringstream ss;
   ss << "{ \"prodotto\" : [\n   {\"id\": \"" << _id  << "\"},\n   {\"nome\": \"" << _nome << "\"},\n   {\"descrizione\": \"" << _descrizione << "\"},\n   {\"prezzo\": \"" << _prezzo << "\"},\n";
