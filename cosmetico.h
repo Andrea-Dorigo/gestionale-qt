@@ -14,7 +14,7 @@ class Cosmetico : public Prodotto {
     Target _target;
     std::string _applicazione;
   public:
-    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione);
+    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target=UNISEX, std::string applicazione="");
     virtual ~Cosmetico();
     virtual Cosmetico* clone() const;
     virtual double calcoloPrezzo() const;
