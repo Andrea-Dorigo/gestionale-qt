@@ -19,6 +19,7 @@ bool Magazzino::deleteProdotto(int id) {
     return true;
   }
   else return false;
+  // // metodo con ciclo for (meno efficiente)
   // for (auto it = sp.begin(); it != sp.end(); it++){
   //   if((*it)->getId() == id){
   //     it=sp.erase(it);
