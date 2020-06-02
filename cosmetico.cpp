@@ -9,8 +9,6 @@ Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizion
   , _applicazione(applicazione)
   {}
 
-Cosmetico::~Cosmetico() {}
-
 Cosmetico* Cosmetico::clone() const {
   return new Cosmetico(*this);
 }
