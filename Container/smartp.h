@@ -3,11 +3,6 @@
 
 template<class T>
 class SmartP {
-  /* Aggiungere la seguente riga per renderlo utilizzabile da tutti i tipi:
-     template<class T>
-     prima della dichiarazione della classe e della implementazione dei metodi.
-     Successivamente, sostituire le istanze di T con T
-  */
   public:
     T* p;
     SmartP(T* q=nullptr);
