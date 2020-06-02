@@ -14,7 +14,7 @@ SmartP::~SmartP() {
     if(p) delete p;
 }
 
-SmartP::SmartP& operator=(const SmartP& s) {
+SmartP& SmartP::operator=(const SmartP& s) {
   if(this != &s) {
     if(p) delete p;
     p = (s.p!=nullptr ? (s.p)->clone() : nullptr);
