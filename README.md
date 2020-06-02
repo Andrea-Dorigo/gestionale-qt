@@ -1,6 +1,6 @@
 # Magazzino di Erboristeria-Alchimia
 Progetto di Programmazione ad Oggetti 2019-2020.
 
-## Membri del gruppo:
+## Membri del gruppo
 * Andrea Dorigo
 * Dardan Kokollari
