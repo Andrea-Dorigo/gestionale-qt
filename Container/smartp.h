@@ -9,15 +9,15 @@ class SmartP {
      prima della dichiarazione della classe e della implementazione dei metodi.
      Successivamente, sostituire le istanze di Prodotto con T
   */
-public:
-  Prodotto* p;
-  SmartP(Prodotto* q=nullptr);
-  SmartP(const SmartP& s);
-  ~SmartP();
-  SmartP& operator=(const SmartP& s);
-  bool operator==(const SmartP& s) const;
-  Prodotto* operator->() const;
-  Prodotto& operator*() const;
+  public:
+    Prodotto* p;
+    SmartP(Prodotto* q=nullptr);
+    SmartP(const SmartP& s);
+    ~SmartP();
+    SmartP& operator=(const SmartP& s);
+    bool operator==(const SmartP& s) const;
+    Prodotto* operator->() const;
+    Prodotto& operator*() const;
 };
 
 #endif // SMARTP_H
