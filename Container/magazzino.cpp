@@ -1,4 +1,6 @@
+#include "nlohmann/json.hpp"
 #include "magazzino.h"
+#include "serialize.h"
 
 bool Magazzino::insert(Prodotto* p) {
   sp.push_back(p);

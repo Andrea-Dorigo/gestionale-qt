@@ -2,13 +2,11 @@
 #define MAGAZZINO_H
 
 #include <list>
+#include "smartp.h"
 #include "prodotto.h"
-#include "nlohmann/json.hpp"
-#include "serialize.h"
 
 class Magazzino {
 private:
-
   std::list<SmartP> sp;
 public:
   //inserisce un prodotto nel magazzino
