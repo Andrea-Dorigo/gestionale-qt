@@ -1,3 +1,4 @@
+#include <typeinfo>
 #include "smartp.h"
 
 SmartP::SmartP(Prodotto* q)
@@ -18,4 +19,21 @@ SmartP::SmartP& operator=(const SmartP& s) {
     p = (s.p!=nullptr ? (s.p)->clone() : nullptr);
   }
   return *this;
+}
+
+bool SmartP::operator==(const SmartP& s) {
+  return typeid(*p) == typeid(*s.p) && *p == *(s.p);
+}
+
+Prodotto* SmartP::operator->() const;
+Prodotto& SmartP::operator*() const;
+
+
+
+Prodotto* Magazzino::SmartP::operator->() const {
+  return p;
+}
+
+Prodotto& Magazzino::SmartP::operator*() const {
+  return *p;
 }
