@@ -1,20 +1,23 @@
 #include <typeinfo>
 #include "smartp.h"
-#include "prodotto.h"
 
-SmartP::SmartP(Prodotto* q)
+template<class T>
+SmartP<T>::SmartP(T* q)
   : p(q!=nullptr ? q->clone() : nullptr)
   {}
 
-SmartP::SmartP(const SmartP& s)
+template<class T>
+SmartP<T>::SmartP(const SmartP& s)
   : p(s.p!=nullptr ? (s.p)->clone() : nullptr)
   {}
 
-SmartP::~SmartP() {
+template<class T>
+SmartP<T>::~SmartP() {
     if(p) delete p;
 }
 
-SmartP& SmartP::operator=(const SmartP& s) {
+template<class T>
+SmartP<T>& SmartP<T>::operator=(const SmartP& s) {
   if(this != &s) {
     if(p) delete p;
     p = (s.p!=nullptr ? (s.p)->clone() : nullptr);
@@ -22,14 +25,17 @@ SmartP& SmartP::operator=(const SmartP& s) {
   return *this;
 }
 
-bool SmartP::operator==(const SmartP& s) const {
+template<class T>
+bool SmartP<T>::operator==(const SmartP& s) const {
   return typeid(*p) == typeid(*s.p) && *p == *(s.p);
 }
 
-Prodotto* SmartP::operator->() const {
+template<class T>
+T* SmartP<T>::operator->() const {
   return p;
 }
 
-Prodotto& SmartP::operator*() const {
+template<class T>
+T& SmartP<T>::operator*() const {
   return *p;
 }
