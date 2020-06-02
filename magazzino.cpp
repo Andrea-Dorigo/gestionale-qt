@@ -27,24 +27,33 @@ Prodotto* Magazzino::SmartP::operator->() const {
 Prodotto& Magazzino::SmartP::operator*() const {
   return *p;
 }
+
 bool Magazzino::insert(Prodotto* p) {
   sp.push_back(p);
   return true;
 }
+
 bool Magazzino::deleteProdotto(int id) {
   Prodotto* q = nullptr;
-  for (auto it = sp.begin(); it != sp.end(); it++){
-    if((*it)->getId() == id){
-      it=sp.erase(it);
-      //--it; non serve perche' tanto facciamo il return
-      return true;
-    }
-    else return false;
+  auto it = sp.begin();
+  /* finché la lista non finisce oppure trovi il prodotto */
+  while(it != sp.end() && (*it)->getId() != id)){
+    it++;
   }
+  if((*it)->getId() == id){
+    it=sp.erase(it);
+    return true;
+  }
+  else return false;
+  // for (auto it = sp.begin(); it != sp.end(); it++){
+  //   if((*it)->getId() == id){
+  //     it=sp.erase(it);
+  //     //--it; non serve perche' tanto facciamo il return
+  //     return true;
+  //   }
+  //   else return false;
+  // }
 }
-
-
-
 
 bool Magazzino::mostraProdotto(Prodotto* p) {
   Serialize s;
