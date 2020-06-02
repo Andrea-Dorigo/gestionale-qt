@@ -1,11 +1,11 @@
 #include "smartp.h"
 
 SmartP::SmartP(Prodotto* q)
-  : p(q ? q->clone() : nullptr)
+  : p(q!=nullptr ? q->clone() : nullptr)
   {}
 
 SmartP::SmartP(const SmartP& s)
-  : p(s.p ? (s.p)->clone() : nullptr)
+  : p(s.p!=nullptr ? (s.p)->clone() : nullptr)
   {}
 
 SmartP::~SmartP() {
