@@ -1,5 +1,9 @@
-#include "nlohmann/json.hpp"
 #include "magazzino.h"
+
+
+
+/*
+#include "nlohmann/json.hpp"
 #include "serialize.h"
 
 bool Magazzino::insert(Prodotto* p) {
@@ -10,7 +14,7 @@ bool Magazzino::insert(Prodotto* p) {
 bool Magazzino::deleteProdotto(int id) {
   Prodotto* q = nullptr;
   auto it = sp.begin();
-  /* finché la lista non finisce oppure trovi il prodotto */
+  // finché la lista non finisce oppure trovi il prodotto
   while(it != sp.end() || (*it)->getId() != id){
     it++;
   }
@@ -40,3 +44,4 @@ bool Magazzino::mostraProdotto(Prodotto* p) {
   s.Serialize::write("prodotto.json", prodotto);
   return true;
 }
+*/
