@@ -21,19 +21,6 @@ SmartP::SmartP& operator=(const SmartP& s) {
   return *this;
 }
 
-bool SmartP::operator==(const SmartP& s) {
+bool SmartP::operator==(const SmartP& s) const {
   return typeid(*p) == typeid(*s.p) && *p == *(s.p);
-}
-
-Prodotto* SmartP::operator->() const;
-Prodotto& SmartP::operator*() const;
-
-
-
-Prodotto* Magazzino::SmartP::operator->() const {
-  return p;
-}
-
-Prodotto& Magazzino::SmartP::operator*() const {
-  return *p;
 }
