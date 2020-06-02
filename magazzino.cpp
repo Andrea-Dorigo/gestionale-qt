@@ -37,7 +37,7 @@ bool Magazzino::deleteProdotto(int id) {
   Prodotto* q = nullptr;
   auto it = sp.begin();
   /* finché la lista non finisce oppure trovi il prodotto */
-  while(it != sp.end() && (*it)->getId() != id)){
+  while(it != sp.end() || (*it)->getId() != id)){
     it++;
   }
   if((*it)->getId() == id){
