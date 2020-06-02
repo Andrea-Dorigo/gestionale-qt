@@ -10,7 +10,7 @@ class Prodotto {
     std::string _descrizione;
     double _prezzo;
   public:
-    Prodotto(unsigned short id, std::string nome, std::string descrizione, double prezzo=0.0);
+    Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double prezzo=0.0);
     virtual ~Prodotto()=default;
     virtual Prodotto* clone() const=0;
     virtual double calcoloPrezzo() const=0;
