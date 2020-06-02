@@ -11,7 +11,7 @@ class Prodotto {
     double _prezzo;
   public:
     Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double prezzo=0.0);
-    virtual ~Prodotto()=default;
+    virtual ~Prodotto();
     virtual Prodotto* clone() const=0;
     virtual double calcoloPrezzo() const=0;
     // virtual std::string mostraProdotto() const=0; // da spostare in classe serializzazione

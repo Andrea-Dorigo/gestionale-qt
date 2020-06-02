@@ -9,7 +9,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
   , _prezzo(prezzo)
   {}
 
-Prodotto::~Prodotto() {}
+Prodotto::~Prodotto() = default;
 
 // // da spostare in classe serializzazione
 // std::string Prodotto::mostraProdotto() const {
