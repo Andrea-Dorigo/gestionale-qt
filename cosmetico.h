@@ -2,18 +2,12 @@
 #define COSMETICO_H
 
 #include <string>
-#include <map>
-//#include "nlohmann/json.hpp"
+//#include <map>
 #include "prodotto.h"
 
 enum Target {UOMO, DONNA, UNISEX};
 
 // std::map<Target, std::string> TargetMapForward = {{UOMO, "Uomo"}, {DONNA, "donna"}, {UNISEX, "Unisex"}};
-
-/*
-template <>
-std::string attributeToString(Target t);
-*/
 
 class Cosmetico : public Prodotto {
   private:
@@ -25,11 +19,7 @@ class Cosmetico : public Prodotto {
     virtual Cosmetico* clone() const;
     virtual double calcoloPrezzo() const;
     // Cosmetico& operator*() const;
-    /* da spostare in classe serializzazione */
-    // virtual std::string mostraProdotto() const;
-    // std::string targetToString(Target target) const;
-    // void to_json(nlohmann::json& j, const Cosmetico& p);
-
+    // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione
     /* getters */
     Target getTarget() const;
     std::string getApplicazione() const;
