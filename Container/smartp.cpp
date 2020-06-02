@@ -24,3 +24,11 @@ SmartP::SmartP& operator=(const SmartP& s) {
 bool SmartP::operator==(const SmartP& s) const {
   return typeid(*p) == typeid(*s.p) && *p == *(s.p);
 }
+
+Prodotto* SmartP::operator->() const {
+  return p;
+}
+
+Prodotto& SmartP::operator*() const {
+  return *p;
+}

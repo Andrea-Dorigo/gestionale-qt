@@ -12,4 +12,5 @@ public:
   Prodotto* operator->() const;
   Prodotto& operator*() const;
 };
+
 #endif // SMARTP_H
