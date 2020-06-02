@@ -1,6 +1,8 @@
 #ifndef SMARTP_H
 #define SMARTP_H
 
+#include "prodotto.h"
+
 class SmartP {
 public:
   Prodotto* p;

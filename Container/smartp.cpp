@@ -1,5 +1,6 @@
 #include <typeinfo>
 #include "smartp.h"
+#include "prodotto.h"
 
 SmartP::SmartP(Prodotto* q)
   : p(q!=nullptr ? q->clone() : nullptr)
