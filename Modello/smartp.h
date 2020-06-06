@@ -9,7 +9,7 @@ class SmartP {
     SmartP(const SmartP&);
     ~SmartP();
     SmartP& operator=(const SmartP&);
-    bool operator==(const SmartP&) const;
+    bool operator==(const SmartP&) const; // potrebbe non essere necessario
     T* operator->() const;
     T& operator*() const;
 };
