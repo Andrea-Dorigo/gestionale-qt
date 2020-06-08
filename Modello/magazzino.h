@@ -1,10 +1,10 @@
-#include <list>
+#include "container.h"
 #include "smartp.h"
 #include "prodotto.h"
 
 class Magazzino {
   private:
-    std::list<SmartP> sp;
+    Container<SmartP<Prodotto>> magazzino;
   public:
     //inserisce un prodotto nel magazzino
     bool insert(Prodotto* p);
