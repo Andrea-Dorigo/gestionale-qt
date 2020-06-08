@@ -6,6 +6,8 @@ class Magazzino {
   private:
     Container<SmartP<Prodotto>> magazzino;
   public:
+    Magazzino() = default;
+    ~Magazzino() = default;
     //inserisce un prodotto nel magazzino
     bool insert(Prodotto* p);
     //elimina il prodotto con un certo id
