@@ -9,6 +9,7 @@ class Magazzino {
     Magazzino() = default;
     ~Magazzino() = default;
     void save(const std::string&) const;
+    void load(const std::string&);
     //inserisce un prodotto nel magazzino
     bool insert(Prodotto* p);
     //elimina il prodotto con un certo id
