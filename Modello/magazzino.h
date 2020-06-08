@@ -11,7 +11,7 @@ class Magazzino {
     void save(const std::string&) const;
     void load(const std::string&);
     unsigned int count() const;
-    bool insert(Prodotto*);
+    void insert(Prodotto*);
     bool remove(unsigned int);
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };

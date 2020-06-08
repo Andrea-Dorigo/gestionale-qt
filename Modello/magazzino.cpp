@@ -14,9 +14,8 @@ unsigned int Magazzino::count() const {
   return 0;
 }
 
-bool Magazzino::insert(Prodotto* p) {
+void Magazzino::insert(Prodotto* p) {
   magazzino.push_back(p);
-  return false;
 }
 
 bool Magazzino::remove(unsigned int id) {
