@@ -1,6 +1,8 @@
 #ifndef SMARTP_H
 #define SMARTP_H
 
+#include <typeinfo>
+
 template<class T>
 class SmartP {
   public:
