@@ -11,7 +11,7 @@ void Magazzino::load(const std::string& filename) {
 }
 
 unsigned int Magazzino::count() const {
-  return 0;
+  return magazzino.getSize();
 }
 
 void Magazzino::insert(Prodotto* p) {
