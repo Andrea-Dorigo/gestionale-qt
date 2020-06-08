@@ -1,4 +1,3 @@
-/*
 #include <list>
 #include "smartp.h"
 #include "prodotto.h"
@@ -14,4 +13,3 @@ class Magazzino {
     //funzione da rimuovere da qui
     bool mostraProdotto(Prodotto* p);
 };
-*/
