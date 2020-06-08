@@ -7,11 +7,12 @@ class Container {
   friend class const_iterator;
   private:
     class nodo {
-      nodo(const T&, nodo* =nullptr, nodo* =nullptr);
-      ~nodo();
-      T info;
-      nodo* prev;
-      nodo* next;
+      public:
+        nodo(const T&, nodo* =nullptr, nodo* =nullptr);
+        ~nodo();
+        T info;
+        nodo* prev;
+        nodo* next;
     };
     nodo* first;
     nodo* last;
