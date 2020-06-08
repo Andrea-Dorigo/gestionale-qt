@@ -2,6 +2,26 @@
 // #include "nlohmann/json.hpp"
 // #include "serialize.h"
 
+void Magazzino::save(const std::string& filename) const {
+
+}
+
+void Magazzino::load(const std::string& filename) {
+
+}
+
+unsigned int Magazzino::count() const {
+  return 0;
+}
+
+bool Magazzino::insert(Prodotto* p) {
+  return false;
+}
+
+bool Magazzino::remove(unsigned int id) {
+  return false;
+}
+
 // bool Magazzino::insert(Prodotto* p) {
 //   sp.push_back(p);
 //   return true;
