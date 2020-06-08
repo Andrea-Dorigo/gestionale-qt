@@ -13,6 +13,5 @@ class Magazzino {
     unsigned int count() const;
     bool insert(Prodotto*);
     bool remove(unsigned int);
-    //funzione da rimuovere da qui
-    bool mostraProdotto(Prodotto* p);
+    // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
