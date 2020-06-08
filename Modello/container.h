@@ -573,14 +573,14 @@ typename Container<T>::iterator Container<T>::erase(iterator it) {
 
 template<class T>
 bool Container<T>::search(const T& t, iterator& it) const {
-  bool trovato = false;
-  for(auto cit = begin(); cit != end() && !trovato; cit++) {
+  bool found = false;
+  for(auto cit = begin(); cit != end() && !found; cit++) {
     if(*cit == t) { // utilizzo operator== della classe T
-      trovato = true;
+      found = true;
       it.p = const_cast<nodo*>(cit.p);
     }
   }
-  return trovato;
+  return found;
 }
 
 #endif // CONTAINER_H
