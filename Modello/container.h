@@ -391,35 +391,33 @@ Container<T>& Container<T>::operator=(const Container& c) {
 }
 
 template<class T>
-bool Container<T>::operator!=(const Container& c) const
-{
-    return !(Container<T>::isEqual(first, c.first));
+bool Container<T>::operator!=(const Container& c) const {
+  return !(Container<T>::isEqual(first, c.first));
 }
 
 template<class T>
-bool Container<T>::operator==(const Container& c) const
-{
-    return Container<T>::isEqual(first, c.first);
+bool Container<T>::operator==(const Container& c) const {
+  return Container<T>::isEqual(first, c.first);
 }
 
 template<class T>
 bool Container<T>::operator<(const Container& c) const {
-    return Container<T>::isMinor(first, c.first);
+  return Container<T>::isMinor(first, c.first);
 }
 
 template<class T>
 bool Container<T>::operator>(const Container& c) const {
-    return Container<T>::isGreater(first, c.first);
+  return Container<T>::isGreater(first, c.first);
 }
 
 template<class T>
 bool Container<T>::operator<=(const Container& c) const {
-    return Container<T>::isMinorEqual(first, c.first);
+  return Container<T>::isMinorEqual(first, c.first);
 }
 
 template<class T>
 bool Container<T>::operator>=(const Container& c) const {
-    return Container<T>::isGreaterEqual(first, c.first);
+  return Container<T>::isGreaterEqual(first, c.first);
 }
 
 template<class T>
