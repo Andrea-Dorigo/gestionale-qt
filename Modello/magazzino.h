@@ -1,3 +1,6 @@
+#ifndef MAGAZZINO_H
+#define MAGAZZINO_H
+
 #include "container.h"
 #include "smartp.h"
 #include "prodotto.h"
@@ -15,3 +18,5 @@ class Magazzino {
     bool remove(unsigned int);
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
+
+#endif // MAGAZZINO_H
