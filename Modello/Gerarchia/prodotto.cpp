@@ -12,7 +12,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
 
 Prodotto::~Prodotto() = default;
 
-bool operator==(const Prodotto& p) const {
+bool Prodotto::operator==(const Prodotto& p) const {
   return _id == p.getId()
       && _nome == p.getNome()
       && _descrizione == p.getDescrizione()
