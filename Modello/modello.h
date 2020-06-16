@@ -10,8 +10,8 @@ class Modello {
   private:
     Container<SmartP<Prodotto>> magazzino;
   public:
-    Modello() = default;
-    ~Modello() = default;
+    Modello();
+    ~Modello();
     // void save(const std::string&) const;
     // void load(const std::string&);
     unsigned int count() const;

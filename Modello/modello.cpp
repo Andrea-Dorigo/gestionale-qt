@@ -1,5 +1,9 @@
 #include "modello.h"
 
+Modello::Modello() = default;
+
+Modello::~Modello() = default;
+
 // void Modello::save(const std::string& filename) const { }
 // void Modello::load(const std::string& filename) { }
 
