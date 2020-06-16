@@ -8,6 +8,13 @@ Vivanda::Vivanda(unsigned short id, std::string nome, std::string descrizione, d
   , _sapore(sapore)
   {}
 
+bool Vivanda::operator==(const Prodotto& p) const {
+  auto aux = dynamic_cast<const Vivanda*>(&p);
+  return aux
+      && Alimentare::operator==(p)
+      && _sapore == aux->getSapore();
+}
+
 Vivanda* Vivanda::clone() const {
   return new Vivanda(*this);
 }

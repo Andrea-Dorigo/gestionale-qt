@@ -9,6 +9,14 @@ Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizion
   , _applicazione(applicazione)
   {}
 
+bool Cosmetico::operator==(const Prodotto& p) const {
+  auto aux = dynamic_cast<const Cosmetico*>(&p);
+  return aux
+      && Prodotto::operator==(p)
+      && _target == aux->getTarget()
+      && _applicazione == aux->getApplicazione();
+}
+
 Cosmetico* Cosmetico::clone() const {
   return new Cosmetico(*this);
 }

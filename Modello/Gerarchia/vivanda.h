@@ -11,6 +11,7 @@ class Vivanda : public Alimentare {
     std::string _sapore;
   public:
     Vivanda(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, std::string dispositivoMedico);
+    virtual bool operator==(const Prodotto&) const override;
     virtual Vivanda* clone() const override;
     virtual double calcoloPrezzo() const override;
     // Vivanda& operator*() const;

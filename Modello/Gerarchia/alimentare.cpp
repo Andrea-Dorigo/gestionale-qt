@@ -8,6 +8,13 @@ Alimentare::Alimentare(unsigned short id, std::string nome, std::string descrizi
   , _scadenza(scadenza)
   {}
 
+bool Alimentare::operator==(const Prodotto& p) const {
+  auto aux = dynamic_cast<const Alimentare*>(&p);
+  return aux
+      && Prodotto::operator==(p)
+      && _scadenza == aux->getScadenza();
+}
+
 /* getters */
 std::string Alimentare::getScadenza() const {
   return _scadenza;

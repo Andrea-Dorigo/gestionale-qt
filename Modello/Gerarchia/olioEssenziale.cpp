@@ -9,6 +9,14 @@ OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string 
   , _profumazione(profumazione)
   {}
 
+bool OlioEssenziale::operator==(const Prodotto& p) const {
+  auto aux = dynamic_cast<const OlioEssenziale*>(&p);
+  return aux
+      && Cosmetico::operator==(p)
+      && Vivanda::operator==(p)
+      && _profumazione == aux->getProfumazione();
+}
+
 OlioEssenziale* OlioEssenziale::clone() const {
   return new OlioEssenziale(*this);
 }

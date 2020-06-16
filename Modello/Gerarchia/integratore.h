@@ -11,6 +11,7 @@ class Integratore : public Alimentare {
     bool _dispositivoMedico;
   public:
     Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, bool dispositivoMedico);
+    virtual bool operator==(const Prodotto&) const override;
     virtual Integratore* clone() const override;
     virtual double calcoloPrezzo() const override;
     // Integratore& operator*() const;

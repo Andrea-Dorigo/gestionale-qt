@@ -8,6 +8,13 @@ Integratore::Integratore(unsigned short id, std::string nome, std::string descri
   , _dispositivoMedico(dispositivoMedico)
   {}
 
+bool Integratore::operator==(const Prodotto& p) const {
+  auto aux = dynamic_cast<const Integratore*>(&p);
+  return aux
+      && Alimentare::operator==(p)
+      && _dispositivoMedico == aux->getDispositivoMedico();
+}
+
 Integratore* Integratore::clone() const {
   return new Integratore(*this);
 }

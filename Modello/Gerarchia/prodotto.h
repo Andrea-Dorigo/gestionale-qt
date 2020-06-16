@@ -13,6 +13,7 @@ class Prodotto {
   public:
     Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double costo=0.0, std::string ditta="");
     virtual ~Prodotto();
+    virtual bool operator==(const Prodotto&) const;
     virtual Prodotto* clone() const=0;
     virtual double calcoloPrezzo() const=0;
     // virtual std::string mostraProdotto() const=0; // da spostare in classe serializzazione

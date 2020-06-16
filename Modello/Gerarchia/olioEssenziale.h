@@ -12,6 +12,7 @@ class OlioEssenziale : public Cosmetico, Vivanda {
     std::string _profumazione;
   public:
     OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, std::string sapore, Target target, std::string applicazione, std::string profumazione);
+    virtual bool operator==(const Prodotto&) const override;
     virtual OlioEssenziale* clone() const override;
     virtual double calcoloPrezzo() const override;
     // OlioEssenziale& operator*() const;

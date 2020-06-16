@@ -12,12 +12,13 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
 
 Prodotto::~Prodotto() = default;
 
-// // da spostare in classe serializzazione
-// std::string Prodotto::mostraProdotto() const {
-//   std::stringstream ss;
-//   ss << "{ \"prodotto\" : [\n   {\"id\": \"" << _id  << "\"},\n   {\"nome\": \"" << _nome << "\"},\n   {\"descrizione\": \"" << _descrizione << "\"},\n   {\"costo\": \"" << _costo << "\"},\n";
-//   return ss.str();
-// } //=0
+bool operator==(const Prodotto& p) const {
+  return _id == p.getId()
+      && _nome == p.getNome()
+      && _descrizione == p.getDescrizione()
+      && _costo == p.getCosto()
+      && _ditta == p.getDitta();
+}
 
 /* getters */
 unsigned short Prodotto::getId() const {
