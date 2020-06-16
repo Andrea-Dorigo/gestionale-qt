@@ -1,6 +1,7 @@
 #ifndef MODELLO_H
 #define MODELLO_H
 
+#include <string>
 #include "container.h"
 #include "smartp.h"
 #include "prodotto.h"

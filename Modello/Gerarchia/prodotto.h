@@ -1,6 +1,8 @@
 #ifndef PRODOTTO_H
 #define PRODOTTO_H
 
+#include <string>
+
 class Prodotto {
   private:
     unsigned short _id;
