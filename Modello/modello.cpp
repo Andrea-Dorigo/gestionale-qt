@@ -1,12 +1,7 @@
 #include "modello.h"
 
-// void Modello::save(const std::string& filename) const {
-//
-// }
-//
-// void Modello::load(const std::string& filename) {
-//
-// }
+// void Modello::save(const std::string& filename) const { }
+// void Modello::load(const std::string& filename) { }
 
 unsigned int Modello::count() const {
   return magazzino.getSize();
