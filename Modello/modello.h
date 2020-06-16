@@ -19,7 +19,6 @@ class Modello {
     bool find(Prodotto*);
     double costoTotale(std::string ="");
     double prezzoTotale(std::string ="");
-    // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 
 #endif // MODELLO_H
