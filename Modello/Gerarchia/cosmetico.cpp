@@ -3,8 +3,8 @@
 //#include <map>
 #include "cosmetico.h"
 
-Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target, std::string applicazione)
-  : Prodotto(id, nome, descrizione, prezzo)
+Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, Target target, std::string applicazione)
+  : Prodotto(id, nome, descrizione, costo, ditta)
   , _target(target)
   , _applicazione(applicazione)
   {}

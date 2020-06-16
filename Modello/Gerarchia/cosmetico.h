@@ -9,12 +9,12 @@ enum Target {UOMO, DONNA, UNISEX};
 
 // std::map<Target, std::string> TargetMapForward = {{UOMO, "Uomo"}, {DONNA, "donna"}, {UNISEX, "Unisex"}};
 
-class Cosmetico : public Prodotto {
+class Cosmetico : virtual public Prodotto {
   private:
     Target _target;
     std::string _applicazione;
   public:
-    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double prezzo, Target target=UNISEX, std::string applicazione="");
+    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, Target target=UNISEX, std::string applicazione="");
     virtual Cosmetico* clone() const override;
     virtual double calcoloPrezzo() const override;
     // Cosmetico& operator*() const;

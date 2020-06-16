@@ -3,8 +3,8 @@
 //#include <map>
 #include "integratore.h"
 
-Integratore::Integratore(unsigned short id, std::string nome, std::string descrizione, double prezzo, std::string scadenza, bool dispositivoMedico)
-  : Alimentare(id, nome, descrizione, prezzo, scadenza)
+Integratore::Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, bool dispositivoMedico)
+  : Alimentare(id, nome, descrizione, costo, ditta, scadenza)
   , _dispositivoMedico(dispositivoMedico)
   {}
 

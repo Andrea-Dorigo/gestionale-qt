@@ -6,11 +6,11 @@
 #include "prodotto.h"
 
 
-class Alimentare : public Prodotto {
+class Alimentare : virtual public Prodotto {
   private:
     std::string _scadenza; //da rivedere
   public:
-    Alimentare(unsigned short id, std::string nome, std::string descrizione, double prezzo, std::string scadenza);
+    Alimentare(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza);
     virtual Alimentare* clone() const =0;
     virtual double calcoloPrezzo() const =0;
     // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione

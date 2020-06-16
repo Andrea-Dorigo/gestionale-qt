@@ -3,8 +3,8 @@
 //#include <map>
 #include "alimentare.h"
 
-Alimentare::Alimentare(unsigned short id, std::string nome, std::string descrizione, double prezzo, std::string scadenza)
-  : Prodotto(id, nome, descrizione, prezzo)
+Alimentare::Alimentare(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza)
+  : Prodotto(id, nome, descrizione, costo, ditta)
   , _scadenza(scadenza)
   {}
 

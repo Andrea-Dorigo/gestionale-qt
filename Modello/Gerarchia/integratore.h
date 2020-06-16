@@ -10,7 +10,7 @@ class Integratore : public Alimentare {
   private:
     bool _dispositivoMedico;
   public:
-    Integratore(unsigned short id, std::string nome, std::string descrizione, double prezzo, std::string scadenza, bool dispositivoMedico);
+    Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, bool dispositivoMedico);
     virtual Integratore* clone() const override;
     virtual double calcoloPrezzo() const override;
     // Integratore& operator*() const;

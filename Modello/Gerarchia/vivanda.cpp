@@ -3,8 +3,8 @@
 //#include <map>
 #include "vivanda.h"
 
-Vivanda::Vivanda(unsigned short id, std::string nome, std::string descrizione, double prezzo, std::string scadenza, std::string sapore)
-  : Alimentare(id, nome, descrizione, prezzo, scadenza)
+Vivanda::Vivanda(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, std::string sapore)
+  : Alimentare(id, nome, descrizione, costo, ditta, scadenza)
   , _sapore(sapore)
   {}
 
