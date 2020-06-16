@@ -21,7 +21,7 @@ void Modello::remove(Prodotto* p) {
   if(magazzino.search(p, it)) magazzino.erase(it);
 }
 
-bool Modello::findItem(Prodotto* p) {
+bool Modello::find(Prodotto* p) {
   auto it = magazzino.begin();
   return magazzino.search(p, it);
 }
