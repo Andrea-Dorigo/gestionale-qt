@@ -16,6 +16,7 @@ class Modello {
     unsigned int count() const;
     void insert(Prodotto*);
     void remove(Prodotto*);
+    bool findItem(Prodotto*);
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 
