@@ -1,22 +1,22 @@
-#ifndef MAGAZZINO_H
-#define MAGAZZINO_H
+#ifndef MODELLO_H
+#define MODELLO_H
 
 #include "container.h"
 #include "smartp.h"
 #include "prodotto.h"
 
-class Magazzino {
+class Modello {
   private:
     Container<SmartP<Prodotto>> magazzino;
   public:
-    Magazzino() = default;
-    ~Magazzino() = default;
-    void save(const std::string&) const;
-    void load(const std::string&);
+    Modello() = default;
+    ~Modello() = default;
+    // void save(const std::string&) const;
+    // void load(const std::string&);
     unsigned int count() const;
     void insert(Prodotto*);
     bool remove(unsigned int);
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 
-#endif // MAGAZZINO_H
+#endif // MODELLO_H

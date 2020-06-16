@@ -1,33 +1,28 @@
-#include "magazzino.h"
-// #include "nlohmann/json.hpp"
-// #include "serialize.h"
+#include "modello.h"
 
-void Magazzino::save(const std::string& filename) const {
+// void Modello::save(const std::string& filename) const {
+//
+// }
+//
+// void Modello::load(const std::string& filename) {
+//
+// }
 
-}
-
-void Magazzino::load(const std::string& filename) {
-
-}
-
-unsigned int Magazzino::count() const {
+unsigned int Modello::count() const {
   return magazzino.getSize();
 }
 
-void Magazzino::insert(Prodotto* p) {
+void Modello::insert(Prodotto* p) {
   magazzino.push_back(p);
 }
 
-bool Magazzino::remove(unsigned int id) {
+bool Modello::remove(unsigned int id) {
   return false;
 }
 
-// bool Magazzino::insert(Prodotto* p) {
-//   sp.push_back(p);
-//   return true;
-// }
-//
-// bool Magazzino::deleteProdotto(int id) {
+int main(){return 0;}
+
+// bool Modello::deleteProdotto(int id) {
 //   Prodotto* q = nullptr;
 //   auto it = sp.begin();
 //   // finché la lista non finisce oppure trovi il prodotto
@@ -50,7 +45,7 @@ bool Magazzino::remove(unsigned int id) {
 //   // }
 // }
 //
-// bool Magazzino::mostraProdotto(Prodotto* p) {
+// bool Modello::mostraProdotto(Prodotto* p) {
 //   Serialize s;
 //   nlohmann::json prodotto;
 //   prodotto["id"] = p->getId();
