@@ -52,7 +52,3 @@ void Prodotto::setCosto(double costo) {
 void Prodotto::setDitta(std::string ditta) {
   _ditta = ditta;
 }
-
-int main() {
-  return 0;
-}
