@@ -41,10 +41,17 @@ double Modello::costoTotale(std::string ditta) {
   return sum;
 }
 
-double Modello::prezzoTotale() {
+double Modello::prezzoTotale(std::string ditta) {
   double sum = 0;
-  for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
-    sum += (it.p)->calcoloPrezzo();
+  if(ditta=="") {
+    for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
+      sum += (it.p)->calcoloPrezzo();
+    }
+  }
+  else {
+    for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
+      if(ditta == (it.p)->getDitta()) sum += (it.p)->calcoloPrezzo();
+    }
   }
   return sum;
 }
