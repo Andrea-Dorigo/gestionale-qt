@@ -15,7 +15,7 @@ class Modello {
     // void load(const std::string&);
     unsigned int count() const;
     void insert(Prodotto*);
-    bool remove(unsigned int);
+    void remove(Prodotto*);
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 

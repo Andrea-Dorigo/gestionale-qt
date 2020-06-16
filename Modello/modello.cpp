@@ -16,9 +16,11 @@ void Modello::insert(Prodotto* p) {
   magazzino.push_back(p);
 }
 
-bool Modello::remove(unsigned int id) {
-  return false;
+void Modello::remove(Prodotto* p) {
+  auto it = magazzino.begin();
+  if(magazzino.search(p, it)) magazzino.erase(it);
 }
+
 
 int main(){return 0;}
 
