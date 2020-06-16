@@ -17,8 +17,8 @@ class Modello {
     void insert(Prodotto*);
     void remove(Prodotto*);
     bool find(Prodotto*);
-    double costoTotale()
     double prezzoTotale();
+    double costoTotale(std::string="")
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 
