@@ -1,6 +1,3 @@
-#include <string>
-#include <sstream>
-//#include <map>
 #include "alimentare.h"
 
 Alimentare::Alimentare(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza)

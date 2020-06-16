@@ -1,5 +1,3 @@
-#include <string>
-#include <sstream>
 #include "prodotto.h"
 
 Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta)

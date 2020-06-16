@@ -1,11 +1,8 @@
 #ifndef OLIOESSENZIALE_H
 #define OLIOESSENZIALE_H
 
-#include <string>
-//#include <map>
 #include "cosmetico.h"
 #include "vivanda.h"
-
 
 class OlioEssenziale : public Cosmetico, Vivanda {
   private:
@@ -15,8 +12,6 @@ class OlioEssenziale : public Cosmetico, Vivanda {
     virtual bool operator==(const Prodotto&) const override;
     virtual OlioEssenziale* clone() const override;
     virtual double calcoloPrezzo() const override;
-    // OlioEssenziale& operator*() const;
-    // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione
     /* getters */
     std::string getProfumazione() const;
     /* setters */

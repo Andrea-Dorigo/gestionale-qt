@@ -1,8 +1,6 @@
 #ifndef PRODOTTO_H
 #define PRODOTTO_H
 
-#include <string>
-
 class Prodotto {
   private:
     unsigned short _id;
@@ -16,7 +14,6 @@ class Prodotto {
     virtual bool operator==(const Prodotto&) const;
     virtual Prodotto* clone() const=0;
     virtual double calcoloPrezzo() const=0;
-    // virtual std::string mostraProdotto() const=0; // da spostare in classe serializzazione
     /* getters */
     unsigned short getId() const;
     std::string getNome() const;

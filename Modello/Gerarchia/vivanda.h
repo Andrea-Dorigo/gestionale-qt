@@ -1,10 +1,7 @@
 #ifndef VIVANDA_H
 #define VIVANDA_H
 
-#include <string>
-//#include <map>
 #include "alimentare.h"
-
 
 class Vivanda : public Alimentare {
   private:
@@ -14,8 +11,6 @@ class Vivanda : public Alimentare {
     virtual bool operator==(const Prodotto&) const override;
     virtual Vivanda* clone() const override;
     virtual double calcoloPrezzo() const override;
-    // Vivanda& operator*() const;
-    // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione
     /* getters */
     std::string getSapore() const;
     /* setters */

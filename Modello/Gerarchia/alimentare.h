@@ -1,10 +1,7 @@
 #ifndef ALIMENTARE_H
 #define ALIMENTARE_H
 
-#include <string>
-//#include <map>
 #include "prodotto.h"
-
 
 class Alimentare : virtual public Prodotto {
   private:
@@ -14,7 +11,6 @@ class Alimentare : virtual public Prodotto {
     virtual bool operator==(const Prodotto&) const override;
     virtual Alimentare* clone() const =0;
     virtual double calcoloPrezzo() const =0;
-    // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione
     /* getters */
     std::string getScadenza() const;
     /* setters */

@@ -1,10 +1,7 @@
 #ifndef INTEGRATORE_H
 #define INTEGRATORE_H
 
-#include <string>
-//#include <map>
 #include "alimentare.h"
-
 
 class Integratore : public Alimentare {
   private:
@@ -14,8 +11,6 @@ class Integratore : public Alimentare {
     virtual bool operator==(const Prodotto&) const override;
     virtual Integratore* clone() const override;
     virtual double calcoloPrezzo() const override;
-    // Integratore& operator*() const;
-    // virtual std::string mostraProdotto() const; // da spostare in classe serializzazione
     /* getters */
     bool getDispositivoMedico() const;
     /* setters */

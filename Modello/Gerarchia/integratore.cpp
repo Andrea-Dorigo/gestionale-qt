@@ -1,6 +1,3 @@
-#include <string>
-#include <sstream>
-//#include <map>
 #include "integratore.h"
 
 Integratore::Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, bool dispositivoMedico)
@@ -22,21 +19,6 @@ Integratore* Integratore::clone() const {
 double Integratore::calcoloPrezzo() const {
   return 0.0;
 }
-
-// Integratore& Integratore::operator*() const{
-//   return *_target;
-// }
-
-// // da spostare in classe serializzazione
-// std::string Integratore::mostraProdotto() const {
-//   std::stringstream ss;
-//   ss << Prodotto::mostraProdotto() << "   {\"target\": \"" << targetToString(_target) << "\"},\n   {\"applicazione\": \"" << _applicazione << "\"},\n]}";
-//   return ss.str();
-// }
-
-// std::string targetToString(Target target) const {
-//   return TargetMapForward[target];
-// }
 
 /* getters */
 bool Integratore::getDispositivoMedico() const {
