@@ -26,6 +26,14 @@ bool Modello::find(Prodotto* p) {
   return magazzino.search(p, it);
 }
 
+double Modello::costoTotale() {
+  double sum = 0;
+  for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
+    sum += (it.p)->getCosto();
+  }
+  return sum;
+}
+
 int main(){return 0;}
 
 // bool Modello::deleteProdotto(int id) {

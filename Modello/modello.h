@@ -17,6 +17,7 @@ class Modello {
     void insert(Prodotto*);
     void remove(Prodotto*);
     bool find(Prodotto*);
+    double costoTotale()
     // bool mostraProdotto(Prodotto*); // funzione da rimuovere da qui
 };
 
