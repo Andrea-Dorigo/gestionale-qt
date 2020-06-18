@@ -9,8 +9,8 @@ class Prodotto {
     unsigned short _id;
     std::string _nome;
     std::string _descrizione;
-    double _costo;
     std::string _ditta;
+    double _costo;
     int _iva;
   public:
     Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double costo=0.0, std::string ditta="", int iva=22);

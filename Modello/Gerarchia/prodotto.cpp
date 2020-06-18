@@ -23,9 +23,11 @@ std::string Prodotto::stampa() const {
   sstream ss;
   ss << "ID: " << _id << "\n";
   ss << "Nome: " << _nome << "\n";
+  ss << "Ditta: " << _ditta << "\n";
   ss << "Descrizione: " << _descrizione << "\n";
   ss << "Costo: " << _costo << "\n";
-  ss << "Ditta: " << _ditta << "\n";
+  ss << "Iva " << _iva << "\n";
+
   return ss.str();
 }
 /* getters */
