@@ -20,12 +20,12 @@ void Modello::remove(Prodotto* p) {
   if(magazzino.search(p, it)) magazzino.erase(it);
 }
 
-bool Modello::find(Prodotto* p) {
+bool Modello::find(Prodotto* p) const {
   auto it = magazzino.begin();
   return magazzino.search(p, it);
 }
 
-double Modello::costoTotale(std::string ditta) {
+double Modello::costoTotale(std::string ditta) const {
   double sum = 0;
   if(ditta=="") {
     for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
@@ -40,7 +40,7 @@ double Modello::costoTotale(std::string ditta) {
   return sum;
 }
 
-double Modello::prezzoTotale(std::string ditta) {
+double Modello::prezzoTotale(std::string ditta) const {
   double sum = 0;
   if(ditta=="") {
     for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
