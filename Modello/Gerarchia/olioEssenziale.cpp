@@ -19,7 +19,7 @@ OlioEssenziale* OlioEssenziale::clone() const {
 }
 
 double OlioEssenziale::calcoloPrezzo() const {
-  return 0.0;
+  return Cosmetico::calcoloPrezzo();
 }
 
 /* getters */

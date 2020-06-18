@@ -19,7 +19,10 @@ Cosmetico* Cosmetico::clone() const {
 }
 
 double Cosmetico::calcoloPrezzo() const {
-  return 0.0;
+  if(getCosto() > 10 && _target == DONNA) {
+    return getCosto()*2 - 5.0;
+  }
+  else return getCosto()*2;
 }
 
 /* getters */

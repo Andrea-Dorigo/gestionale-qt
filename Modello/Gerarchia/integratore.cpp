@@ -17,7 +17,10 @@ Integratore* Integratore::clone() const {
 }
 
 double Integratore::calcoloPrezzo() const {
-  return 0.0;
+  if(_dispositivoMedico) {
+    return getCosto() * 2.5 * 0.7;
+  }
+  return getCosto() * 2.5;
 }
 
 /* getters */

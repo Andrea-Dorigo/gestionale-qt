@@ -17,7 +17,7 @@ Vivanda* Vivanda::clone() const {
 }
 
 double Vivanda::calcoloPrezzo() const {
-  return 0.0;
+  return getCosto() * 1.8;
 }
 
 /* getters */
