@@ -6,6 +6,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
   , _descrizione(descrizione)
   , _costo(costo)
   , _ditta(ditta)
+  , _iva(iva)
   {}
 
 Prodotto::~Prodotto() = default;
@@ -43,6 +44,9 @@ double Prodotto::getCosto() const {
 std::string Prodotto::getDitta() const {
   return _ditta;
 }
+int Prodotto::getIva() const {
+  return _iva;
+}
 
 /* setters */
 void Prodotto::setId(unsigned short id) {
@@ -59,4 +63,7 @@ void Prodotto::setCosto(double costo) {
 }
 void Prodotto::setDitta(std::string ditta) {
   _ditta = ditta;
+}
+void Prodotto::setIva(int iva) const {
+  _iva = iva;
 }

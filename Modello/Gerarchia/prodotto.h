@@ -11,8 +11,9 @@ class Prodotto {
     std::string _descrizione;
     double _costo;
     std::string _ditta;
+    int _iva;
   public:
-    Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double costo=0.0, std::string ditta="");
+    Prodotto(unsigned short id=0, std::string nome="", std::string descrizione="", double costo=0.0, std::string ditta="", int iva=22);
     virtual ~Prodotto();
     virtual bool operator==(const Prodotto&) const;
     virtual Prodotto* clone() const=0;
@@ -24,12 +25,14 @@ class Prodotto {
     std::string getDescrizione() const;
     double getCosto() const;
     std::string getDitta() const;
+    int getIva() const;
     /* setters */
     void setId(unsigned short id);
     void setNome(std::string nome);
     void setDescrizione(std::string descrizione);
     void setCosto(double costo);
     void setDitta(std::string ditta);
+    void setIva(int iva) const;
 };
 
 #endif // PRODOTTO_H
