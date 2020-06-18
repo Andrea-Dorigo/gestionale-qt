@@ -18,6 +18,15 @@ bool Prodotto::operator==(const Prodotto& p) const {
       && _ditta == p.getDitta();
 }
 
+std::string Prodotto::stampa() const {
+  sstream ss;
+  ss << "ID: " << _id << "\n";
+  ss << "Nome: " << _nome << "\n";
+  ss << "Descrizione: " << _descrizione << "\n";
+  ss << "Costo: " << _costo << "\n";
+  ss << "Ditta: " << _ditta << "\n";
+  return ss.str();
+}
 /* getters */
 unsigned short Prodotto::getId() const {
   return _id;

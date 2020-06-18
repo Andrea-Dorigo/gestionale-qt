@@ -2,6 +2,7 @@
 #define PRODOTTO_H
 
 #include <string>
+#include <sstream>
 
 class Prodotto {
   private:
@@ -16,6 +17,7 @@ class Prodotto {
     virtual bool operator==(const Prodotto&) const;
     virtual Prodotto* clone() const=0;
     virtual double calcoloPrezzo() const=0;
+    virtual std::string stampa() const;
     /* getters */
     unsigned short getId() const;
     std::string getNome() const;
