@@ -372,7 +372,7 @@ Container<T>::Container(nodo* primo, nodo* ultimo, unsigned int dimensione)
 
 template<class T>
 Container<T>::Container(const Container& c)
-  : first(copia(c.first, nullptr, last))
+  : first(copy(c.first, nullptr, last))
   , size(c.size)
   {}
 
