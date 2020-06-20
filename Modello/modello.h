@@ -17,10 +17,9 @@ class Modello {
     unsigned int count() const;
     void insert(Prodotto*);
     void remove(Prodotto*);
-    bool find(Prodotto*) const;
     double costoTotale(std::string ="") const;
     double prezzoTotale(std::string ="") const;
-
+    bool find(Prodotto*);
 };
 
 #endif // MODELLO_H
