@@ -1,6 +1,6 @@
 #include "prodotto.h"
 
-Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta)
+Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva)
   : _id(id)
   , _nome(nome)
   , _descrizione(descrizione)
