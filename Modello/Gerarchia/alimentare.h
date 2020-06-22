@@ -8,6 +8,7 @@ class Alimentare : virtual public Prodotto {
     std::string _scadenza; // da rivedere
   public:
     Alimentare(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza);
+    virtual bool operator==(const Prodotto& prodotto) const override;
     virtual Alimentare* clone() const =0;
     virtual double calcoloPrezzo() const =0;
     virtual std::string stampa() const override;
