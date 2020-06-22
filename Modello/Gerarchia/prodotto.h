@@ -32,7 +32,7 @@ class Prodotto {
     void setDescrizione(std::string descrizione);
     void setCosto(double costo);
     void setDitta(std::string ditta);
-    void setIva(int iva) const;
+    void setIva(int iva);
 };
 
 #endif // PRODOTTO_H
