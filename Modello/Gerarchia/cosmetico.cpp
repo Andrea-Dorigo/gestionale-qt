@@ -1,7 +1,7 @@
 #include "cosmetico.h"
 
-Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, Target target, std::string applicazione)
-  : Prodotto(id, nome, descrizione, costo, ditta)
+Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, Target target, std::string applicazione)
+  : Prodotto(id, nome, descrizione, costo, ditta, iva)
   , _target(target)
   , _applicazione(applicazione)
   {}

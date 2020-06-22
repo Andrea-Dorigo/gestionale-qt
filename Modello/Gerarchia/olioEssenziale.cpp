@@ -1,8 +1,8 @@
 #include "olioEssenziale.h"
 
-OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, std::string sapore, Target target, std::string applicazione, std::string profumazione)
-  : Vivanda(id, nome, descrizione, costo, ditta, scadenza, sapore)
-  , Cosmetico(id, nome, descrizione, costo, ditta, target, applicazione)
+OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore, Target target, std::string applicazione, std::string profumazione)
+  : Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
+  , Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione)
   , _profumazione(profumazione)
   {}
 

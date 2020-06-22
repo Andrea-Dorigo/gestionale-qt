@@ -10,8 +10,7 @@ class Cosmetico : virtual public Prodotto {
     Target _target;
     std::string _applicazione;
   public:
-    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, Target target=UNISEX, std::string applicazione="");
-    virtual bool operator==(const Prodotto&) const override;
+    Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, Target target=UNISEX, std::string applicazione="");
     virtual Cosmetico* clone() const override;
     virtual double calcoloPrezzo() const override;
     /* getters */

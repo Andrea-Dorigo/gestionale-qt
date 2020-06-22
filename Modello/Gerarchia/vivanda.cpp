@@ -1,7 +1,7 @@
 #include "vivanda.h"
 
-Vivanda::Vivanda(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, std::string scadenza, std::string sapore)
-  : Alimentare(id, nome, descrizione, costo, ditta, scadenza)
+Vivanda::Vivanda(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore)
+  : Alimentare(id, nome, descrizione, costo, ditta, iva, scadenza)
   , _sapore(sapore)
   {}
 
