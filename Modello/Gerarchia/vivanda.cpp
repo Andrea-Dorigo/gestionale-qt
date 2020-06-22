@@ -20,6 +20,13 @@ double Vivanda::calcoloPrezzo() const {
   return getCosto() * 1.8;
 }
 
+std::string Vivanda::stampa() const {
+  std::stringstream ss;
+  ss << Alimentare::stampa();
+  ss << "Sapore: " << _sapore << "\n";
+  return ss.str();
+}
+
 /* getters */
 std::string Vivanda::getSapore() const {
   return _sapore;

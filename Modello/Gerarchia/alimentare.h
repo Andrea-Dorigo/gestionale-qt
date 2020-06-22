@@ -10,6 +10,7 @@ class Alimentare : virtual public Prodotto {
     Alimentare(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza);
     virtual Alimentare* clone() const =0;
     virtual double calcoloPrezzo() const =0;
+    virtual std::string stampa() const override;
     /* getters */
     std::string getScadenza() const;
     /* setters */

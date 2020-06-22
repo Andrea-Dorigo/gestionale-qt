@@ -23,6 +23,13 @@ double Integratore::calcoloPrezzo() const {
   return getCosto() * 2.5;
 }
 
+std::string Integratore::stampa() const {
+  std::stringstream ss;
+  ss << Alimentare::stampa();
+  ss << "Dispositivo medico: " << _dispositivoMedico << "\n";
+  return ss.str();
+}
+
 /* getters */
 bool Integratore::getDispositivoMedico() const {
   return _dispositivoMedico;

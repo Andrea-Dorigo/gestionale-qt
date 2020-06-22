@@ -13,6 +13,7 @@ class Cosmetico : virtual public Prodotto {
     Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, Target target=UNISEX, std::string applicazione="");
     virtual Cosmetico* clone() const override;
     virtual double calcoloPrezzo() const override;
+    virtual std::string stampa() const override;
     /* getters */
     Target getTarget() const;
     std::string getApplicazione() const;

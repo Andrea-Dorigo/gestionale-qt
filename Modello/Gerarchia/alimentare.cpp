@@ -12,6 +12,13 @@ bool Alimentare::operator==(const Prodotto& p) const {
       && _scadenza == aux->getScadenza();
 }
 
+std::string Alimentare::stampa() const {
+  std::stringstream ss;
+  ss << Prodotto::stampa();
+  ss << "Scadenza: " << _scadenza << "\n";
+  return ss.str();
+}
+
 /* getters */
 std::string Alimentare::getScadenza() const {
   return _scadenza;

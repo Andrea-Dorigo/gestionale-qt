@@ -22,6 +22,14 @@ double OlioEssenziale::calcoloPrezzo() const {
   return Cosmetico::calcoloPrezzo();
 }
 
+std::string OlioEssenziale::stampa() const {
+  std::stringstream ss;
+  ss << Cosmetico::stampa(); // WARNING: controllare la correttezza
+  ss << Vivanda::stampa(); // WARNING: controllare la correttezza
+  ss << "Profumazione: " << _profumazione << "\n";
+  return ss.str();
+}
+
 /* getters */
 std::string OlioEssenziale::getProfumazione() const {
   return _profumazione;

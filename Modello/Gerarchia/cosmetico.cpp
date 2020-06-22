@@ -25,6 +25,14 @@ double Cosmetico::calcoloPrezzo() const {
   else return getCosto()*2;
 }
 
+std::string Cosmetico::stampa() const {
+  std::stringstream ss;
+  ss << Prodotto::stampa();
+  ss << "Target: " << _target << "\n";
+  ss << "Applicazione: " << _applicazione << "\n";
+  return ss.str();
+}
+
 /* getters */
 Target Cosmetico::getTarget() const {
   return _target;
