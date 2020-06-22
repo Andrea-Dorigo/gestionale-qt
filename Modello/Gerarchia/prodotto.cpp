@@ -26,7 +26,7 @@ std::string Prodotto::stampa() const {
   ss << "Ditta: " << _ditta << "\n";
   ss << "Descrizione: " << _descrizione << "\n";
   ss << "Costo: " << _costo << "\n";
-  ss << "Iva " << _iva << "\n";
+  ss << "IVA " << _iva << "\n";
   return ss.str();
 }
 /* getters */
