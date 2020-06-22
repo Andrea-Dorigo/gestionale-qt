@@ -66,6 +66,6 @@ void Prodotto::setCosto(double costo) {
 void Prodotto::setDitta(std::string ditta) {
   _ditta = ditta;
 }
-void Prodotto::setIva(int iva) const {
+void Prodotto::setIva(int iva) {
   _iva = iva;
 }
