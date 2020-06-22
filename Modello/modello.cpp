@@ -56,3 +56,14 @@ double Modello::prezzoTotale(std::string ditta) const {
 }
 
 int main(){return 0;}
+Container<SmartP<Prodotto>> Modello::filtra(std::string ditta, double costo) const {
+  if(ditta=="" && costo==0.0) return magazzino; // più efficiente
+
+  Container<SmartP<Prodotto>> aux;
+  for(auto it = magazzino.begin(); it!=magazzino.end(); it++) {
+    if(costo==0.0 || it->p->getCosto() < costo)
+      if(ditta=="" || (it->p->getDitta() == ditta))
+        aux.push_back(it->p);
+  }
+  return aux;
+}

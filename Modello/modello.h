@@ -20,6 +20,7 @@ class Modello {
     bool find(Prodotto*);
     double costoTotale(std::string ="") const; // TODO: rimuovere parametro
     double prezzoTotale(std::string ="") const;  // TODO: rimuovere parametro
+    Container<SmartP<Prodotto>> filtra(std::string ditta="", double costo=0.0) const;
 };
 
 #endif // MODELLO_H
