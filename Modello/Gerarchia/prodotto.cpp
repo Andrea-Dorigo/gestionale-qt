@@ -29,6 +29,7 @@ std::string Prodotto::stampa() const {
   ss << "IVA " << _iva << "\n";
   return ss.str();
 }
+
 /* getters */
 unsigned short Prodotto::getId() const {
   return _id;
