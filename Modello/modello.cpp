@@ -1,4 +1,5 @@
 #include "modello.h"
+#include "cosmetico.h"
 
 Modello::Modello() = default;
 
@@ -55,7 +56,6 @@ double Modello::prezzoTotale(std::string ditta) const {
   return sum;
 }
 
-int main(){return 0;}
 Container<SmartP<Prodotto>> Modello::filtra(std::string ditta, double costo) const {
   if(ditta=="" && costo==0.0) return magazzino; // più efficiente
 
@@ -74,4 +74,16 @@ void Modello::MAGENTA() const {
   // for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
   //   std::cout << it->p->stampa() << std::endl;
   // }
+}
+
+int main() {
+  Modello m1;
+  Cosmetico* c1 = new Cosmetico(1, "c1", "desc c1", 5.0, "Erbolario", UNISEX, "app c1");
+  Cosmetico* c2 = new Cosmetico(2, "c2", "desc c2", 10.0, "Erbolario", UNISEX, "app c2");
+  Cosmetico* c3 = new Cosmetico(3, "c3", "desc c3", 50.0, "Dardick", DONNA, "app c3");
+  m1.insert(c1);
+  m1.insert(c2);
+  m1.insert(c3);
+  m1.MAGENTA();
+  return 0;
 }
