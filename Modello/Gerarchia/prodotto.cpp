@@ -20,14 +20,13 @@ bool Prodotto::operator==(const Prodotto& p) const {
 }
 
 std::string Prodotto::stampa() const {
-  sstream ss;
+  std::stringstream ss;
   ss << "ID: " << _id << "\n";
   ss << "Nome: " << _nome << "\n";
   ss << "Ditta: " << _ditta << "\n";
   ss << "Descrizione: " << _descrizione << "\n";
   ss << "Costo: " << _costo << "\n";
   ss << "Iva " << _iva << "\n";
-
   return ss.str();
 }
 /* getters */
