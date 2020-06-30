@@ -456,7 +456,7 @@ template<class T>
 void Container<T>::push_back(const T& t) {
   if(!first) { // !first => !last
     first = new nodo(t);
-    last = new nodo(t);
+    last = first;
   }
   else {
     last->next = new nodo(t, last, nullptr);
