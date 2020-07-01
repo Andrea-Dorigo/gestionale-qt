@@ -1,5 +1,5 @@
 #include "modello.h"
-#include "cosmetico.h"
+#include "Gerarchia/cosmetico.h"
 
 Modello::Modello() = default;
 
@@ -72,16 +72,4 @@ void Modello::visualizza() const {
   for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
     std::cout << it->p->stampa() << std::endl;
   }
-}
-
-int main() {
-  Modello m1;
-  Cosmetico* c1 = new Cosmetico(1, "c1", "desc c1", 5.0, "Erbolario1", 22, UNISEX, "app c1");
-  Cosmetico* c2 = new Cosmetico(2, "c2", "desc c2", 10.0, "Erbolario2", 22, UNISEX, "app c2");
-  Cosmetico* c3 = new Cosmetico(3, "c3", "desc c3", 50.0, "Erbolario3", 22, DONNA, "app c3");
-  m1.insert(c1);
-  m1.insert(c2);
-  m1.insert(c3);
-  m1.visualizza();
-  return 0;
 }

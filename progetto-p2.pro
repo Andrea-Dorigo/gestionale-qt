@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
+        insertionwidget.cpp \
         Modello/modello.cpp \
         Modello/Gerarchia/prodotto.cpp \
         Modello/Gerarchia/cosmetico.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
 
 HEADERS += \
         widget.h \
+        insertionwidget.h \
         Modello/modello.h \
         Modello/container.h \
         Modello/smartp.h \

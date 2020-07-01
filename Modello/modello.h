@@ -4,7 +4,7 @@
 #include <string>
 #include "container.h"
 #include "smartp.h"
-#include "prodotto.h"
+#include "Gerarchia/prodotto.h"
 
 class Modello {
   private:
