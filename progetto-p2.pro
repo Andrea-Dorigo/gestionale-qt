@@ -33,7 +33,10 @@ SOURCES += \
         Modello/Gerarchia/alimentare.cpp \
         Modello/Gerarchia/integratore.cpp \
         Modello/Gerarchia/vivanda.cpp \
-        Modello/Gerarchia/olioEssenziale.cpp
+        Modello/Gerarchia/olioEssenziale.cpp \
+    mainwindow.cpp \
+    listview.cpp \
+    listmodeladapter.cpp
 
 HEADERS += \
         widget.h \
@@ -46,7 +49,11 @@ HEADERS += \
         Modello/Gerarchia/alimentare.h \
         Modello/Gerarchia/integratore.h \
         Modello/Gerarchia/vivanda.h \
-        Modello/Gerarchia/olioEssenziale.h
+        Modello/Gerarchia/olioEssenziale.h \
+    mainwindow.h \
+    listview.h \
+    listmodeladapter.h \
+    qtypeconversion.h
 
 FORMS += \
         widget.ui
