@@ -19,18 +19,19 @@ class ListModelAdapter: public QAbstractListModel
 //    bool mySetData(const QModelIndex &index, const QVariant &value,
 //                   bool , bool =true, unsigned int=0);
 
-//    bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
+    bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
 //    bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
 //    bool matchFiltersSelected(unsigned int, const QRegExp&, const QString&) const;
 //    unsigned int getNumCalciatori() const;
 //    unsigned int getMaxCalciatoriRosa() const;
-//    void setNuovoElemento(membroSocieta*);
-//    membroSocieta* getNuovoElemento();
+    unsigned int count() const;
+    void setNuovoElemento(Prodotto*);
+    Prodotto* getNuovoElemento();
 //    bool allenatorePresente() const;
 //    void saveToFile() const;
 //    void loadFromFile();
 //    bool isContrattoScaduto(const QModelIndex &index) const;
-//    membroSocieta& getMembro(const QModelIndex &index) const;
+    Prodotto& getProdotto(const QModelIndex &index) const;
 };
 
 #endif // LISTMODELADAPTER_H

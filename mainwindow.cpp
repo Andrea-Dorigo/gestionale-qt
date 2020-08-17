@@ -1,6 +1,4 @@
-
-
-
+#include "insertionwidget.h"
 #include "mainwindow.h"
 #include "listmodeladapter.h"
 #include "listview.h"
@@ -24,7 +22,7 @@
 //#include "delegate.h"
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
-//    inserimento(new QComboBox(this)),
+    inserimento(new QComboBox(this)),
 //    filtro(new QComboBox(this)),
 //    proxymodel(new QFilterProxyModel(this)),
     model(new ListModelAdapter(this)),
@@ -56,9 +54,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    filtro->addItem("Calciatore");
 //    filtro->addItem("Allenatore");
 
-    // PULSANTI
-//    inserimento->addItem("Inserisci");
-//    inserimento->addItem("Dirigente");
+     //PULSANTI
+    inserimento->addItem("Inserisci");
+    inserimento->addItem("Cosmetico");
 //    inserimento->addItem("Calciatore");
 //    inserimento->addItem("Allenatore");
 //    QPushButton* removeButton = new QPushButton("Rimuovi", this);
@@ -105,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    connect(saveButton, SIGNAL(clicked()), this, SLOT(saveData()));
 //    connect(saveAction, SIGNAL(triggered()), this, SLOT(saveData()));
 //    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
-//    connect(inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addMembroSocieta(const QString&)));
+    connect(inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
 //    connect(removeButton, SIGNAL(clicked()), this, SLOT(removeMembroSocieta()));
 //    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
 //    connect(filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
@@ -148,15 +146,15 @@ QSize MainWindow::sizeHint() const
 //}
 
 
-//void MainWindow::addMembroSocieta(const QString& t)
-//{
-//    if(t != "Inserisci")
-//    {
-//        insertWidget* inserisci= new insertWidget(t, this, view, proxymodel, model);
-//        inserimento->setCurrentText("Inserisci");
-//        inserisci->show();
-//    }
-//}
+void MainWindow::addProdotto(const QString& t)
+{
+    if(t != "Inserisci")
+    {
+        insertionWidget* inserisci= new insertionWidget(t, this, view, model);
+        inserimento->setCurrentText("Inserisci");
+        inserisci->show();
+    }
+}
 
 
 //void MainWindow::removeMembroSocieta()

@@ -8,7 +8,7 @@ class ListView;
 class ListModelAdapter;
 //class QFilterProxyModel;
 //class QLineEdit;
-//class QComboBox;
+class QComboBox;
 
 class MainWindow : public QWidget {
     Q_OBJECT
@@ -19,7 +19,7 @@ public:
     QSize sizeHint() const override;
 
 private:
-//    QComboBox* inserimento;
+    QComboBox* inserimento;
 //    QComboBox* filtro;
 //    QFilterProxyModel* proxymodel;
     ListModelAdapter* model;
@@ -28,9 +28,9 @@ private:
 
 /*    void loadData();*/ // non è chiamata da un pulsante quindi non serve sia uno SLOT
 
-//private slots:
+private slots:
 //    void saveData();
-//    void addMembroSocieta(const QString&);
+    void addProdotto(const QString&);
 //    void removeMembroSocieta();
 //    void textFilterChanged();
 };

@@ -1,6 +1,9 @@
 #ifndef INSERTIONWIDGET_H
 #define INSERTIONWIDGET_H
 
+#include "listview.h"
+#include "listmodeladapter.h"
+
 #include <QDialog>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -10,15 +13,25 @@
 #include <QPushButton>
 
 class insertionWidget : public QDialog {
+Q_OBJECT
 private:
-    QDoubleSpinBox* id_fld;
+    const QString tipoOggetto;
+    ListView* view;
+    ListModelAdapter* model;
+
+
+    QSpinBox* id_fld;
     QLineEdit* nome_fld;
     QLineEdit* descrizione_fld;
     QLineEdit* ditta_fld;
     QDoubleSpinBox* costo_fld;
-    QDoubleSpinBox* iva_fld;
+    QSpinBox* iva_fld;
 public:
-    insertionWidget();
+    insertionWidget(const QString, QWidget* = nullptr,
+                    ListView* = nullptr,
+                    ListModelAdapter* = nullptr);
+private slots:
+  void istanziaOggetto();
 };
 
 #endif // INSERTIONWIDGET_H

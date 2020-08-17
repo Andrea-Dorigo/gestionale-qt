@@ -26,9 +26,9 @@ QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
 
     else if (role == Qt::DisplayRole)
     {
-//        return QString::fromStdString(getProdotto(index).visualizza());
+        return QString::fromStdString(getProdotto(index).stampa());
 
-          return QString::fromStdString("getProdotto(index).visualizza()");
+//          return QString::fromStdString("getProdotto(index).visualizza()");
     }
 
 //    else if(role == Qt::DecorationRole)
@@ -104,15 +104,15 @@ Qt::ItemFlags ListModelAdapter::flags(const QModelIndex& index) const
 //    return true;
 //}
 
-//// Inserisce 'count' nuove righe nel modello a partire dall'elemento di indice 'begin'
-//bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& parent)
-//{
-//    beginInsertRows(parent, begin, begin + count - 1);
-//        // effettuare l'aggiunta sul modello dei dati
-//    model->inserisciNuovoMembro(nuovoElemento);
-//    endInsertRows();
-//    return true;
-//}
+// Inserisce 'count' nuove righe nel modello a partire dall'elemento di indice 'begin'
+bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& parent)
+{
+    beginInsertRows(parent, begin, begin + count - 1);
+        // effettuare l'aggiunta sul modello dei dati
+    modello->insert(nuovoElemento);
+    endInsertRows();
+    return true;
+}
 
 //bool ListModelAdapter::
 //matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
@@ -146,20 +146,22 @@ Qt::ItemFlags ListModelAdapter::flags(const QModelIndex& index) const
 //    return model->getMaxCalciatoriRosa();
 //}
 
-//membroSocieta& ListModelAdapter::getMembro(const QModelIndex &index) const
-//{
-//    return model->getMembro(static_cast<unsigned int>(index.row()));
-//}
+Prodotto& ListModelAdapter::getProdotto(const QModelIndex &index) const
+{
+    return modello->getProdotto(static_cast<unsigned int>(index.row()));
+}
+unsigned int ListModelAdapter::count() const{
+    return modello->count();
+}
+void ListModelAdapter::setNuovoElemento(Prodotto* m)
+{
+    nuovoElemento= m;
+}
 
-//void ListModelAdapter::setNuovoElemento(membroSocieta* m)
-//{
-//    nuovoElemento= m;
-//}
-
-//membroSocieta* ListModelAdapter::getNuovoElemento()
-//{
-//    return nuovoElemento;
-//}
+Prodotto* ListModelAdapter::getNuovoElemento()
+{
+    return nuovoElemento;
+}
 
 ////Salva il modello su file XML
 //void ListModelAdapter::saveToFile() const

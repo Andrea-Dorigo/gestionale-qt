@@ -5,6 +5,7 @@
 #include "container.h"
 #include "smartp.h"
 #include "Gerarchia/prodotto.h"
+#include "Gerarchia/cosmetico.h"
 
 class Modello {
   private:
