@@ -3,7 +3,6 @@
 #include "listmodeladapter.h"
 #include "listview.h"
 //#include "qfilterproxymodel.h"
-//#include "insertwidget.h"
 
 #include <QDesktopWidget>
 #include <QApplication>
@@ -26,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    filtro(new QComboBox(this)),
 //    proxymodel(new QFilterProxyModel(this)),
     model(new ListModelAdapter(this)),
-//    searchbar(new QLineEdit(this)),
+    searchbar(new QLineEdit(this)),
     view(new ListView(this))
 {
 
@@ -47,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    view->setItemDelegate(new Delegate(view)); //delegate customizzato
 
     //Ricerca
-//    searchbar->setPlaceholderText("Ricerca per nome");
+      searchbar->setPlaceholderText("Ricerca per nome");
 //    QLabel* l= new QLabel("Filtro: ", this);
 //    filtro->addItem("Nessuno");
 //    filtro->addItem("Dirigente");
@@ -78,25 +77,25 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
     // Searchbar sottolayout
-//    QVBoxLayout* msearchLayout = new QVBoxLayout();
-//    QHBoxLayout* searchLayout = new QHBoxLayout();
-//    QFormLayout* searchfilterLayout= new QFormLayout();
-//    searchLayout->addWidget(searchbar);
+      QVBoxLayout* msearchLayout = new QVBoxLayout();
+      QHBoxLayout* searchLayout = new QHBoxLayout();
+//    QFormLayout* searchfilterLayout = new QFormLayout();
+      searchLayout->addWidget(searchbar);
 //    searchLayout->addWidget(clearSearchButton);
 //    searchfilterLayout->addRow(l, filtro);
 //    searchLayout->addLayout(searchfilterLayout);
-//    msearchLayout->addLayout(searchLayout);
+      msearchLayout->addLayout(searchLayout);
 
     // Pulsanti sottolayout
-//    QHBoxLayout* buttonsLayout = new QHBoxLayout();
-//    buttonsLayout->addWidget(inserimento);
+      QHBoxLayout* buttonsLayout = new QHBoxLayout();
+    buttonsLayout->addWidget(inserimento);
 //    buttonsLayout->addWidget(removeButton);
 //    buttonsLayout->addWidget(saveButton);
 
     // Setup Main layout
 /*    mainLayout->addWidget(menuBar);*/ // stretch = 50 per distanziare i bottoni
-//    mainLayout->addLayout(msearchLayout, 50);
-/*    mainLayout->addLayout(buttonsLayout, 100);*/ // stretch = 50 per distanziare i bottoni
+    mainLayout->addLayout(msearchLayout, 50);
+    mainLayout->addLayout(buttonsLayout, 100); // stretch = 50 per distanziare i bottoni
     mainLayout->addWidget(view, 0, Qt::AlignCenter);
 
     // CONNECT

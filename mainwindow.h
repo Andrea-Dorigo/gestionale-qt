@@ -7,7 +7,7 @@ class Modello; // definizioni incomplete
 class ListView;
 class ListModelAdapter;
 //class QFilterProxyModel;
-//class QLineEdit;
+class QLineEdit;
 class QComboBox;
 
 class MainWindow : public QWidget {
@@ -23,7 +23,7 @@ private:
 //    QComboBox* filtro;
 //    QFilterProxyModel* proxymodel;
     ListModelAdapter* model;
-//    QLineEdit* searchbar;
+    QLineEdit* searchbar;
     ListView* view;
 
 /*    void loadData();*/ // non è chiamata da un pulsante quindi non serve sia uno SLOT
