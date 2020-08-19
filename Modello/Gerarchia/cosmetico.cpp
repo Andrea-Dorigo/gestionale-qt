@@ -40,6 +40,9 @@ Target Cosmetico::getTarget() const {
 std::string Cosmetico::getApplicazione() const {
   return _applicazione;
 }
+std::string Cosmetico::getTipo() const {
+  return "Cosmetico";
+}
 
 /* setters */
 void Cosmetico::setTarget(Target target) {

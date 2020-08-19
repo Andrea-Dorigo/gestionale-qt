@@ -15,6 +15,7 @@ class OlioEssenziale : public Cosmetico, Vivanda {
     virtual std::string stampa() const override;
     /* getters */
     std::string getProfumazione() const;
+    virtual std::string getTipo() const override;
     /* setters */
     void setProfumazione(std::string profumazione);
 };

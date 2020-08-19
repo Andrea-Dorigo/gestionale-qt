@@ -14,6 +14,7 @@ class Integratore : public Alimentare {
     virtual std::string stampa() const override;
     /* getters */
     bool getDispositivoMedico() const;
+    virtual std::string getTipo() const override;
     /* setters */
     void setDispositivoMedico(bool dispositivoMedico);
 };

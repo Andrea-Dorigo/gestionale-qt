@@ -26,6 +26,7 @@ class Prodotto {
     double getCosto() const;
     std::string getDitta() const;
     int getIva() const;
+    virtual std::string getTipo() const=0;
     /* setters */
     void setId(unsigned short id);
     void setNome(std::string nome);

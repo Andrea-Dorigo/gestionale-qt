@@ -14,6 +14,7 @@ class Alimentare : virtual public Prodotto {
     virtual std::string stampa() const override;
     /* getters */
     std::string getScadenza() const;
+    virtual std::string getTipo() const=0;
     /* setters */
     void setScadenza(std::string scadenza);
 };

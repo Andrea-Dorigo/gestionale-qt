@@ -34,6 +34,9 @@ std::string Integratore::stampa() const {
 bool Integratore::getDispositivoMedico() const {
   return _dispositivoMedico;
 }
+std::string Integratore::getTipo() const {
+  return "Integratore";
+}
 
 /* setters */
 void Integratore::setDispositivoMedico(bool dispositivoMedico) {

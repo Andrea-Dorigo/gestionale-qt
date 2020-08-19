@@ -27,8 +27,6 @@ QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
     else if (role == Qt::DisplayRole)
     {
         return QString::fromStdString(getProdotto(index).stampa());
-
-//          return QString::fromStdString("getProdotto(index).visualizza()");
     }
 
 //    else if(role == Qt::DecorationRole)
@@ -117,22 +115,20 @@ bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& paren
 bool ListModelAdapter::
 matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
 {
-//    std::string aux= (modello->getProdotto(i)).getNome();
-//    if(!(QString::fromStdString(aux).contains(e)))
-//        return false;
+    std::string aux = (modello->getProdotto(i)).getNome();
+    if(!(QString::fromStdString(aux).contains(e)))
+        return false;
 
     /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
-//    if(!s.isEmpty())
-//    {
-//        if(s == "Cosmetico")
-//            return model->getMembro(i).getType() == "Dirigente";
-
-//        if(s == "Allenatore")
-//            return model->getMembro(i).getType() == "Allenatore";
-
+    if(!s.isEmpty())
+    {
+        if(s == "Cosmetico")
+            return modello->getProdotto(i).getTipo() == "Cosmetico";
+        if(s == "Vivanda")
+            return modello->getProdotto(i).getTipo() == "Vivanda";
 //         if(s == "Calciatore")
 //            return model->getMembro(i).getType() == "Calciatore";
-//    }
+    }
     return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
  }
 

@@ -14,6 +14,7 @@ class Vivanda : public Alimentare {
     virtual std::string stampa() const override;
     /* getters */
     std::string getSapore() const;
+    virtual std::string getTipo() const override;
     /* setters */
     void setSapore(std::string sapore);
 };

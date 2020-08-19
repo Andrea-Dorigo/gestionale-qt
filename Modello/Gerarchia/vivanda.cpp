@@ -31,6 +31,9 @@ std::string Vivanda::stampa() const {
 std::string Vivanda::getSapore() const {
   return _sapore;
 }
+std::string Vivanda::getTipo() const {
+  return "Vivanda";
+}
 
 /* setters */
 void Vivanda::setSapore(std::string sapore) {

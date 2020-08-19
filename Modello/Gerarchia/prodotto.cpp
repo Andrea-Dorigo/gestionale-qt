@@ -49,7 +49,6 @@ std::string Prodotto::getDitta() const {
 int Prodotto::getIva() const {
   return _iva;
 }
-
 /* setters */
 void Prodotto::setId(unsigned short id) {
   _id = id;

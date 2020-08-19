@@ -34,6 +34,9 @@ std::string OlioEssenziale::stampa() const {
 std::string OlioEssenziale::getProfumazione() const {
   return _profumazione;
 }
+std::string OlioEssenziale::getTipo() const {
+  return "OlioEssenziale";
+}
 
 /* setters */
 void OlioEssenziale::setProfumazione(std::string profumazione) {

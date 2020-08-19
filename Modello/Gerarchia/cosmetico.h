@@ -18,6 +18,7 @@ class Cosmetico : virtual public Prodotto {
     /* getters */
     Target getTarget() const;
     std::string getApplicazione() const;
+    virtual std::string getTipo() const override;
     /* setters */
     void setTarget(Target target);
     void setApplicazione(std::string applicazione);
