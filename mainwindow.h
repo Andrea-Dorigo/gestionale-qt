@@ -6,7 +6,7 @@
 class Modello; // definizioni incomplete
 class ListView;
 class ListModelAdapter;
-//class QFilterProxyModel;
+class QFilterProxyModel;
 class QLineEdit;
 class QComboBox;
 
@@ -20,8 +20,8 @@ public:
 
 private:
     QComboBox* inserimento;
-//    QComboBox* filtro;
-//    QFilterProxyModel* proxymodel;
+    QComboBox* filtro;
+    QFilterProxyModel* proxymodel;
     ListModelAdapter* model;
     QLineEdit* searchbar;
     ListView* view;
@@ -32,7 +32,7 @@ private slots:
 //    void saveData();
     void addProdotto(const QString&);
 //    void removeMembroSocieta();
-//    void textFilterChanged();
+    void textFilterChanged();
 };
 
 #endif // MAINWINDOW_H

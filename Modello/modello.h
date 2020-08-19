@@ -6,6 +6,8 @@
 #include "smartp.h"
 #include "Gerarchia/prodotto.h"
 #include "Gerarchia/cosmetico.h"
+#include "Gerarchia/alimentare.h"
+#include "Gerarchia/vivanda.h"
 
 class Modello {
   private:

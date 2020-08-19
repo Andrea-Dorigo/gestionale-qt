@@ -3,6 +3,7 @@
 
 #include "listview.h"
 #include "listmodeladapter.h"
+#include "qfilterproxymodel.h"
 
 #include <QDialog>
 #include <QLabel>
@@ -17,8 +18,8 @@ Q_OBJECT
 private:
     const QString tipoOggetto;
     ListView* view;
+    QFilterProxyModel* proxy;
     ListModelAdapter* model;
-
 
     QSpinBox* id_fld;
     QLineEdit* nome_fld;
@@ -28,8 +29,8 @@ private:
     QSpinBox* iva_fld;
 public:
     insertionWidget(const QString, QWidget* = nullptr,
-                    ListView* = nullptr,
-                    ListModelAdapter* = nullptr);
+                 ListView* = nullptr, QFilterProxyModel* = nullptr,
+                 ListModelAdapter* = nullptr);
 private slots:
   void istanziaOggetto();
 };

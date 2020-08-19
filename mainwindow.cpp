@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "listmodeladapter.h"
 #include "listview.h"
-//#include "qfilterproxymodel.h"
+#include "qfilterproxymodel.h"
 
 #include <QDesktopWidget>
 #include <QApplication>
@@ -22,8 +22,8 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     inserimento(new QComboBox(this)),
-//    filtro(new QComboBox(this)),
-//    proxymodel(new QFilterProxyModel(this)),
+    filtro(new QComboBox(this)),
+    proxymodel(new QFilterProxyModel(this)),
     model(new ListModelAdapter(this)),
     searchbar(new QLineEdit(this)),
     view(new ListView(this))
@@ -31,8 +31,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 
     // centra la finestra nello schermo
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
-/*    setWindowTitle(("Magazzino")); // titolo applicazione
-    setWindowIcon(QIcon(":/resources/immagini/icona.png"));*/ // icona del programma
+    setWindowTitle(("Magazzino")); // titolo applicazione
+//    setWindowIcon(QIcon(":/resources/immagini/icona.png")); // icona del programma
 
     // Widget a dimensione fissa non ridimensionabile
     setFixedSize(QSize(800, 400));
@@ -41,21 +41,23 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    loadData();
 
     // fornisce alla view il modello dei dati che deve riflettere
-//    proxymodel->setSourceModel(modello);
+    proxymodel->setSourceModel(model);
     view->setModel(model);
 //    view->setItemDelegate(new Delegate(view)); //delegate customizzato
 
     //Ricerca
       searchbar->setPlaceholderText("Ricerca per nome");
-//    QLabel* l= new QLabel("Filtro: ", this);
-//    filtro->addItem("Nessuno");
-//    filtro->addItem("Dirigente");
+    QLabel* l= new QLabel("Filtro: ", this);
+    filtro->addItem("Nessuno");
+    filtro->addItem("Cosmetico");
+    filtro->addItem("Vivanda");
 //    filtro->addItem("Calciatore");
 //    filtro->addItem("Allenatore");
 
      //PULSANTI
     inserimento->addItem("Inserisci");
     inserimento->addItem("Cosmetico");
+    inserimento->addItem("Vivanda");
 //    inserimento->addItem("Calciatore");
 //    inserimento->addItem("Allenatore");
 //    QPushButton* removeButton = new QPushButton("Rimuovi", this);
@@ -79,11 +81,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     // Searchbar sottolayout
       QVBoxLayout* msearchLayout = new QVBoxLayout();
       QHBoxLayout* searchLayout = new QHBoxLayout();
-//    QFormLayout* searchfilterLayout = new QFormLayout();
+    QFormLayout* searchfilterLayout = new QFormLayout();
       searchLayout->addWidget(searchbar);
 //    searchLayout->addWidget(clearSearchButton);
-//    searchfilterLayout->addRow(l, filtro);
-//    searchLayout->addLayout(searchfilterLayout);
+    searchfilterLayout->addRow(l, filtro);
+    searchLayout->addLayout(searchfilterLayout);
       msearchLayout->addLayout(searchLayout);
 
     // Pulsanti sottolayout
@@ -104,8 +106,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
 //    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
     connect(inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
 //    connect(removeButton, SIGNAL(clicked()), this, SLOT(removeMembroSocieta()));
-//    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
-//    connect(filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
+    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
+    connect(filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
 //    connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
 }
 
@@ -149,7 +151,7 @@ void MainWindow::addProdotto(const QString& t)
 {
     if(t != "Inserisci")
     {
-        insertionWidget* inserisci= new insertionWidget(t, this, view, model);
+        insertionWidget* inserisci= new insertionWidget(t, this, view, proxymodel, model);
         inserimento->setCurrentText("Inserisci");
         inserisci->show();
     }
@@ -175,12 +177,12 @@ void MainWindow::addProdotto(const QString& t)
 //    }
 //}
 
-//void MainWindow::textFilterChanged()
-//{
-//    if(filtro->currentText() != "Nessuno")
-//        proxymodel->setFilter(filtro->currentText());
-//    else  proxymodel->setFilter("");
-//    QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
-//    proxymodel->setFilterRegExp(regex);
-//}
+void MainWindow::textFilterChanged()
+{
+    if(filtro->currentText() != "Nessuno")
+        proxymodel->setFilter(filtro->currentText());
+    else  proxymodel->setFilter("");
+    QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
+    proxymodel->setFilterRegExp(regex);
+}
 

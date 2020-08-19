@@ -21,7 +21,7 @@ class ListModelAdapter: public QAbstractListModel
 
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
 //    bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
-//    bool matchFiltersSelected(unsigned int, const QRegExp&, const QString&) const;
+    bool matchFiltersSelected(unsigned int, const QRegExp&, const QString&) const;
 //    unsigned int getNumCalciatori() const;
 //    unsigned int getMaxCalciatoriRosa() const;
     unsigned int count() const;

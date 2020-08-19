@@ -36,7 +36,8 @@ SOURCES += \
     mainwindow.cpp \
     listview.cpp \
     listmodeladapter.cpp \
-    qfilterproxymodel.cpp
+    qfilterproxymodel.cpp \
+    delegate.cpp
 
 HEADERS += \
         insertionwidget.h \
@@ -53,7 +54,8 @@ HEADERS += \
     listview.h \
     listmodeladapter.h \
     qtypeconversion.h \
-    qfilterproxymodel.h
+    qfilterproxymodel.h \
+    delegate.h
 
 FORMS += \
         widget.ui

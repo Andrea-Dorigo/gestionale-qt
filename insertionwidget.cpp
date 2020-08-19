@@ -14,8 +14,9 @@
 
 insertionWidget::insertionWidget(const QString tipo, QWidget* parent,
                                  ListView* v,
+                                 QFilterProxyModel* p,
                                  ListModelAdapter* m):
-      QDialog(parent),tipoOggetto(tipo), view(v), model(m),
+      QDialog(parent),tipoOggetto(tipo), view(v), model(m), proxy(p),
       id_fld(new QSpinBox(this)),
       nome_fld(new QLineEdit(this)),
       descrizione_fld(new QLineEdit(this)),
@@ -68,16 +69,28 @@ void insertionWidget::istanziaOggetto()
                           "spalmare in faccia"
                           );
     }
+    if(tipoOggetto == "Vivanda")
+    {
+        m= new Vivanda( id_fld->value(),
+                          nome_fld->text().toStdString(),
+                          descrizione_fld->text().toStdString(),
+                          costo_fld->value(),
+                          ditta_fld->text().toStdString(),
+                          iva_fld->value(),
+                          "stringa",
+                          "stringa"
+                          );
+    }
     if(m != nullptr)
     {
         int i =1;
         model->setNuovoElemento(m);
-        model->insertRows(i,i);
+        proxy->insertRows(proxy->rowCount(), 1);
         i++;
         view->selectionModel()->clearCurrentIndex();
         view->clearSelection();
-//        view->selectionModel()->select(proxy->index(model->rowCount() - 1, 0),
-//                                                    QItemSelectionModel::Select);
+        view->selectionModel()->select(proxy->index(model->rowCount() - 1, 0),
+                                                    QItemSelectionModel::Select);
         std::stringstream numeroProdotti;
         numeroProdotti << model->count();
         box.setText(QString::fromStdString(numeroProdotti.str()));

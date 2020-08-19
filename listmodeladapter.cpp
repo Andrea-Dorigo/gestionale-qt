@@ -114,17 +114,17 @@ bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& paren
     return true;
 }
 
-//bool ListModelAdapter::
-//matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
-//{
-//    std::string aux= (model->getMembro(i)).getNome();
+bool ListModelAdapter::
+matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
+{
+//    std::string aux= (modello->getProdotto(i)).getNome();
 //    if(!(QString::fromStdString(aux).contains(e)))
 //        return false;
 
-//    /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
+    /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
 //    if(!s.isEmpty())
 //    {
-//        if(s == "Dirigente")
+//        if(s == "Cosmetico")
 //            return model->getMembro(i).getType() == "Dirigente";
 
 //        if(s == "Allenatore")
@@ -133,8 +133,8 @@ bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& paren
 //         if(s == "Calciatore")
 //            return model->getMembro(i).getType() == "Calciatore";
 //    }
-//    return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
-// }
+    return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
+ }
 
 //unsigned int ListModelAdapter::getNumCalciatori() const
 //{
