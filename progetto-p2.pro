@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        widget.cpp \
         insertionwidget.cpp \
         Modello/modello.cpp \
         Modello/Gerarchia/prodotto.cpp \
@@ -36,10 +35,10 @@ SOURCES += \
         Modello/Gerarchia/olioEssenziale.cpp \
     mainwindow.cpp \
     listview.cpp \
-    listmodeladapter.cpp
+    listmodeladapter.cpp \
+    qfilterproxymodel.cpp
 
 HEADERS += \
-        widget.h \
         insertionwidget.h \
         Modello/modello.h \
         Modello/container.h \
@@ -53,7 +52,8 @@ HEADERS += \
     mainwindow.h \
     listview.h \
     listmodeladapter.h \
-    qtypeconversion.h
+    qtypeconversion.h \
+    qfilterproxymodel.h
 
 FORMS += \
         widget.ui
