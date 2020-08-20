@@ -17,5 +17,5 @@ bool QFilterProxyModel::filterAcceptsRow(int row_source, const QModelIndex&) con
 
 void QFilterProxyModel::setFilter(const QString& text)
 {
-    filter= text;
+    filter = text;
 }
