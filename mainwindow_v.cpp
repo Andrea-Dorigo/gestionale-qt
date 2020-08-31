@@ -1,8 +1,8 @@
-#include "mainwindow.h"
+#include "mainwindow_v.h"
 #include "insertwidget.h"
 #include "delegate.h"
-#include "tableview.h"
-#include "tablemodeladapter.h"
+#include "listview.h"
+#include "listmodeladapter.h"
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QVBoxLayout>
@@ -13,14 +13,14 @@
 #include <QPushButton>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow_v::MainWindow_v(QWidget *parent) :
     QWidget(parent),
     cmb_ins(new combobox_inserimento(this)),
     filtro(new QComboBox(this)),
     searchbar(new QLineEdit(this)),
     proxymodel(new QFilterProxyModel(this)),
-    model(new TableModelAdapter(this)),
-    view(new TableView(this))
+    model(new ListModelAdapter(this)),
+    view(new ListView(this))
 {
     // setup window
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
@@ -74,19 +74,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
 }
 
-MainWindow::~MainWindow() {}
+MainWindow_v::~MainWindow_v() {}
 
-void MainWindow::addProdotto(const QString& t)
+void MainWindow_v::addProdotto(const QString& t)
 {
-    if(t != "Inserisci")
-    {
-        insertWidget* inserisci = new insertWidget(t, this, view, proxymodel, model);
-        cmb_ins->setCurrentText("Inserisci");
-        inserisci->show();
-    }
+//    if(t != "Inserisci")
+//    {
+//        insertWidget* inserisci = new insertWidget(t, this, view, proxymodel, model);
+//        cmb_ins->setCurrentText("Inserisci");
+//        inserisci->show();
+//    }
 }
 
-void MainWindow::removeProdotto()
+void MainWindow_v::removeProdotto()
 {
     // prende l'elenco degli elementi selezionati dalla view
     const QModelIndexList selection = view->selectionModel()->selectedIndexes();
@@ -99,7 +99,7 @@ void MainWindow::removeProdotto()
     }
 }
 
-void MainWindow::textFilterChanged()
+void MainWindow_v::textFilterChanged()
 {
    if(filtro->currentText() != "Nessuno")
         proxymodel->setFilter(filtro->currentText());

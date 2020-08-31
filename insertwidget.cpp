@@ -1,4 +1,6 @@
 #include "insertwidget.h"
+#include "tablemodeladapter.h"
+#include "tableview.h"
 #include <QLineEdit>
 #include <QPushButton>
 #include <QComboBox>
@@ -10,9 +12,15 @@
 #include <QLabel>
 #include <QMessageBox>
 
+
 insertWidget::insertWidget(const QString tipo, QWidget* parent,
-                           ListView* v, QFilterProxyModel* p,
-                           ListModelAdapter* m):
+                           TableView* v, QFilterProxyModel* p,
+                           TableModelAdapter* m):
+
+
+//insertWidget::insertWidget(const QString tipo, QWidget* parent,
+//                           ListView* v, QFilterProxyModel* p,
+//                           ListModelAdapter* m):
     QDialog(parent),tipoOggetto(tipo), view(v), proxy(p), model(m),
     /*nome(new QLabel("Nome: ", this)), fisso(new QLabel("Fisso: ", this)),
     bonus(new QLabel("Bonus: ", this)), fruolo(new QLabel("Ruolo: ", this)),

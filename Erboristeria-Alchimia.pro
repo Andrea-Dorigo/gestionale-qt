@@ -39,7 +39,10 @@ SOURCES += \
     Modello/Gerarchia/prodotto.cpp \
     Modello/Gerarchia/vivanda.cpp \
     Modello/modello.cpp \
-    editor.cpp
+    editor.cpp \
+    tableview.cpp \
+    tablemodeladapter.cpp \
+    mainwindow_v.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -60,7 +63,10 @@ HEADERS += \
     Modello/serialize.h \
     Modello/smartp.h \
     editor.h \
-    qtypeconversion.h
+    qtypeconversion.h \
+    tableview.h \
+    tablemodeladapter.h \
+    mainwindow_v.h
 
 FORMS +=
 

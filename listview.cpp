@@ -9,7 +9,7 @@ ListView::ListView(QWidget* parent) : QListView(parent) {
 
 // override delle dimensioni della view per farla espandere con il pannello
 QSize ListView::sizeHint() const {
-    return QSize(500, 600);
+    return QSize(700, 800);
 }
 
 /*

@@ -1,8 +1,8 @@
 #ifndef INSERTWIDGET_H
 #define INSERTWIDGET_H
 
-#include "listview.h"
-#include "listmodeladapter.h"
+#include "tableview.h"
+#include "tablemodeladapter.h"
 #include "qfilterproxymodel.h"
 #include <QWidget>
 #include <QString>
@@ -19,9 +19,11 @@ class insertWidget: public QDialog
     Q_OBJECT
     private:
     const QString tipoOggetto;
-    ListView* view;
+    TableView* view;
+//    ListView* view;
     QFilterProxyModel* proxy;
-    ListModelAdapter* model;
+    TableModelAdapter* model;
+//    ListModelAdapter* model;
    /* QLabel* nome;
     QLabel* fisso;
     QLabel* bonus;
@@ -36,9 +38,12 @@ class insertWidget: public QDialog
     QSpinBox* settaSogliaPresenze;
 
     public:
+//      insertWidget(const QString, QWidget* = nullptr,
+//                   ListView* = nullptr, QFilterProxyModel* = nullptr,
+//                   ListModelAdapter* = nullptr);
       insertWidget(const QString, QWidget* = nullptr,
-                   ListView* = nullptr, QFilterProxyModel* = nullptr,
-                   ListModelAdapter* = nullptr);
+                   TableView* = nullptr, QFilterProxyModel* = nullptr,
+                   TableModelAdapter* = nullptr);
     private slots:
       void istanziaOggetto();
 };

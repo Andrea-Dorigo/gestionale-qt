@@ -1,7 +1,8 @@
 #ifndef QFILTERPROXYMODEL_H
 #define QFILTERPROXYMODEL_H
 
-#include "listmodeladapter.h"
+#include "tablemodeladapter.h"
+#include "tableview.h"
 #include <QString>
 #include <QSortFilterProxyModel>
 

@@ -1,20 +1,23 @@
-#ifndef LISTMODELADAPTER_H
-#define LISTMODELADAPTER_H
+#ifndef TABLEMODELADAPTER_H
+#define TABLEMODELADAPTER_H
 
 #include "Modello/modello.h"
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 
-class ListModelAdapter: public QAbstractListModel
+class TableModelAdapter: public QAbstractTableModel
 {
   private:
     Modello* model;
     Prodotto* nuovoElemento;
   public:
-    ListModelAdapter(QObject* = nullptr);
-    ~ListModelAdapter();
+    TableModelAdapter(QObject* parent= nullptr);
+    ~TableModelAdapter();
 
     int rowCount(const QModelIndex& = QModelIndex()) const override;
+    int columnCount(const QModelIndex& = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role= Qt::DisplayRole) const override;
+
+
     Qt::ItemFlags flags(const QModelIndex&) const override;
 
     bool mySetData(const QModelIndex &index, const QVariant &value,
