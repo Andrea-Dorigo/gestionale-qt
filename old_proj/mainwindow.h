@@ -2,30 +2,36 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
-#include "combobox_inserimento.h"
 
+class Modello; // definizioni incomplete
 class ListView;
 class ListModelAdapter;
 class QFilterProxyModel;
+class QLineEdit;
+class QComboBox;
 
-class MainWindow : public QWidget
-{
+class MainWindow : public QWidget {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget* = nullptr);
     ~MainWindow() override;
+    QSize sizeHint() const override;
 
 private:
-    combobox_inserimento* cmb_ins;
+    QComboBox* inserimento;
     QComboBox* filtro;
-    QLineEdit* searchbar;
     QFilterProxyModel* proxymodel;
     ListModelAdapter* model;
+    QLineEdit* searchbar;
     ListView* view;
+
+/*    void loadData();*/ // non è chiamata da un pulsante quindi non serve sia uno SLOT
+
 private slots:
+//    void saveData();
     void addProdotto(const QString&);
-    void removeProdotto();
+//    void removeMembroSocieta();
     void textFilterChanged();
 };
 

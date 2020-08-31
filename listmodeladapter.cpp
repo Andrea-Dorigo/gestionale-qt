@@ -7,21 +7,21 @@
 #include "Modello/Gerarchia/prodotto.h"
 
 ListModelAdapter::ListModelAdapter(QObject* parent):
-QAbstractListModel(parent), modello(new Modello()){}
+QAbstractListModel(parent), model(new Modello()){}
 
 ListModelAdapter::~ListModelAdapter()
 {
-    delete modello;
+    delete model;
 }
 
 int ListModelAdapter::rowCount(const QModelIndex &) const
 {
-    return modello->count();
+    return model->count();
 }
 
 QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || index.row() >= modello->count())
+    if (!index.isValid() || index.row() >= model->count())
         return QVariant();
 
     else if (role == Qt::DisplayRole)
@@ -29,11 +29,11 @@ QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
         return QString::fromStdString(getProdotto(index).stampa());
     }
 
-//    else if(role == Qt::DecorationRole)
-//    {
-//        membroSocieta& membro=
-//                model->getMembro(static_cast<unsigned int> (index.row()));
-//        QPixmap immagine;
+    else if(role == Qt::DecorationRole)
+    {
+//        Prodotto& prodotto =
+//                model->getProdotto(static_cast<unsigned int> (index.row()));
+        QPixmap immagine = QPixmap(":/res/temp.jpg");
 
 //        if(dynamic_cast<Allenatore*>(&membro))
 //            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
@@ -41,37 +41,31 @@ QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
 //            immagine= QPixmap(":/resources/immagini/Calciatore.jpg");
 //        else if(dynamic_cast<Dirigente*>(&membro))
 //            immagine= QPixmap(":/resources/immagini/Dirigente.jpg");
-//        return immagine = immagine.scaled(100, 130);
-//    }
-//    else if(role == Qt::EditRole)
-//    {
-//        QVariant aux;
-//        aux.setValue(&model->getMembro(static_cast<unsigned int>(index.row())));
-//        return aux;
-//    }
-//    else if (role == Qt::BackgroundColorRole)
-//        {
-//            if(index.row() % 2) //alterno colore oggetti consecutivi
-//                return QBrush(QColor(Qt::gray));// per distinguerli visivamente
-//            return QBrush(QColor(Qt::darkGray));
-//        }
+        return immagine = immagine.scaled(100, 130);
+    }
+    else if(role == Qt::EditRole)
+    {
+        QVariant aux;
+        aux.setValue(&model->getProdotto(static_cast<unsigned int>(index.row())));
+        return aux;
+    }
+    else if (role == Qt::BackgroundColorRole)
+        {
+            if(index.row() % 2) //alterno colore oggetti consecutivi
+                return QBrush(QColor(Qt::gray));// per distinguerli visivamente
+            return QBrush(QColor(Qt::darkGray));
+        }
 
     return QVariant();
 }
 
-//bool ListModelAdapter::isContrattoScaduto(const QModelIndex &index) const
-//{
-//  return getMembro(index).isContrattoScaduto();
-//}
+bool ListModelAdapter::mySetData(const QModelIndex &index,
+            const QVariant& val, bool contr, bool minObb, unsigned int p)
+{
+    if(!index.isValid() || !val.canConvert<QString>())
+        return false;
 
-
-//bool ListModelAdapter::mySetData(const QModelIndex &index,
-//            const QVariant& val, bool contr, bool minObb, unsigned int p)
-//{
-//    if(!index.isValid() || !val.canConvert<QString>())
-//        return false;
-
-//    membroSocieta& aux= getMembro(index);
+//    Prodotto& aux = getProdotto(index);
 //    aux.setContratto(contr);
 //    if(val.toString() == "Allenatore")
 //        static_cast<Allenatore&>(aux).setMinObiettiviStagionali(minObb);
@@ -80,8 +74,8 @@ QVariant ListModelAdapter::data(const QModelIndex& index, int role) const
 
 //    emit dataChanged(index, index);
 
-//    return true;
-//}
+    return true;
+}
 
 Qt::ItemFlags ListModelAdapter::flags(const QModelIndex& index) const
 {
@@ -92,22 +86,22 @@ Qt::ItemFlags ListModelAdapter::flags(const QModelIndex& index) const
 }
 
 
-////chiamarla per eliminare un oggetto alla volta! (cosa obbligata
-////visto che si puo selezionare un solo oggetto alla volta nella vista)
-//bool ListModelAdapter::removeRows(int begin, int count, const QModelIndex& parent)
-//{
-//    beginRemoveRows(parent, begin, begin + count - 1);
-//    model->rimuovi(&model->getMembro(static_cast<unsigned int> (begin)));
-//    endRemoveRows();
-//    return true;
-//}
+//chiamarla per eliminare un oggetto alla volta! (cosa obbligata
+//visto che si puo selezionare un solo oggetto alla volta nella vista)
+bool ListModelAdapter::removeRows(int begin, int count, const QModelIndex& parent)
+{
+    beginRemoveRows(parent, begin, begin + count - 1);
+    model->remove(&model->getProdotto(static_cast<unsigned int> (begin)));
+    endRemoveRows();
+    return true;
+}
 
 // Inserisce 'count' nuove righe nel modello a partire dall'elemento di indice 'begin'
 bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& parent)
 {
     beginInsertRows(parent, begin, begin + count - 1);
         // effettuare l'aggiunta sul modello dei dati
-    modello->insert(nuovoElemento);
+    model->insert(nuovoElemento);
     endInsertRows();
     return true;
 }
@@ -115,43 +109,31 @@ bool ListModelAdapter::insertRows(int begin, int count, const QModelIndex& paren
 bool ListModelAdapter::
 matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
 {
-    std::string aux = (modello->getProdotto(i)).getNome();
+    std::string aux = (model->getProdotto(i)).getNome();
     if(!(QString::fromStdString(aux).contains(e)))
         return false;
 
     /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
     if(!s.isEmpty())
     {
-        if(s == "Cosmetico")
-            return modello->getProdotto(i).getTipo() == "Cosmetico";
-        if(s == "Vivanda")
-            return modello->getProdotto(i).getTipo() == "Vivanda";
-//         if(s == "Calciatore")
-//            return model->getMembro(i).getType() == "Calciatore";
+        if(s == "Cosmetici")
+            return model->getProdotto(i).getTipo() == "Cosmetico";
+
+        if(s == "Vivande")
+            return model->getProdotto(i).getTipo() == "Vivanda";
     }
     return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
  }
 
-//unsigned int ListModelAdapter::getNumCalciatori() const
-//{
-//    return model->getNumeroCalciatori();
-//}
-
-//unsigned int ListModelAdapter::getMaxCalciatoriRosa() const
-//{
-//    return model->getMaxCalciatoriRosa();
-//}
 
 Prodotto& ListModelAdapter::getProdotto(const QModelIndex &index) const
 {
-    return modello->getProdotto(static_cast<unsigned int>(index.row()));
+    return model->getProdotto(static_cast<unsigned int>(index.row()));
 }
-unsigned int ListModelAdapter::count() const{
-    return modello->count();
-}
-void ListModelAdapter::setNuovoElemento(Prodotto* m)
+
+void ListModelAdapter::setNuovoElemento(Prodotto* p)
 {
-    nuovoElemento= m;
+    nuovoElemento = p;
 }
 
 Prodotto* ListModelAdapter::getNuovoElemento()
@@ -159,20 +141,3 @@ Prodotto* ListModelAdapter::getNuovoElemento()
     return nuovoElemento;
 }
 
-////Salva il modello su file XML
-//void ListModelAdapter::saveToFile() const
-//{
-//   model->saveToFile();
-//}
-
-
-//// Carica il modello in memoria leggendo i Todo dal file XML
-//void ListModelAdapter::loadFromFile()
-//{
-//   model->loadFromFile();
-//}
-
-//bool ListModelAdapter::allenatorePresente() const
-//{
-//    return model->allenatorePresente();
-//}
