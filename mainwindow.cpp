@@ -26,12 +26,25 @@ MainWindow::MainWindow(QWidget *parent) :
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
     setWindowTitle(("Magazzino - Erboristeria Alchimia"));
 //    setWindowIcon(QIcon(":/res/temp.jpg"));
-    setFixedSize(QSize(1000, 600));
+    setFixedSize(QSize(1300, 800));
 
 
     proxymodel->setSourceModel(model);
     view->setModel(proxymodel);
     view->setItemDelegate(new Delegate(view));
+    view->setColumnWidth(0,50); // id
+    view->setColumnWidth(1,150); // ditta
+    view->setColumnWidth(2,250); // nome
+    view->setColumnWidth(3,70); // costo
+    view->setColumnWidth(4,60); // iva
+    view->setColumnWidth(5,448); // descrizione
+    view->setColumnWidth(6,60); // target
+    view->setColumnWidth(7,448); // applicazione
+    view->setColumnWidth(8,100); // scadenza
+    view->setColumnWidth(9,60); // dispositivo medico
+    view->setColumnWidth(9,300); // sapore
+    view->setColumnWidth(9,250); // profumazione
+
 
     searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);

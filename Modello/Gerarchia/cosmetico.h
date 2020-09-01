@@ -23,6 +23,8 @@ class Cosmetico : virtual public Prodotto {
     /* setters */
     void setTarget(Target target);
     void setApplicazione(std::string applicazione);
+
+    std::string targetToString() const;
 };
 
 #endif // COSMETICO_H
