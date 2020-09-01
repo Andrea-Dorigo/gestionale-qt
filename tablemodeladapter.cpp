@@ -21,17 +21,15 @@ int TableModelAdapter::rowCount(const QModelIndex &) const
 }
 int TableModelAdapter::columnCount(const QModelIndex &) const
 {
-    return 6;
+    return 12;
 }
 
 QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
-//    role = 0;
-//    int count = model->count();
     if (!index.isValid() || index.row() >= model->count())
         return QVariant();
 
-    if (role == Qt::DisplayRole){
+    if (role == Qt::DisplayRole) {
 
            if (index.column() == 0)
                return QString::number(getProdotto(index).getId());
@@ -45,59 +43,47 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
                 return QString::number(getProdotto(index).getIva());
            else if (index.column() == 5)
                 return QString::fromStdString(getProdotto(index).getDescrizione());
-           else
-                return QString::fromStdString("undefined");
-        }
+           else {
+
+               Prodotto& prodotto = model->getProdotto(static_cast<unsigned int>(index.row()));
+
+               if (index.column() == 6){
+                   Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
+                   if(cosmetico)
+                        return QString::fromStdString(cosmetico->targetToString());
+               }
+               else if (index.column() == 7){
+                   Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
+                   if(cosmetico)
+                        return QString::fromStdString(cosmetico->getApplicazione());
+               }
+               else if (index.column() == 8) {
+                   Alimentare* alimentare = dynamic_cast<Alimentare*>(&prodotto);
+                   if(alimentare)
+                        return QString::fromStdString(alimentare->getScadenza());
+               }
+               else if (index.column() == 9) {
+                   Integratore* integratore = dynamic_cast<Integratore*>(&prodotto);
+                   if(integratore)
+                        return QString::number(integratore->getDispositivoMedico());
+               }
+               else if (index.column() == 10) {
+                   Vivanda* vivanda = dynamic_cast<Vivanda*>(&prodotto);
+                   if(vivanda)
+                        return QString::fromStdString(vivanda->getSapore());
+               }
+               else if (index.column() == 11) {
+                   OlioEssenziale* olioessenziale = dynamic_cast<OlioEssenziale*>(&prodotto);
+                   if(olioessenziale)
+                        return QString::fromStdString(olioessenziale->getProfumazione());
+               }
+
+               return QString::fromStdString("");
+
+           }
+    }
     else return QVariant();
 }
-    //        QString s;
-//        int colonna = index.column();
-
-//        if (colonna==0)
-//            s = QString::number(getProdotto(index).getId());
-////        else if (colonna == 1)
-////            s = QString::fromStdString(getProdotto(index).getDitta());
-//        else
-//            s = QString::fromStdString("vuoto");
-////        else if (index.column() == 2)
-////            return QString::fromStdString(getProdotto(index).getNome());
-////        else if (index.column() == 3)
-////            return QString::number(getProdotto(index).getCosto());
-////        else if (index.column() == 4)
-////            return QString::number(getProdotto(index).getIva());
-////        else if (index.column() == 2)
-////            return QString::fromStdString(getProdotto(index).getDescrizione());
-
-//        return s;
-//    }
-//    else if(role == Qt::DecorationRole)
-//    {
-////        Prodotto& prodotto =
-////                model->getProdotto(static_cast<unsigned int> (index.row()));
-//        QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
-
-////        if(dynamic_cast<Allenatore*>(&membro))
-////            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
-////        else if(dynamic_cast<Calciatore*>(&membro))
-////            immagine= QPixmap(":/resources/immagini/Calciatore.jpg");
-////        else if(dynamic_cast<Dirigente*>(&membro))
-////            immagine= QPixmap(":/resources/immagini/Dirigente.jpg");
-//        return immagine = immagine.scaled(100, 130);
-//    }
-//    else if(role == Qt::EditRole)
-//    {
-//        QVariant aux;
-//        aux.setValue(&model->getProdotto(static_cast<unsigned int>(index.row())));
-//        return aux;
-//    }
-//    else if (role == Qt::BackgroundColorRole)
-//        {
-//            if(index.row() % 2) //alterno colore oggetti consecutivi
-//                return QBrush(QColor(Qt::gray));// per distinguerli visivamente
-//            return QBrush(QColor(Qt::darkGray));
-//        }
-
-
 
 QVariant TableModelAdapter::headerData(int section, Qt::Orientation orientation, int role) const {
 
@@ -110,11 +96,23 @@ QVariant TableModelAdapter::headerData(int section, Qt::Orientation orientation,
     if (section == 2)
             return QString::fromStdString("Nome");
     if (section == 3)
-            return QString::fromStdString("Costo");
+            return QString::fromStdString("Costo(€)");
     if (section == 4)
-            return QString::fromStdString("Iva");
+            return QString::fromStdString("Iva(%)");
     if (section == 5)
             return QString::fromStdString("Descrizione");
+    if (section == 6)
+            return QString::fromStdString("Target");
+    if (section == 7)
+            return QString::fromStdString("Applicazione");
+    if (section == 8)
+            return QString::fromStdString("Scadenza");
+    if (section == 9)
+            return QString::fromStdString("Dispositivo Medico");
+    if (section == 10)
+            return QString::fromStdString("Sapore");
+    if (section == 11)
+            return QString::fromStdString("Profumazione");
 }
 
 

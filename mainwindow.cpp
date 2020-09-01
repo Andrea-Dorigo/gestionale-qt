@@ -32,12 +32,19 @@ MainWindow::MainWindow(QWidget *parent) :
     proxymodel->setSourceModel(model);
     view->setModel(proxymodel);
     view->setItemDelegate(new Delegate(view));
-    view->setColumnWidth(0,50);
-    view->setColumnWidth(1,200);
-    view->setColumnWidth(2,350);
-    view->setColumnWidth(3,75);
-    view->setColumnWidth(4,75);
-    view->setColumnWidth(5,448);
+    view->setColumnWidth(0,50); // id
+    view->setColumnWidth(1,150); // ditta
+    view->setColumnWidth(2,250); // nome
+    view->setColumnWidth(3,70); // costo
+    view->setColumnWidth(4,60); // iva
+    view->setColumnWidth(5,448); // descrizione
+    view->setColumnWidth(6,60); // target
+    view->setColumnWidth(7,448); // applicazione
+    view->setColumnWidth(8,100); // scadenza
+    view->setColumnWidth(9,60); // dispositivo medico
+    view->setColumnWidth(9,300); // sapore
+    view->setColumnWidth(9,250); // profumazione
+
 
     searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);

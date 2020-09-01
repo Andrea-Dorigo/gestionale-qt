@@ -37,6 +37,7 @@ std::string Cosmetico::stampa() const {
 Target Cosmetico::getTarget() const {
   return _target;
 }
+
 std::string Cosmetico::getApplicazione() const {
   return _applicazione;
 }
@@ -50,4 +51,22 @@ void Cosmetico::setTarget(Target target) {
 }
 void Cosmetico::setApplicazione(std::string applicazione) {
   _applicazione = applicazione;
+}
+
+
+std::string Cosmetico::targetToString() const {
+    switch (_target) {
+    case UOMO:
+            return "Uomo";
+        break;
+    case DONNA:
+            return "Donna";
+        break;
+    case UNISEX:
+            return "Unisex";
+        break;
+    default:
+            return "Nessun target";
+        break;
+    }
 }

@@ -3,6 +3,7 @@
 
 TableView::TableView(QWidget* parent) : QTableView(parent) {
     this->verticalHeader()->hide();
+    this->verticalHeader()->setDefaultSectionSize(50);
     this->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 QSize TableView::sizeHint() const {
