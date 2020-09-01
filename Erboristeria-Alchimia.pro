@@ -26,9 +26,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    combobox_inserimento.cpp \
-    listmodeladapter.cpp \
-    listview.cpp \
     qfilterproxymodel.cpp \
     insertwidget.cpp \
     delegate.cpp \
@@ -42,14 +39,11 @@ SOURCES += \
     editor.cpp \
     tableview.cpp \
     tablemodeladapter.cpp \
-    mainwindow_v.cpp
+    combobox_items.cpp
 
 HEADERS += \
     mainwindow.h \
-    combobox_inserimento.h \
     qfilterproxymodel.h \
-    listmodeladapter.h \
-    listview.h \
     insertwidget.h \
     delegate.h \
     Modello/Gerarchia/alimentare.h \
@@ -66,7 +60,7 @@ HEADERS += \
     qtypeconversion.h \
     tableview.h \
     tablemodeladapter.h \
-    mainwindow_v.h
+    combobox_items.h
 
 FORMS +=
 

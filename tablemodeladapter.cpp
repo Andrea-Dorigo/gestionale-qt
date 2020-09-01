@@ -66,6 +66,12 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
+//QVariant TableModelAdapter::headerData(int section, Qt::Orientation orientation, int role) const override {
+
+//}
+
+
+
 bool TableModelAdapter::mySetData(const QModelIndex &index,
             const QVariant& val, bool contr, bool minObb, unsigned int p)
 {
@@ -123,10 +129,10 @@ matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
     /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
     if(!s.isEmpty())
     {
-        if(s == "Cosmetici")
+        if(s == "Cosmetico")
             return model->getProdotto(i).getTipo() == "Cosmetico";
 
-        if(s == "Vivande")
+        if(s == "Vivanda")
             return model->getProdotto(i).getTipo() == "Vivanda";
     }
     return true; //sse nessun Filtro selezionato ma c'é match QLineEdit

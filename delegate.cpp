@@ -5,7 +5,6 @@
 #include "Modello/Gerarchia/vivanda.h"
 #include "Modello/Gerarchia/integratore.h"
 #include "Modello/Gerarchia/olioEssenziale.h"
-#include "listmodeladapter.h"
 #include "delegate.h"
 #include "editor.h"
 #include "qtypeconversion.h"
@@ -81,7 +80,7 @@ void Delegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QM
     else if(val->getTipo() == "Vivanda")
         p = static_cast<unsigned int>(edt->box->value());
 
-   static_cast<ListModelAdapter*>(
+   static_cast<TableModelAdapter*>(
      static_cast<QFilterProxyModel*>(model)->sourceModel())
        ->mySetData(index, QString::fromStdString(val->getTipo()), c, minObb, p);
 }

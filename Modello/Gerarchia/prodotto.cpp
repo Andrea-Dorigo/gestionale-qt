@@ -9,7 +9,7 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
   , _iva(iva)
   {}
 
-Prodotto::~Prodotto() = default;
+Prodotto::~Prodotto() {}
 
 bool Prodotto::operator==(const Prodotto& p) const {
   return _id == p.getId()

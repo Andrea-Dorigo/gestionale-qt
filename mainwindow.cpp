@@ -15,8 +15,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
-    cmb_ins(new combobox_inserimento(this)),
-    filtro(new QComboBox(this)),
+    cmb_inserimento(new combobox_items(this, "Inserisci")),
+    cmb_filtro(new combobox_items(this, "Nessuno")),
     searchbar(new QLineEdit(this)),
     proxymodel(new QFilterProxyModel(this)),
     model(new TableModelAdapter(this)),
@@ -35,9 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);
-    filtro->addItem("Nessuno");
-    filtro->addItem("Cosmetico");
-    filtro->addItem("Vivande");
+
     QPushButton* removeButton = new QPushButton("Rimuovi", this);
     QPushButton* saveButton = new QPushButton("Salva", this);
     QPushButton* clearSearchButton = new QPushButton("X", this);
@@ -45,19 +43,18 @@ MainWindow::MainWindow(QWidget *parent) :
     // init layouts
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
-
     // Searchbar sottolayout
     QVBoxLayout* msearchLayout = new QVBoxLayout();
     QHBoxLayout* searchLayout = new QHBoxLayout();
     QFormLayout* searchfilterLayout= new QFormLayout();
     searchLayout->addWidget(searchbar);
     searchLayout->addWidget(clearSearchButton);
-    searchfilterLayout->addRow(l, filtro);
+    searchfilterLayout->addRow(l, cmb_filtro);
     searchLayout->addLayout(searchfilterLayout);
     msearchLayout->addLayout(searchLayout);
 
     QHBoxLayout* buttonsLayout = new QHBoxLayout();
-    buttonsLayout->addWidget(cmb_ins);
+    buttonsLayout->addWidget(cmb_inserimento);
     buttonsLayout->addWidget(removeButton);
     buttonsLayout->addWidget(saveButton);
 
@@ -67,10 +64,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mainLayout->addWidget(view, 0, Qt::AlignCenter);
 
     // connect
-    connect(cmb_ins, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
+    connect(cmb_inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeProdotto()));
     connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
-    connect(filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
+    connect(cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
     connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
 }
 
@@ -81,7 +78,7 @@ void MainWindow::addProdotto(const QString& t)
     if(t != "Inserisci")
     {
         insertWidget* inserisci = new insertWidget(t, this, view, proxymodel, model);
-        cmb_ins->setCurrentText("Inserisci");
+        cmb_inserimento->setCurrentText("Inserisci");
         inserisci->show();
     }
 }
@@ -101,8 +98,8 @@ void MainWindow::removeProdotto()
 
 void MainWindow::textFilterChanged()
 {
-   if(filtro->currentText() != "Nessuno")
-        proxymodel->setFilter(filtro->currentText());
+   if(cmb_filtro->currentText() != "Nessuno")
+        proxymodel->setFilter(cmb_filtro->currentText());
     else  proxymodel->setFilter("");
     QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
     proxymodel->setFilterRegExp(regex);

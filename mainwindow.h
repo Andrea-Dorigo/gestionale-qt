@@ -4,7 +4,7 @@
 #include "tableview.h"
 #include "tablemodeladapter.h"
 #include <QWidget>
-#include "combobox_inserimento.h"
+#include "combobox_items.h"
 #include "qfilterproxymodel.h"
 
 class TableView;
@@ -20,8 +20,8 @@ public:
     ~MainWindow() override;
 
 private:
-    combobox_inserimento* cmb_ins;
-    QComboBox* filtro;
+    combobox_items* cmb_inserimento;
+    combobox_items* cmb_filtro;
     QLineEdit* searchbar;
     QFilterProxyModel* proxymodel;
     TableModelAdapter* model;
