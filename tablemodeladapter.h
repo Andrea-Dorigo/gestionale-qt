@@ -10,7 +10,7 @@ class TableModelAdapter: public QAbstractTableModel
     Modello* model;
     Prodotto* nuovoElemento;
   public:
-    TableModelAdapter(QObject* parent= nullptr);
+    TableModelAdapter(QObject* parent = nullptr);
     ~TableModelAdapter();
 
     int rowCount(const QModelIndex& = QModelIndex()) const override;

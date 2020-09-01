@@ -4,7 +4,25 @@ Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizion
   : Prodotto(id, nome, descrizione, costo, ditta, iva)
   , _target(target)
   , _applicazione(applicazione)
-  {}
+{}
+
+Cosmetico::Cosmetico(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string target, std::string applicazione)
+    : Prodotto(id, nome, descrizione, costo, ditta, iva)
+    , _applicazione(applicazione)
+{
+    if(target == "UOMO") {
+        _target = UOMO;
+    }
+    else if(target == "DONNA") {
+        _target = DONNA;
+    }
+    else if(target == "UNISEX") {
+        _target = UNISEX;
+    }
+    else {
+        _target = UNISEX;
+    }
+}
 
 bool Cosmetico::operator==(const Prodotto& p) const {
   auto aux = dynamic_cast<const Cosmetico*>(&p);

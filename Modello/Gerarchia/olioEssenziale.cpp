@@ -4,7 +4,13 @@ OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string 
   : Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
   , Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione)
   , _profumazione(profumazione)
-  {}
+{}
+
+OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore, std::string target, std::string applicazione, std::string profumazione)
+    : Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
+    , Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione)
+    , _profumazione(profumazione)
+{}
 
 bool OlioEssenziale::operator==(const Prodotto& p) const {
   auto aux = dynamic_cast<const OlioEssenziale*>(&p);

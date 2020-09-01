@@ -1,130 +1,199 @@
 #include "insertwidget.h"
-#include "tablemodeladapter.h"
-#include "tableview.h"
-#include <QLineEdit>
 #include <QPushButton>
-#include <QComboBox>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QFormLayout>
-#include <QSpinBox>
-#include <QDoubleSpinBox>
-#include <QLabel>
+#include <QVBoxLayout>
 #include <QMessageBox>
 
-
-insertWidget::insertWidget(const QString tipo, QWidget* parent,
-                           TableView* v, QFilterProxyModel* p,
-                           TableModelAdapter* m):
-
-
-//insertWidget::insertWidget(const QString tipo, QWidget* parent,
-//                           ListView* v, QFilterProxyModel* p,
-//                           ListModelAdapter* m):
-    QDialog(parent),tipoOggetto(tipo), view(v), proxy(p), model(m),
-    /*nome(new QLabel("Nome: ", this)), fisso(new QLabel("Fisso: ", this)),
-    bonus(new QLabel("Bonus: ", this)), fruolo(new QLabel("Ruolo: ", this)),
-    presenze(new QLabel("Presenze: ", this)), sogliaPresenze(new QLabel("sogliaBonusPresenze: ", this)),
-    */barraNome(new QLineEdit(this)), filtroRuolo(new QComboBox(this)),
-    scegliBase(new QDoubleSpinBox(this)), scegliBonus(new QDoubleSpinBox(this)),
-    settaPresenze(new QSpinBox(this)), settaSogliaPresenze(new QSpinBox(this))
+insertWidget::insertWidget(QWidget* parent, const QString tipoProdotto, TableView* view, QFilterProxyModel* proxymodel, TableModelAdapter* tablemodel):
+    QDialog(parent), _tipoProdotto(tipoProdotto), _view(view), _proxymodel(proxymodel), _tablemodel(tablemodel),
+    _fld_id(new QSpinBox(this)),
+    _fld_nome(new QLineEdit(this)),
+    _fld_descrizione(new QLineEdit(this)),
+    _fld_ditta(new QLineEdit(this)),
+    _fld_costo(new QDoubleSpinBox(this)),
+    _fld_iva(new QSpinBox(this)),
+    _fld_target(new combobox_target(this)),
+    _fld_applicazione(new QLineEdit(this)),
+    _fld_scadenza(new QDateEdit(this)),
+    _fld_sapore(new QLineEdit(this)),
+    _fld_dispositivoMedico(new combobox_sn(this)),
+    _fld_profumazione(new QLineEdit(this))
 {
-    setGeometry(200, 150, 200, 150);
-    setFixedSize(200, 150);
+    setWindowTitle(_tipoProdotto + " - Erboristeria Alchimia");
+    setGeometry(200, 150, 300, 310);
+    setFixedSize(300, 310);
 
-    QLabel* nome= new QLabel("Nome: ", this);
-    QLabel* fisso= new QLabel("Fisso: ", this);
-    QLabel* bonus= new QLabel("Bonus: ", this);
-    QLabel* fruolo= new QLabel("Ruolo: ", this);
-    QLabel* presenze= new QLabel("Presenze: ", this);
-    QLabel* sogliaPresenze= new QLabel("sogliaBonusPresenze: ", this);
+    // init items
+    QLabel* lbl_id = new QLabel("Cod. ID: ", this);
+    QLabel* lbl_nome = new QLabel("Nome: ", this);
+    QLabel* lbl_descrizione = new QLabel("Descrizione: ", this);
+    QLabel* lbl_ditta = new QLabel("Ditta: ", this);
+    QLabel* lbl_costo = new QLabel("Costo: ", this);
+    QLabel* lbl_iva = new QLabel("IVA: ", this);
+    QPushButton* btn_conferma = new QPushButton("Conferma ", this);
+    QFormLayout* lout_form = new QFormLayout;
+    QVBoxLayout* lout_main = new QVBoxLayout(this);
 
-    if(tipoOggetto == "Cosmetico" ||
-            tipoOggetto == "Vivanda")
-    {
-        fruolo->setVisible(false);
-        filtroRuolo->setVisible(false);
-        presenze->setVisible(false);
-        settaPresenze->setVisible(false);
-        sogliaPresenze->setVisible(false);
-        settaSogliaPresenze->setVisible(false);
+    // setup items
+    _fld_id->setValue(_tablemodel->rowCount()+1); // cod. identificativo automatico
+    _fld_id->setEnabled(false);
+    _fld_costo->setRange(0.00, 999.99);
+    _fld_iva->setRange(0, 100);
+    // fields non comuni
+    _fld_target->setVisible(false);
+    _fld_applicazione->setVisible(false);
+    _fld_scadenza->setVisible(false);
+    _fld_sapore->setVisible(false);
+    _fld_dispositivoMedico->setVisible(false);
+    _fld_profumazione->setVisible(false);
+
+    // linking label <=> field
+    lout_form->addRow(lbl_id, _fld_id);
+    lout_form->addRow(lbl_nome, _fld_nome);
+    lout_form->addRow(lbl_descrizione, _fld_descrizione);
+    lout_form->addRow(lbl_ditta, _fld_ditta);
+    lout_form->addRow(lbl_costo, _fld_costo);
+    lout_form->addRow(lbl_iva, _fld_iva);
+
+    if(_tipoProdotto == "Cosmetico")
+    { // Target _target, std::string _applicazione
+        QLabel* lbl_target = new QLabel("Target: ", this);
+        QLabel* lbl_applicazione = new QLabel("Applicazione: ", this);
+        _fld_target->setVisible(true);
+        _fld_applicazione->setVisible(true);
+        lout_form->addRow(lbl_target, _fld_target);
+        lout_form->addRow(lbl_applicazione, _fld_applicazione);
     }
-    if(tipoOggetto == "Vivanda")
-    {
-        bonus->setVisible(false);
-        scegliBonus->setVisible(false);
+    else if(_tipoProdotto == "Vivanda")
+    { // std::string scadenza, std::string sapore
+        QLabel* lbl_scadenza = new QLabel("Scadenza: ", this);
+        QLabel* lbl_sapore = new QLabel("Sapore: ", this);
+        _fld_scadenza->setDate(QDate::currentDate().addDays(1));
+        _fld_scadenza->setVisible(true);
+        _fld_sapore->setVisible(true);
+        lout_form->addRow(lbl_scadenza, _fld_scadenza);
+        lout_form->addRow(lbl_sapore, _fld_sapore);
     }
-    if(tipoOggetto == "Integratore") //Il tipo Calciatore ha tutti i filtri
-    {
-        setGeometry(200, 150, 200, 300);
-        setFixedSize(300, 300);
+    else if(_tipoProdotto == "Integratore")
+    { // std::string scadenza, bool dispositivoMedico
+        QLabel* lbl_scadenza = new QLabel("Scadenza: ", this);
+        QLabel* lbl_dispositivoMedico = new QLabel("Dispositivo medico: ", this);
+        _fld_scadenza->setDate(QDate::currentDate().addDays(1));
+        _fld_scadenza->setVisible(true);
+        _fld_dispositivoMedico->setVisible(true);
+        lout_form->addRow(lbl_scadenza, _fld_scadenza);
+        lout_form->addRow(lbl_dispositivoMedico, _fld_dispositivoMedico);
     }
-    QVBoxLayout* mainLayout= new QVBoxLayout(this);
+    else if(_tipoProdotto == "Olio essenziale")
+    { // std::string scadenza, std::string sapore, Target target, std::string applicazione, std::string profumazione
+        setGeometry(200, 150, 300, 400);
+        setFixedSize(300, 400);
+        QLabel* lbl_scadenza = new QLabel("Scadenza: ", this);
+        QLabel* lbl_sapore = new QLabel("Sapore: ", this);
+        QLabel* lbl_target = new QLabel("Target: ", this);
+        QLabel* lbl_applicazione = new QLabel("Applicazione: ", this);
+        QLabel* lbl_profumazione = new QLabel("Profumazione: ", this);
+        _fld_scadenza->setDate(QDate::currentDate().addDays(1));
+        _fld_scadenza->setVisible(true);
+        _fld_sapore->setVisible(true);
+        _fld_target->setVisible(true);
+        _fld_applicazione->setVisible(true);
+        _fld_profumazione->setVisible(true);
+        lout_form->addRow(lbl_scadenza, _fld_scadenza);
+        lout_form->addRow(lbl_sapore, _fld_sapore);
+        lout_form->addRow(lbl_target, _fld_target);
+        lout_form->addRow(lbl_applicazione, _fld_applicazione);
+        lout_form->addRow(lbl_profumazione, _fld_profumazione);
+    }
+    else
+    { // tipo di prodotto non riconosciuto
+        _fld_id->setValue(0);
+        _fld_nome->setText("Errore");
+        _fld_descrizione->setText("Errore");
+        _fld_ditta->setText("Errore");
+        _fld_costo->setValue(0);
+        _fld_iva->setValue(0);
+        _fld_nome->setEnabled(false);
+        _fld_descrizione->setEnabled(false);
+        _fld_ditta->setEnabled(false);
+        _fld_costo->setEnabled(false);
+        _fld_iva->setEnabled(false);
+        btn_conferma->setEnabled(false);
+    }
 
-    filtroRuolo->addItem(QString("Limone"));
-    filtroRuolo->addItem(QString("Fragola"));
-    filtroRuolo->addItem(QString("Frutti di bosco"));
-    filtroRuolo->addItem(QString("Kiwi"));
+    lout_main->addLayout(lout_form);
+    lout_main->addWidget(btn_conferma, Qt::AlignCenter);
 
-    scegliBase->setRange(100000.00, 30000000.00);
-    scegliBase->setSingleStep(10000);
-    scegliBonus->setRange(0.0, 1000000.00);
-    scegliBonus->setSingleStep(5000);
-    settaPresenze->setRange(0, 60);
-    settaSogliaPresenze->setRange(5, 25);
-
-    QFormLayout* managerFiltri= new QFormLayout;
-    managerFiltri->addRow(nome, barraNome);
-    managerFiltri->addRow(fisso, scegliBase);
-    managerFiltri->addRow(bonus, scegliBonus);
-    managerFiltri->addRow(fruolo, filtroRuolo);
-    managerFiltri->addRow(presenze, settaPresenze);
-    managerFiltri->addRow(sogliaPresenze, settaSogliaPresenze);
-
-    QPushButton* conferma= new QPushButton("Conferma ", this);
-
-    mainLayout->addLayout(managerFiltri);
-    mainLayout->addWidget(conferma, Qt::AlignCenter);
-
-    connect(conferma, SIGNAL(clicked()), this, SLOT(istanziaOggetto()));
+    connect(btn_conferma, SIGNAL(clicked()), this, SLOT(istanziaProdotto()));
 }
 
-
-void insertWidget::istanziaOggetto()
+void insertWidget::istanziaProdotto()
 {
     QMessageBox box;
-    Prodotto* m = nullptr;
+    Prodotto* p = nullptr;
 
-    if(tipoOggetto == "Cosmetico")
+    if(_tipoProdotto == "Cosmetico")
     {
-         m = new Cosmetico(9, "nome_cos", "desc_cos", 69.420, "ditta_cos", 911, DONNA, "app_cos" );
+        p = new Cosmetico(static_cast<unsigned short>(_fld_id->value()),
+                          _fld_nome->text().toStdString(),
+                          _fld_descrizione->text().toStdString(),
+                          _fld_costo->value(),
+                          _fld_ditta->text().toStdString(),
+                          _fld_iva->value(),
+                          _fld_target->currentText().toStdString(),
+                          _fld_applicazione->text().toStdString());
+    }
+    else if(_tipoProdotto == "Vivanda")
+    {
+        p = new Vivanda(static_cast<unsigned short>(_fld_id->value()),
+                        _fld_nome->text().toStdString(),
+                        _fld_descrizione->text().toStdString(),
+                        _fld_costo->value(),
+                        _fld_ditta->text().toStdString(),
+                        _fld_iva->value(),
+                        _fld_scadenza->text().toStdString(),
+                        _fld_sapore->text().toStdString());
+    }
+    else if(_tipoProdotto == "Integratore")
+    {
+        p = new Integratore(static_cast<unsigned short>(_fld_id->value()),
+                            _fld_nome->text().toStdString(),
+                            _fld_descrizione->text().toStdString(),
+                            _fld_costo->value(),
+                            _fld_ditta->text().toStdString(),
+                            _fld_iva->value(),
+                            _fld_scadenza->text().toStdString(),
+                            (_fld_dispositivoMedico->currentText() == "SI" ? true : false));
+    }
+    else if(_tipoProdotto == "Olio essenziale")
+    {
+        p = new OlioEssenziale(static_cast<unsigned short>(_fld_id->value()),
+                               _fld_nome->text().toStdString(),
+                               _fld_descrizione->text().toStdString(),
+                               _fld_costo->value(),
+                               _fld_ditta->text().toStdString(),
+                               _fld_iva->value(),
+                               _fld_scadenza->text().toStdString(),
+                               _fld_sapore->text().toStdString(),
+                               _fld_target->currentText().toStdString(),
+                               _fld_applicazione->text().toStdString(),
+                               _fld_profumazione->text().toStdString());
     }
 
-    else if(tipoOggetto == "Vivanda")
+    if(p)
     {
-        m = new Vivanda(1, "nome_viv", "desc_viv", 69.420, "ditta_viv", 911, "scad_viv", "sapore_viv" );
-
-    }
-
-    if(m != nullptr)
-    {
-        model->setNuovoElemento(m);
-        proxy->insertRows(proxy->rowCount(), 1);
-        view->clearSelection();
-        view->selectionModel()->clearCurrentIndex();
-        view->selectionModel()->select(proxy->index(model->rowCount() - 1, 0),
-                                                    QItemSelectionModel::Select);
-
-        box.setText("Elemento inserito con successo");
+        _tablemodel->setNuovoElemento(p);
+        _proxymodel->insertRows(_proxymodel->rowCount(), 1);
+        _view->clearSelection();
+        _view->selectionModel()->clearCurrentIndex();
+        _view->selectionModel()->select(_proxymodel->index(_tablemodel->rowCount() - 1, 0), QItemSelectionModel::Select);
+        delete _tablemodel->getNuovoElemento();
+        box.setText("Inserimento effettuato con successo");
         box.exec();
-        delete model->getNuovoElemento(); //elimino dallo heap la copia
-        //dell'oggetto inserito nel contenitore del modello dei dati
     }
-    else //caso in cui si aggiorni la comboBox e non il codice di questo slot!
-        box.setText("L'elemento che si voleva inserire non e'"
-                    "conosciuto!");
+    else
+    {
+        box.setText("Inserimento fallito");
+    }
     close();
 }
-
-// mainWindow -> insertWidget -> listmodeladapter
-// mainWindow -> insertWidget -> qfilterproxymodel -> listmodeladapter -> insertWidget -> mainWindow

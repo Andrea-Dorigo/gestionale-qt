@@ -40,7 +40,7 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
     {
 //        Prodotto& prodotto =
 //                model->getProdotto(static_cast<unsigned int> (index.row()));
-        QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
+        //QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
 
 //        if(dynamic_cast<Allenatore*>(&membro))
 //            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
@@ -48,7 +48,7 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 //            immagine= QPixmap(":/resources/immagini/Calciatore.jpg");
 //        else if(dynamic_cast<Dirigente*>(&membro))
 //            immagine= QPixmap(":/resources/immagini/Dirigente.jpg");
-        return immagine = immagine.scaled(100, 130);
+        return QVariant(); //immagine = immagine.scaled(100, 130);
     }
     else if(role == Qt::EditRole)
     {

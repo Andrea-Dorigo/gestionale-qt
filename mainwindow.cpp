@@ -77,7 +77,7 @@ void MainWindow::addProdotto(const QString& t)
 {
     if(t != "Inserisci")
     {
-        insertWidget* inserisci = new insertWidget(t, this, view, proxymodel, model);
+        insertWidget* inserisci = new insertWidget(this, t, view, proxymodel, model);
         cmb_inserimento->setCurrentText("Inserisci");
         inserisci->show();
     }

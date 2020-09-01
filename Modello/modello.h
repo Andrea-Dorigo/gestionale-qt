@@ -8,6 +8,8 @@
 #include "Gerarchia/cosmetico.h"
 #include "Gerarchia/alimentare.h"
 #include "Gerarchia/vivanda.h"
+#include "Gerarchia/integratore.h"
+#include "Gerarchia/olioEssenziale.h"
 
 class Modello {
   private:
