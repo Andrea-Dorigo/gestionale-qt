@@ -5,6 +5,7 @@
 #include <QBrush>
 #include <typeinfo>
 #include "Modello/Gerarchia/prodotto.h"
+//#include <Qt>
 
 TableModelAdapter::TableModelAdapter(QObject* parent):
 QAbstractTableModel(parent), model(new Modello()){}
@@ -20,56 +21,101 @@ int TableModelAdapter::rowCount(const QModelIndex &) const
 }
 int TableModelAdapter::columnCount(const QModelIndex &) const
 {
-    return 10;
+    return 6;
 }
 
 QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || index.row() >= model->count())
+    role = 0;
+    int count = model->count();
+    if (!index.isValid() || index.row() >= count)
         return QVariant();
 
-    else if (role == Qt::DisplayRole)
-    {
-        if (index.column() == 0)
-            return QString::fromStdString(getProdotto(index).getDitta());
-        else
-            return QString::fromStdString(getProdotto(index).getNome());
-    }
+    if (role == Qt::DisplayRole)
 
-    else if(role == Qt::DecorationRole)
-    {
-//        Prodotto& prodotto =
-//                model->getProdotto(static_cast<unsigned int> (index.row()));
-        QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
-
-//        if(dynamic_cast<Allenatore*>(&membro))
-//            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
-//        else if(dynamic_cast<Calciatore*>(&membro))
-//            immagine= QPixmap(":/resources/immagini/Calciatore.jpg");
-//        else if(dynamic_cast<Dirigente*>(&membro))
-//            immagine= QPixmap(":/resources/immagini/Dirigente.jpg");
-        return immagine = immagine.scaled(100, 130);
-    }
-    else if(role == Qt::EditRole)
-    {
-        QVariant aux;
-        aux.setValue(&model->getProdotto(static_cast<unsigned int>(index.row())));
-        return aux;
-    }
-    else if (role == Qt::BackgroundColorRole)
-        {
-            if(index.row() % 2) //alterno colore oggetti consecutivi
-                return QBrush(QColor(Qt::gray));// per distinguerli visivamente
-            return QBrush(QColor(Qt::darkGray));
-        }
+           if (index.column() == 0)
+               return QString::number(getProdotto(index).getId());
+           else if (index.column() == 1)
+                return QString::fromStdString(getProdotto(index).getDitta());
+           else if (index.column() == 2)
+                return QString::fromStdString(getProdotto(index).getNome());
+           else if (index.column() == 3)
+                return QString::number(getProdotto(index).getCosto());
+           else if (index.column() == 4)
+                return QString::number(getProdotto(index).getIva());
+           else if (index.column() == 5)
+                return QString::fromStdString(getProdotto(index).getDescrizione());
+           else
+                return QString::fromStdString("undefined");
 
     return QVariant();
 }
+    //        QString s;
+//        int colonna = index.column();
 
-//QVariant TableModelAdapter::headerData(int section, Qt::Orientation orientation, int role) const override {
+//        if (colonna==0)
+//            s = QString::number(getProdotto(index).getId());
+////        else if (colonna == 1)
+////            s = QString::fromStdString(getProdotto(index).getDitta());
+//        else
+//            s = QString::fromStdString("vuoto");
+////        else if (index.column() == 2)
+////            return QString::fromStdString(getProdotto(index).getNome());
+////        else if (index.column() == 3)
+////            return QString::number(getProdotto(index).getCosto());
+////        else if (index.column() == 4)
+////            return QString::number(getProdotto(index).getIva());
+////        else if (index.column() == 2)
+////            return QString::fromStdString(getProdotto(index).getDescrizione());
 
-//}
+//        return s;
+//    }
+//    else if(role == Qt::DecorationRole)
+//    {
+////        Prodotto& prodotto =
+////                model->getProdotto(static_cast<unsigned int> (index.row()));
+//        QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
 
+////        if(dynamic_cast<Allenatore*>(&membro))
+////            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
+////        else if(dynamic_cast<Calciatore*>(&membro))
+////            immagine= QPixmap(":/resources/immagini/Calciatore.jpg");
+////        else if(dynamic_cast<Dirigente*>(&membro))
+////            immagine= QPixmap(":/resources/immagini/Dirigente.jpg");
+//        return immagine = immagine.scaled(100, 130);
+//    }
+//    else if(role == Qt::EditRole)
+//    {
+//        QVariant aux;
+//        aux.setValue(&model->getProdotto(static_cast<unsigned int>(index.row())));
+//        return aux;
+//    }
+//    else if (role == Qt::BackgroundColorRole)
+//        {
+//            if(index.row() % 2) //alterno colore oggetti consecutivi
+//                return QBrush(QColor(Qt::gray));// per distinguerli visivamente
+//            return QBrush(QColor(Qt::darkGray));
+//        }
+
+
+
+QVariant TableModelAdapter::headerData(int section, Qt::Orientation orientation, int role) const {
+
+    if (role != Qt::DisplayRole) return QVariant();
+
+    if (section == 0)
+            return QString::fromStdString("ID");
+    if (section == 1)
+            return QString::fromStdString("Ditta");
+    if (section == 2)
+            return QString::fromStdString("Nome");
+    if (section == 3)
+            return QString::fromStdString("Costo");
+    if (section == 4)
+            return QString::fromStdString("Iva");
+    if (section == 5)
+            return QString::fromStdString("Descrizione");
+}
 
 
 bool TableModelAdapter::mySetData(const QModelIndex &index,
