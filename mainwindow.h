@@ -29,7 +29,7 @@ private:
 private slots:
     void addProdotto(const QString&);
     void removeProdotto();
-//    void textFilterChanged();
+    void textFilterChanged();
 };
 
 #endif // MAINWINDOW_H

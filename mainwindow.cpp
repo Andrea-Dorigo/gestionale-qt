@@ -26,12 +26,18 @@ MainWindow::MainWindow(QWidget *parent) :
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
     setWindowTitle(("Magazzino - Erboristeria Alchimia"));
 //    setWindowIcon(QIcon(":/res/temp.jpg"));
-    setFixedSize(QSize(1000, 600));
+    setFixedSize(QSize(1300, 800));
 
 
     proxymodel->setSourceModel(model);
     view->setModel(proxymodel);
     view->setItemDelegate(new Delegate(view));
+    view->setColumnWidth(0,50);
+    view->setColumnWidth(1,200);
+    view->setColumnWidth(2,350);
+    view->setColumnWidth(3,75);
+    view->setColumnWidth(4,75);
+    view->setColumnWidth(5,448);
 
     searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);
@@ -66,9 +72,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // connect
     connect(cmb_inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeProdotto()));
-//    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
-//    connect(cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
-//    connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
+    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
+    connect(cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
+    connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
 }
 
 MainWindow::~MainWindow() {}
@@ -96,11 +102,11 @@ void MainWindow::removeProdotto()
     }
 }
 
-//void MainWindow::textFilterChanged()
-//{
-//   if(cmb_filtro->currentText() != "Nessuno")
-//        proxymodel->setFilter(cmb_filtro->currentText());
-//    else  proxymodel->setFilter("");
-//    QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
-//    proxymodel->setFilterRegExp(regex);
-//}
+void MainWindow::textFilterChanged()
+{
+   if(cmb_filtro->currentText() != "Nessuno")
+        proxymodel->setFilter(cmb_filtro->currentText());
+    else  proxymodel->setFilter("");
+    QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
+    proxymodel->setFilterRegExp(regex);
+}

@@ -5,10 +5,10 @@
 #include <QBrush>
 #include <typeinfo>
 #include "Modello/Gerarchia/prodotto.h"
-//#include <Qt>
 
 TableModelAdapter::TableModelAdapter(QObject* parent):
-QAbstractTableModel(parent), model(new Modello()){}
+QAbstractTableModel(parent), model(new Modello()){
+}
 
 TableModelAdapter::~TableModelAdapter()
 {
@@ -26,12 +26,12 @@ int TableModelAdapter::columnCount(const QModelIndex &) const
 
 QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
-    role = 0;
-    int count = model->count();
-    if (!index.isValid() || index.row() >= count)
+//    role = 0;
+//    int count = model->count();
+    if (!index.isValid() || index.row() >= model->count())
         return QVariant();
 
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole){
 
            if (index.column() == 0)
                return QString::number(getProdotto(index).getId());
@@ -47,8 +47,8 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
                 return QString::fromStdString(getProdotto(index).getDescrizione());
            else
                 return QString::fromStdString("undefined");
-
-    return QVariant();
+        }
+    else return QVariant();
 }
     //        QString s;
 //        int colonna = index.column();
