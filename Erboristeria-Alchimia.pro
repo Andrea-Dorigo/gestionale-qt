@@ -62,7 +62,5 @@ HEADERS += \
     tablemodeladapter.h \
     combobox_items.h
 
-FORMS +=
-
-DISTFILES += \
-    res/temp.jpg
+RESOURCES += \
+    resources.qrc

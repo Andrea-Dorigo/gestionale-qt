@@ -25,13 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
     // setup window
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
     setWindowTitle(("Magazzino - Erboristeria Alchimia"));
-    setWindowIcon(QIcon(":/res/temp.jpg"));
+//    setWindowIcon(QIcon(":/res/temp.jpg"));
     setFixedSize(QSize(1000, 600));
 
 
     proxymodel->setSourceModel(model);
     view->setModel(proxymodel);
-//    view->setItemDelegate(new Delegate(view));
+    view->setItemDelegate(new Delegate(view));
 
     searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);

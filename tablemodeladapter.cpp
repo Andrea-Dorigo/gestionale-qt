@@ -40,7 +40,7 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
     {
 //        Prodotto& prodotto =
 //                model->getProdotto(static_cast<unsigned int> (index.row()));
-        QPixmap immagine = QPixmap(":/res/temp.jpg");
+        QPixmap immagine = QPixmap(":/Risorse/temp.jpg");
 
 //        if(dynamic_cast<Allenatore*>(&membro))
 //            immagine= QPixmap(":/resources/immagini/Allenatore.jpg");
