@@ -7,7 +7,11 @@ Prodotto::Prodotto(unsigned short id, std::string nome, std::string descrizione,
   , _costo(costo)
   , _ditta(ditta)
   , _iva(iva)
-  {}
+  {
+
+
+
+}
 
 Prodotto::~Prodotto() {}
 

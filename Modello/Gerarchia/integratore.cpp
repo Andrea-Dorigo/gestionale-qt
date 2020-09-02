@@ -1,7 +1,8 @@
 #include "integratore.h"
 
 Integratore::Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, bool dispositivoMedico)
-  : Alimentare(id, nome, descrizione, costo, ditta, iva, scadenza)
+  : Prodotto(id, nome, descrizione, costo, ditta, iva)
+  , Alimentare(id, nome, descrizione, costo, ditta, iva, scadenza)
   , _dispositivoMedico(dispositivoMedico)
   {}
 

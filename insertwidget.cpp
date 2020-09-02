@@ -131,19 +131,7 @@ void insertWidget::istanziaProdotto()
 {
     QMessageBox box;
     Prodotto* p = nullptr;
-
-    if(_tipoProdotto == "Cosmetico")
-    {
-        p = new Cosmetico(static_cast<unsigned short>(_fld_id->value()),
-                          _fld_nome->text().toStdString(),
-                          _fld_descrizione->text().toStdString(),
-                          _fld_costo->value(),
-                          _fld_ditta->text().toStdString(),
-                          _fld_iva->value(),
-                          _fld_target->currentText().toStdString(),
-                          _fld_applicazione->text().toStdString());
-    }
-    else if(_tipoProdotto == "Vivanda")
+    if(_tipoProdotto == "Vivanda")
     {
         p = new Vivanda(static_cast<unsigned short>(_fld_id->value()),
                         _fld_nome->text().toStdString(),
@@ -154,6 +142,20 @@ void insertWidget::istanziaProdotto()
                         _fld_scadenza->text().toStdString(),
                         _fld_sapore->text().toStdString());
     }
+
+
+    else if(_tipoProdotto == "Cosmetico")
+    {
+        p = new Cosmetico(static_cast<unsigned short>(_fld_id->value()),
+                          _fld_nome->text().toStdString(),
+                          _fld_descrizione->text().toStdString(),
+                          _fld_costo->value(),
+                          _fld_ditta->text().toStdString(),
+                          _fld_iva->value(),
+                          _fld_target->currentText().toStdString(),
+                          _fld_applicazione->text().toStdString());
+    }
+
     else if(_tipoProdotto == "Integratore")
     {
         p = new Integratore(static_cast<unsigned short>(_fld_id->value()),
@@ -178,6 +180,9 @@ void insertWidget::istanziaProdotto()
                                _fld_target->currentText().toStdString(),
                                _fld_applicazione->text().toStdString(),
                                _fld_profumazione->text().toStdString());
+
+
+        ;
     }
 
     if(p)

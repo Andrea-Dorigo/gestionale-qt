@@ -28,14 +28,23 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || index.row() >= model->count())
         return QVariant();
-
+//    QString debug_index =
     if (role == Qt::DisplayRole) {
-           if (index.column() == 0)
+           if (index.column() == 0){
+
+//
+               std::string visualizza = model->visualizza();
+
+               QString debug_id = QString::number(getProdotto(index).getId());
+               QString debug_stampa = QString::fromStdString(getProdotto(index).stampa());
                return QString::number(getProdotto(index).getId());
+           }
            else if (index.column() == 1)
                 return QString::fromStdString(getProdotto(index).getDitta());
-           else if (index.column() == 2)
+           else if (index.column() == 2){
+                QString debug_nome = QString::fromStdString(getProdotto(index).getNome());
                 return QString::fromStdString(getProdotto(index).getNome());
+           }
            else if (index.column() == 3)
                 return QString::number(getProdotto(index).getCosto());
            else if (index.column() == 4)
@@ -64,7 +73,7 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
                else if (index.column() == 9) {
                    Integratore* integratore = dynamic_cast<Integratore*>(&prodotto);
                    if(integratore)
-                        return QString::number(integratore->getDispositivoMedico());
+                        return QString::fromStdString(integratore->getDispositivoMedico() ? "SI" : "NO" );
                }
                else if (index.column() == 10) {
                    Vivanda* vivanda = dynamic_cast<Vivanda*>(&prodotto);
@@ -174,9 +183,12 @@ matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
     {
         if(s == "Cosmetico")
             return model->getProdotto(i).getTipo() == "Cosmetico";
-
         if(s == "Vivanda")
             return model->getProdotto(i).getTipo() == "Vivanda";
+        if(s == "Integratore")
+            return model->getProdotto(i).getTipo() == "Integratore";
+        if(s == "Olio essenziale")
+            return model->getProdotto(i).getTipo() == "Olio essenziale";
     }
     return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
  }
@@ -184,6 +196,8 @@ matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
 
 Prodotto& TableModelAdapter::getProdotto(const QModelIndex &index) const
 {
+    unsigned int s = static_cast<unsigned int>(index.row());
+
     return model->getProdotto(static_cast<unsigned int>(index.row()));
 }
 

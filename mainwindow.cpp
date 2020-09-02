@@ -41,9 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
     view->setColumnWidth(6,60); // target
     view->setColumnWidth(7,448); // applicazione
     view->setColumnWidth(8,100); // scadenza
-    view->setColumnWidth(9,60); // dispositivo medico
-    view->setColumnWidth(9,300); // sapore
-    view->setColumnWidth(9,250); // profumazione
+    view->setColumnWidth(9,140); // dispositivo medico
+    view->setColumnWidth(10,300); // sapore
+    view->setColumnWidth(11,250); // profumazione
 
 
     searchbar->setPlaceholderText("Ricerca per nome");
