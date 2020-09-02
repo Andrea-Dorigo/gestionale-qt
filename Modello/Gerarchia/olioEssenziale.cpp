@@ -2,15 +2,15 @@
 
 OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore, Target target, std::string applicazione, std::string profumazione)
   : Prodotto::Prodotto(id, nome, descrizione, costo, ditta, iva)
-  , Vivanda::Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
   , Cosmetico::Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione)
+  , Vivanda::Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
   , _profumazione(profumazione)
 {}
 
 OlioEssenziale::OlioEssenziale(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore, std::string target, std::string applicazione, std::string profumazione)
     : Prodotto::Prodotto(id, nome, descrizione, costo, ditta, iva)
-    , Vivanda::Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
     , Cosmetico::Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione)
+    , Vivanda::Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore)
     , _profumazione(profumazione)
 {}
 
