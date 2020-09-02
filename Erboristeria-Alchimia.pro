@@ -28,7 +28,6 @@ SOURCES += \
     mainwindow.cpp \
     qfilterproxymodel.cpp \
     insertwidget.cpp \
-    delegate.cpp \
     Modello/Gerarchia/alimentare.cpp \
     Modello/Gerarchia/cosmetico.cpp \
     Modello/Gerarchia/integratore.cpp \
@@ -47,7 +46,6 @@ HEADERS += \
     mainwindow.h \
     qfilterproxymodel.h \
     insertwidget.h \
-    delegate.h \
     Modello/Gerarchia/alimentare.h \
     Modello/Gerarchia/cosmetico.h \
     Modello/Gerarchia/integratore.h \
