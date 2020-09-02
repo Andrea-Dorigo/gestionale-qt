@@ -26,7 +26,8 @@ int TableModelAdapter::columnCount(const QModelIndex &) const
 
 QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || index.row() >= model->count())
+    unsigned int row = (short) index.row();
+    if (!index.isValid() || row >= model->count())
         return QVariant();
 //    QString debug_index =
     if (role == Qt::DisplayRole) {
@@ -95,8 +96,8 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 
 QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) const {
 
-    if (role != Qt::DisplayRole) return QVariant();
-
+    if (role != Qt::DisplayRole)
+            return QVariant();
     if (section == 0)
             return QString::fromStdString("ID");
     if (section == 1)
@@ -121,26 +122,27 @@ QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) c
             return QString::fromStdString("Sapore");
     if (section == 11)
             return QString::fromStdString("Profumazione");
+    return QVariant();
 }
 
 
-bool TableModelAdapter::mySetData(const QModelIndex &index,
-            const QVariant& val, bool contr, bool minObb, unsigned int p)
-{
-    if(!index.isValid() || !val.canConvert<QString>())
-        return false;
+//bool TableModelAdapter::mySetData(const QModelIndex &index,
+//            const QVariant& val, bool, bool mi, unsigned int p)
+//{
+//    if(!index.isValid() || !val.canConvert<QString>())
+//        return false;
 
-//    Prodotto& aux = getProdotto(index);
-//    aux.setContratto(contr);
-//    if(val.toString() == "Allenatore")
-//        static_cast<Allenatore&>(aux).setMinObiettiviStagionali(minObb);
-//    else if(val.toString() == "Calciatore")
-//        static_cast<Calciatore&>(aux).setPresenze(p);
+////    Prodotto& aux = getProdotto(index);
+////    aux.setContratto(contr);
+////    if(val.toString() == "Allenatore")
+////        static_cast<Allenatore&>(aux).setMinObiettiviStagionali(minObb);
+////    else if(val.toString() == "Calciatore")
+////        static_cast<Calciatore&>(aux).setPresenze(p);
 
-//    emit dataChanged(index, index);
+////    emit dataChanged(index, index);
 
-    return true;
-}
+//    return true;
+//}
 
 Qt::ItemFlags TableModelAdapter::flags(const QModelIndex& index) const
 {
@@ -196,7 +198,7 @@ matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
 
 Prodotto& TableModelAdapter::getProdotto(const QModelIndex &index) const
 {
-    unsigned int s = static_cast<unsigned int>(index.row());
+//    unsigned int s = static_cast<unsigned int>(index.row());
 
     return model->getProdotto(static_cast<unsigned int>(index.row()));
 }

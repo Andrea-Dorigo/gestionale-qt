@@ -3,9 +3,9 @@
 
 #include "tableview.h"
 #include "tablemodeladapter.h"
-#include <QWidget>
 #include "combobox_items.h"
 #include "qfilterproxymodel.h"
+#include "insertwidget.h"
 
 class TableView;
 class TableModelAdapter;

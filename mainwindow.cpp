@@ -1,7 +1,5 @@
 #include "mainwindow.h"
-#include "insertwidget.h"
-#include "tableview.h"
-#include "tablemodeladapter.h"
+
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QVBoxLayout>
@@ -11,6 +9,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),

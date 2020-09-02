@@ -573,7 +573,7 @@ typename Container<T>::iterator Container<T>::erase(iterator it) {
 }
 
 template<class T>
-bool Container<T>::search(const T& t, iterator& it) const {
+bool Container<T>::search(const T& t, iterator&) const {
   bool found = false;
   for(auto it = begin(); it != end() && !found; it++) {
     if(*it == t) { // utilizzo operator== della classe T

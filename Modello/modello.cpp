@@ -73,10 +73,12 @@ Container<SmartP<Prodotto>> Modello::filtra(std::string ditta, double costo) con
 }
 //#include <iostream>
 std::string Modello::visualizza() const {
+  std::stringstream result ;
   for(auto it = magazzino.begin(); it != magazzino.end(); it++) {
 //    std::cout << it->p->stampa() << std::endl;
-      return it->p->stampa();
+      result << it->p->stampa();
   }
+  return result.str();
 }
 
 Prodotto& Modello::getProdotto(unsigned int i) const

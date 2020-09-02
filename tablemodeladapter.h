@@ -20,8 +20,8 @@ class TableModelAdapter: public QAbstractTableModel
 
     Qt::ItemFlags flags(const QModelIndex&) const override;
 
-    bool mySetData(const QModelIndex &index, const QVariant &value,
-                   bool , bool =true, unsigned int=0);
+//    bool mySetData(const QModelIndex &index, const QVariant &value,
+//                   bool , bool =true, unsigned int=0);
 
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override;

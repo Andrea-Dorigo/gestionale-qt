@@ -18,7 +18,7 @@ class Modello {
     Modello();
     ~Modello();
     // void save(const std::string&) const;
-    // void load(const std::string&);
+    // void load(const std::string&);z
     unsigned int count() const;
     void insert(Prodotto*);
     void remove(Prodotto*);

@@ -35,7 +35,6 @@ SOURCES += \
     Modello/Gerarchia/prodotto.cpp \
     Modello/Gerarchia/vivanda.cpp \
     Modello/modello.cpp \
-    editor.cpp \
     tableview.cpp \
     tablemodeladapter.cpp \
     combobox_items.cpp \
@@ -54,9 +53,7 @@ HEADERS += \
     Modello/Gerarchia/vivanda.h \
     Modello/container.h \
     Modello/modello.h \
-    Modello/serialize.h \
     Modello/smartp.h \
-    editor.h \
     qtypeconversion.h \
     tableview.h \
     tablemodeladapter.h \
