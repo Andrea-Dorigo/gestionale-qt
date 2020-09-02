@@ -22,6 +22,9 @@ public:
     void setNuovoProdotto(Prodotto*);
     Prodotto* getNuovoProdotto();
     Prodotto& getProdotto(const QModelIndex &index) const;
+
+    void saveToFile() const;
+    void loadFromFile();
 };
 
 #endif // LISTMODELADAPTER_H

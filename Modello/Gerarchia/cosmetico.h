@@ -24,6 +24,7 @@ public:
     /* setters */
     void setTarget(Target target);
     void setApplicazione(std::string applicazione);
+    virtual void serialize(QXmlStreamWriter&) const;
 };
 
 #endif // COSMETICO_H

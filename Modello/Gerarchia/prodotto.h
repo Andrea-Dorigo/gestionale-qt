@@ -3,7 +3,7 @@
 
 #include <string>
 #include <sstream>
-
+#include<QXmlStreamWriter>
 class Prodotto {
 private:
     unsigned short _id;
@@ -34,6 +34,9 @@ public:
     void setCosto(double costo);
     void setDitta(std::string ditta);
     void setIva(int iva);
+
+
+    virtual void serialize(QXmlStreamWriter&) const;
 };
 
 #endif // PRODOTTO_H

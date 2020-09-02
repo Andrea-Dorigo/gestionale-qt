@@ -86,3 +86,16 @@ void Cosmetico::setTarget(Target target) {
 void Cosmetico::setApplicazione(std::string applicazione) {
     _applicazione = applicazione;
 }
+
+
+void Cosmetico::serialize(QXmlStreamWriter& stream) const
+{
+    stream.writeTextElement("id", QString::number(Cosmetico::getId()));
+    stream.writeTextElement("nome", QString::fromStdString(Cosmetico::getNome()));
+    stream.writeTextElement("descrizione", QString::fromStdString(Cosmetico::getDescrizione()));
+    stream.writeTextElement("costo", QString::number(Cosmetico::getCosto()));
+    stream.writeTextElement("ditta", QString::fromStdString(Cosmetico::getDitta()));
+    stream.writeTextElement("iva", QString::number(Cosmetico::getIva()));
+    stream.writeTextElement("target", QString::fromStdString(Cosmetico::targetToString()));
+    stream.writeTextElement("applicazione", QString::fromStdString(Cosmetico::getApplicazione()));
+}

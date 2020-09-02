@@ -162,3 +162,11 @@ Prodotto* TableModelAdapter::getNuovoProdotto()
     return _nuovoProdotto;
 }
 
+void TableModelAdapter::saveToFile() const
+{
+   _model->saveToFile();
+}
+void TableModelAdapter::loadFromFile()
+{
+   _model->loadFromFile();
+}

@@ -4,6 +4,21 @@ Modello::Modello() {}
 
 Modello::~Modello() {}
 
+
+
+void Modello::saveToFile() const
+{
+    fileio xml(":/Risorse/data.xml");
+    xml.write(magazzino);
+}
+
+void Modello::loadFromFile()
+{
+    fileio xml(":/Risorse/data.xml");
+    magazzino = xml.read();
+}
+
+
 unsigned int Modello::count() const {
     return magazzino.getSize();
 }

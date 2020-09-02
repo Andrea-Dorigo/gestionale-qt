@@ -39,7 +39,8 @@ SOURCES += \
     tablemodeladapter.cpp \
     combobox_items.cpp \
     combobox_target.cpp \
-    combobox_sn.cpp
+    combobox_sn.cpp \
+    fileio.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -58,7 +59,8 @@ HEADERS += \
     tablemodeladapter.h \
     combobox_items.h \
     combobox_target.h \
-    combobox_sn.h
+    combobox_sn.h \
+    fileio.h
 
 RESOURCES += \
     resources.qrc

@@ -69,3 +69,20 @@ void Prodotto::setDitta(std::string ditta) {
 void Prodotto::setIva(int iva) {
     _iva = iva;
 }
+
+
+void Prodotto::serialize(QXmlStreamWriter& stream) const
+{
+    stream.writeTextElement("id", QString::number(Prodotto::getId()));
+    stream.writeTextElement("nome", QString::fromStdString(Prodotto::getNome()));
+    stream.writeTextElement("descrizione", QString::fromStdString(Prodotto::getDescrizione()));
+    stream.writeTextElement("costo", QString::number(Prodotto::getCosto()));
+    stream.writeTextElement("ditta", QString::fromStdString(Prodotto::getDitta()));
+    stream.writeTextElement("iva", QString::number(Prodotto::getIva()));
+}
+//unsigned short _id;
+//std::string _nome;
+//std::string _descrizione;
+//double _costo;
+//std::string _ditta;
+//int _iva;

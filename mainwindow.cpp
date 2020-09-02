@@ -26,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon(":/Risorse/logo_icona.png"));
     setFixedSize(QSize(1300, 800));
 
+
+    loadData();
+
     _proxymodel->setSourceModel(_tablemodel);
     _view->setModel(_proxymodel);
     _view->setColumnWidth(0,50);    // id
@@ -72,12 +75,38 @@ MainWindow::MainWindow(QWidget *parent) :
     mainLayout->addWidget(_view, 0, Qt::AlignCenter);
 
     // connect
+
+    connect(saveButton, SIGNAL(clicked()), this, SLOT(saveData()));
+//    connect(saveAction, SIGNAL(triggered()), this, SLOT(saveData()));
+
     connect(_cmb_inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeProdotto()));
     connect(_searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
     connect(_cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
     connect(clearSearchButton, SIGNAL(clicked()), _searchbar, SLOT(clear()));
+
+
 }
+
+
+void MainWindow::saveData()
+{
+    try
+    {
+        _tablemodel->saveToFile();
+    }
+    catch (std::exception)
+    {
+        QMessageBox box(QMessageBox::Warning, "Errore di salvataggio", "Non è stato possibile scrivere sul file", QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+    QMessageBox box;
+    box.setText("Salvataggio effettuato");
+    box.exec();
+}
+
+
 
 MainWindow::~MainWindow() {}
 
@@ -111,4 +140,11 @@ void MainWindow::textFilterChanged()
     else  _proxymodel->setFilter("");
     QRegExp regex(_searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
     _proxymodel->setFilterRegExp(regex);
+}
+
+
+void MainWindow::loadData()
+{
+    // in tale caso non serve passare per il proxymodel
+    _tablemodel->loadFromFile();
 }

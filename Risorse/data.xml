@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootElement>
+    <Prodotto tipo="Cosmetico">
+        <id>1</id>
+        <nome>dardan</nome>
+        <descrizione>c</descrizione>
+        <costo>0</costo>
+        <ditta>c</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>c</applicazione>
+    </Prodotto>
+</rootElement>

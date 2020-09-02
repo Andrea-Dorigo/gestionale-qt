@@ -9,6 +9,7 @@
 #include "Gerarchia/olioEssenziale.h"
 #include "container.h"
 #include "smartp.h"
+#include "fileio.h"
 
 class Modello {
 private:
@@ -16,6 +17,8 @@ private:
 public:
     Modello();
     ~Modello();
+    void loadFromFile();
+    void saveToFile() const;
     unsigned int count() const;
     void insert(Prodotto*);
     void remove(Prodotto*);

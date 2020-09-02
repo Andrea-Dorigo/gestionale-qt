@@ -22,12 +22,14 @@ private:
     QFilterProxyModel* _proxymodel;
     TableModelAdapter* _tablemodel;
     TableView* _view;
+    void loadData();
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
 private slots:
+    void saveData();
     void addProdotto(const QString&);
     void removeProdotto();
     void textFilterChanged();
