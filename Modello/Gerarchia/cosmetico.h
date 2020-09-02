@@ -16,6 +16,7 @@ class Cosmetico : virtual public Prodotto {
     virtual Cosmetico* clone() const override;
     virtual double calcoloPrezzo() const override;
     virtual std::string stampa() const override;
+    std::string targetToString() const;
     /* getters */
     Target getTarget() const;
     std::string getApplicazione() const;
@@ -23,8 +24,6 @@ class Cosmetico : virtual public Prodotto {
     /* setters */
     void setTarget(Target target);
     void setApplicazione(std::string applicazione);
-
-    std::string targetToString() const;
 };
 
 #endif // COSMETICO_H
