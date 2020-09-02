@@ -3,7 +3,8 @@
 
 #include <string>
 #include <sstream>
-#include<QXmlStreamWriter>
+#include <QXmlStreamWriter>
+
 class Prodotto {
 private:
     unsigned short _id;
@@ -15,10 +16,11 @@ private:
 public:
     Prodotto(unsigned short id = 0, std::string nome = "", std::string descrizione = "", double costo = 0.0, std::string ditta = "", int iva = 22);
     virtual ~Prodotto();
-    virtual bool operator==(const Prodotto& prodotto) const;
+    virtual bool operator==(const Prodotto&) const;
     virtual Prodotto* clone() const = 0;
     virtual double calcoloPrezzo() const = 0;
     virtual std::string stampa() const;
+    virtual void serialize(QXmlStreamWriter&) const;
     /* getters */
     unsigned short getId() const;
     std::string getNome() const;
@@ -28,15 +30,12 @@ public:
     int getIva() const;
     virtual std::string getTipo() const = 0;
     /* setters */
-    void setId(unsigned short id);
-    void setNome(std::string nome);
-    void setDescrizione(std::string descrizione);
-    void setCosto(double costo);
-    void setDitta(std::string ditta);
-    void setIva(int iva);
-
-
-    virtual void serialize(QXmlStreamWriter&) const;
+    void setId(unsigned short);
+    void setNome(std::string);
+    void setDescrizione(std::string);
+    void setCosto(double);
+    void setDitta(std::string);
+    void setIva(int);
 };
 
 #endif // PRODOTTO_H

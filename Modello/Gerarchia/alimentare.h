@@ -12,6 +12,7 @@ public:
     virtual Alimentare* clone() const = 0;
     virtual double calcoloPrezzo() const = 0;
     virtual std::string stampa() const override;
+    virtual void serialize(QXmlStreamWriter&) const;
     /* getters */
     std::string getScadenza() const;
     virtual std::string getTipo() const = 0;

@@ -19,6 +19,11 @@ std::string Alimentare::stampa() const {
     return ss.str();
 }
 
+void Alimentare::serialize(QXmlStreamWriter& stream) const {
+    Prodotto::serialize(stream);
+    stream.writeTextElement("scadenza", QString::fromStdString(Alimentare::getScadenza()));
+}
+
 /* getters */
 std::string Alimentare::getScadenza() const {
     return _scadenza;

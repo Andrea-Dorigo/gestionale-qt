@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rootElement>
     <Prodotto tipo="Cosmetico">
-        <id>1</id>
-        <nome>dardan</nome>
+        <id>2</id>
+        <nome>c</nome>
         <descrizione>c</descrizione>
         <costo>0</costo>
         <ditta>c</ditta>
@@ -10,14 +10,43 @@
         <target>UNISEX</target>
         <applicazione>c</applicazione>
     </Prodotto>
-    <Prodotto tipo="Cosmetico">
-        <id>2</id>
-        <nome>darda</nome>
-        <descrizione>c</descrizione>
+    <Prodotto tipo="Vivanda">
+        <id>3</id>
+        <nome>v</nome>
+        <descrizione>v</descrizione>
         <costo>0</costo>
-        <ditta>c</ditta>
+        <ditta>v</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <Target></Target>
+    </Prodotto>
+    <Prodotto tipo="Olio essenziale">
+        <id>3</id>
+        <nome>8</nome>
+        <descrizione>o</descrizione>
+        <costo>0</costo>
+        <ditta>o</ditta>
         <iva>0</iva>
         <target>UNISEX</target>
-        <applicazione>c</applicazione>
+        <applicazione>o</applicazione>
+        <id>3</id>
+        <nome>8</nome>
+        <descrizione>o</descrizione>
+        <costo>0</costo>
+        <ditta>o</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <Target>o</Target>
+        <profumazione>o</profumazione>
+    </Prodotto>
+    <Prodotto tipo="Integratore">
+        <id>4</id>
+        <nome>ttt</nome>
+        <descrizione>ttt</descrizione>
+        <costo>0</costo>
+        <ditta>ttt</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <dispositivoMedico>0</dispositivoMedico>
     </Prodotto>
 </rootElement>

@@ -28,6 +28,11 @@ std::string Vivanda::stampa() const {
     return ss.str();
 }
 
+void Vivanda::serialize(QXmlStreamWriter& stream) const {
+    Alimentare::serialize(stream);
+    stream.writeTextElement("Target", QString::fromStdString(Vivanda::getSapore()));
+}
+
 /* getters */
 std::string Vivanda::getSapore() const {
     return _sapore;

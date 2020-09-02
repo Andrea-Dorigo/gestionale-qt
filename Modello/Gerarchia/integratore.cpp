@@ -29,6 +29,11 @@ std::string Integratore::stampa() const {
     return ss.str();
 }
 
+void Integratore::serialize(QXmlStreamWriter& stream) const {
+    Alimentare::serialize(stream);
+    stream.writeTextElement("dispositivoMedico", QString::number(Integratore::getDispositivoMedico()));
+}
+
 /* getters */
 bool Integratore::getDispositivoMedico() const {
     return _dispositivoMedico;

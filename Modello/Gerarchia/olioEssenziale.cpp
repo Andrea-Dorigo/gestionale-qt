@@ -38,6 +38,12 @@ std::string OlioEssenziale::stampa() const {
     return ss.str();
 }
 
+void OlioEssenziale::serialize(QXmlStreamWriter& stream) const {
+    Cosmetico::serialize(stream);
+    Vivanda::serialize(stream);
+    stream.writeTextElement("profumazione", QString::fromStdString(OlioEssenziale::getProfumazione()));
+}
+
 /* getters */
 std::string OlioEssenziale::getProfumazione() const {
     return _profumazione;

@@ -4,8 +4,6 @@ Modello::Modello() {}
 
 Modello::~Modello() {}
 
-
-
 void Modello::saveToFile() const
 {
     fileio xml("../progetto-p2/Risorse/data.xml");

@@ -1,13 +1,14 @@
 #include "fileio.h"
 #include <QMessageBox>
 #include <QDebug>
+
 fileio::fileio(QString filename): filename(filename){}
 
 Container<SmartP<Prodotto>> fileio::read() const
 {
     Container<SmartP<Prodotto>> container;
     QFile file(filename);
-     if(!file.open(QIODevice::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning() << "Non è stato possibile aprire il file" << file.errorString();
         return  container;
@@ -18,7 +19,7 @@ Container<SmartP<Prodotto>> fileio::read() const
     {
         while(reader.readNextStartElement())
         {
-            QXmlStreamAttributes classe= reader.attributes();
+            QXmlStreamAttributes classe = reader.attributes();
 
             std::string tipoClasse;
             unsigned short id;
@@ -29,8 +30,7 @@ Container<SmartP<Prodotto>> fileio::read() const
             int iva;
 
             if(classe.hasAttribute("tipo"))
-                tipoClasse= classe.value("tipo").toString().toStdString();
-
+                tipoClasse = classe.value("tipo").toString().toStdString();
 
             if(reader.readNextStartElement() && reader.name() == "id")
                 id = reader.readElementText().toShort();
@@ -45,7 +45,7 @@ Container<SmartP<Prodotto>> fileio::read() const
             if(reader.readNextStartElement() && reader.name() == "iva")
                 iva = reader.readElementText().toDouble();
 
-            // Individuazione tipo e istanziamento oggetto
+            // individuazione tipo e istanziamento oggetto
 
             if(tipoClasse == "Cosmetico")
             {
@@ -57,9 +57,60 @@ Container<SmartP<Prodotto>> fileio::read() const
                 if(reader.readNextStartElement() && reader.name() == "applicazione")
                     applicazione = reader.readElementText().toStdString();
 
-                Cosmetico* c = new Cosmetico(id,nome,descrizione,costo,ditta,iva,target,applicazione);
+                Cosmetico* c = new Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione);
                 container.push_back(SmartP<Prodotto>(c));
                 delete c;
+            }
+            else if(tipoClasse == "Vivanda")
+            {
+                std::string scadenza;
+                std::string sapore;
+
+                if(reader.readNextStartElement() && reader.name() == "scadenza")
+                    scadenza = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "sapore")
+                    sapore = reader.readElementText().toStdString();
+
+                Vivanda* v = new Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore);
+                container.push_back(SmartP<Prodotto>(v));
+                delete v;
+            }
+            else if(tipoClasse == "Integratore")
+            {
+                std::string scadenza;
+                bool dispositivoMedico;
+
+                if(reader.readNextStartElement() && reader.name() == "scadenza")
+                    scadenza = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "dispositivoMedico")
+                    dispositivoMedico = reader.readElementText().toInt();
+
+                Integratore* i = new Integratore(id, nome, descrizione, costo, ditta, iva, scadenza, dispositivoMedico);
+                container.push_back(SmartP<Prodotto>(i));
+                delete i;
+            }
+            else if(tipoClasse == "Olio essenziale")
+            {
+                std::string target;
+                std::string applicazione;
+                std::string scadenza;
+                std::string sapore;
+                std::string profumazione;
+
+                if(reader.readNextStartElement() && reader.name() == "target")
+                    target = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "applicazione")
+                    applicazione = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "scadenza")
+                    scadenza = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "sapore")
+                    sapore = reader.readElementText().toStdString();
+                if(reader.readNextStartElement() && reader.name() == "profumazione")
+                    profumazione = reader.readElementText().toStdString();
+
+                OlioEssenziale* o = new OlioEssenziale(id, nome, descrizione, costo, ditta, iva, scadenza, sapore, target, applicazione, profumazione);
+                container.push_back(SmartP<Prodotto>(o));
+                delete o;
             }
             reader.skipCurrentElement();
         }
@@ -94,7 +145,7 @@ void fileio::write(const Container<SmartP<Prodotto>>& container) const
         writer.writeAttribute("tipo",QString::fromStdString((*it)->getTipo()));
         /*Scrittura caratteristiche specifiche oggetto istanziabile*/
         (*it)->serialize(writer);
-         writer.writeEndElement(); // <TeamMember type= (*cit)->getType()>
+        writer.writeEndElement(); // <TeamMember type= (*cit)->getType()>
     }
 
     writer.writeEndElement();
@@ -104,9 +155,4 @@ void fileio::write(const Container<SmartP<Prodotto>>& container) const
     //errori: discriminante sulla scelta di QSaveFile anziche QFile: scriverlo
     //nella relazione!!!!!!
 }
-//unsigned short _id;
-//std::string _nome;
-//std::string _descrizione;
-//double _costo;
-//std::string _ditta;
-//int _iva;
+

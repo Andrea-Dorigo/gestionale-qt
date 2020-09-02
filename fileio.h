@@ -9,7 +9,6 @@
 #include "Modello/Gerarchia/olioEssenziale.h"
 #include "Modello/container.h"
 #include "Modello/smartp.h"
-
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QFile>

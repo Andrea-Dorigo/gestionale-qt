@@ -38,9 +38,9 @@ Cosmetico* Cosmetico::clone() const {
 
 double Cosmetico::calcoloPrezzo() const {
     if(getCosto() > 10 && _target == DONNA) {
-        return getCosto()*2 - 5.0;
+        return getCosto()* 2 - 5.0;
     }
-    else return getCosto()*2;
+    else return getCosto()* 2;
 }
 
 std::string Cosmetico::stampa() const {
@@ -49,6 +49,13 @@ std::string Cosmetico::stampa() const {
     ss << "Target: " << _target << "\n";
     ss << "Applicazione: " << _applicazione << "\n";
     return ss.str();
+}
+
+void Cosmetico::serialize(QXmlStreamWriter& stream) const
+{
+    Prodotto::serialize(stream);
+    stream.writeTextElement("target", QString::fromStdString(Cosmetico::targetToString()));
+    stream.writeTextElement("applicazione", QString::fromStdString(Cosmetico::getApplicazione()));
 }
 
 std::string Cosmetico::targetToString() const {
@@ -85,17 +92,4 @@ void Cosmetico::setTarget(Target target) {
 }
 void Cosmetico::setApplicazione(std::string applicazione) {
     _applicazione = applicazione;
-}
-
-
-void Cosmetico::serialize(QXmlStreamWriter& stream) const
-{
-    stream.writeTextElement("id", QString::number(Cosmetico::getId()));
-    stream.writeTextElement("nome", QString::fromStdString(Cosmetico::getNome()));
-    stream.writeTextElement("descrizione", QString::fromStdString(Cosmetico::getDescrizione()));
-    stream.writeTextElement("costo", QString::number(Cosmetico::getCosto()));
-    stream.writeTextElement("ditta", QString::fromStdString(Cosmetico::getDitta()));
-    stream.writeTextElement("iva", QString::number(Cosmetico::getIva()));
-    stream.writeTextElement("target", QString::fromStdString(Cosmetico::targetToString()));
-    stream.writeTextElement("applicazione", QString::fromStdString(Cosmetico::getApplicazione()));
 }
