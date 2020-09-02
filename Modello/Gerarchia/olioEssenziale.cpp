@@ -52,7 +52,6 @@ std::string OlioEssenziale::getTipo() const {
     return "Olio essenziale";
 }
 
-
 /* setters */
 void OlioEssenziale::setProfumazione(std::string profumazione) {
     _profumazione = profumazione;

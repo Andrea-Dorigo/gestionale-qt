@@ -8,10 +8,11 @@ Container<SmartP<Prodotto>> fileio::read() const
 {
     Container<SmartP<Prodotto>> container;
     QFile file(filename);
-    if(!file.open(QIODevice::ReadOnly))
-    {
+    try {
+       if(!file.open(QIODevice::ReadOnly)) throw std::exception();
+    } catch(...) {
         qWarning() << "Non è stato possibile aprire il file" << file.errorString();
-        return  container;
+        return container;
     }
 
     QXmlStreamReader reader(&file);
@@ -123,12 +124,12 @@ Container<SmartP<Prodotto>> fileio::read() const
 void fileio::write(const Container<SmartP<Prodotto>>& container) const
 {
     QSaveFile file(filename);
-    if(!file.open(QIODevice::WriteOnly))
-    {
+    try {
+        if(!file.open(QIODevice::WriteOnly)) throw std::exception();
+    } catch(...) {
         QMessageBox b;
         b.setText(file.errorString());
         b.exec();
-        throw std::exception();
     }
 
     QXmlStreamWriter writer(&file);
@@ -136,13 +137,13 @@ void fileio::write(const Container<SmartP<Prodotto>>& container) const
     writer.writeStartDocument();
     writer.writeStartElement("rootElement");
 
-    Container<SmartP<Prodotto>>::const_iterator it= container.begin();
+    Container<SmartP<Prodotto>>::const_iterator it = container.begin();
     for(; it != container.end(); ++it)
     {
         /*Scrittura sottoogetto non istanziabile "TeamMember"*/
 
         writer.writeStartElement("Prodotto");
-        writer.writeAttribute("tipo",QString::fromStdString((*it)->getTipo()));
+        writer.writeAttribute("tipo", QString::fromStdString((*it)->getTipo()));
         /*Scrittura caratteristiche specifiche oggetto istanziabile*/
         (*it)->serialize(writer);
         writer.writeEndElement(); // <TeamMember type= (*cit)->getType()>
