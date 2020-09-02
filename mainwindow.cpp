@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "insertwidget.h"
-#include "delegate.h"
 #include "tableview.h"
 #include "tablemodeladapter.h"
 #include <QApplication>
@@ -31,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     proxymodel->setSourceModel(model);
     view->setModel(proxymodel);
-    view->setItemDelegate(new Delegate(view));
     view->setColumnWidth(0,50); // id
     view->setColumnWidth(1,150); // ditta
     view->setColumnWidth(2,250); // nome
