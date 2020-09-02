@@ -181,12 +181,12 @@ void insertWidget::istanziaProdotto()
 
     if(p)
     {
-        _tablemodel->setNuovoElemento(p);
+        _tablemodel->setNuovoProdotto(p);
         _proxymodel->insertRows(_proxymodel->rowCount(), 1);
         _view->clearSelection();
         _view->selectionModel()->clearCurrentIndex();
         _view->selectionModel()->select(_proxymodel->index(_tablemodel->rowCount() - 1, 0), QItemSelectionModel::Select);
-        delete _tablemodel->getNuovoElemento();
+        delete _tablemodel->getNuovoProdotto();
         box.setText("Inserimento effettuato con successo");
         box.exec();
     }

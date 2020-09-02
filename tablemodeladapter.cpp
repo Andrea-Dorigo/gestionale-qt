@@ -6,17 +6,17 @@
 #include <typeinfo>
 
 TableModelAdapter::TableModelAdapter(QObject* parent):
-    QAbstractTableModel(parent), model(new Modello()){
+    QAbstractTableModel(parent), _model(new Modello()){
 }
 
 TableModelAdapter::~TableModelAdapter()
 {
-    delete model;
+    delete _model;
 }
 
 int TableModelAdapter::rowCount(const QModelIndex &) const
 {
-    return model->count();
+    return _model->count();
 }
 int TableModelAdapter::columnCount(const QModelIndex &) const
 {
@@ -26,25 +26,15 @@ int TableModelAdapter::columnCount(const QModelIndex &) const
 QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 {
     unsigned int row = (short) index.row();
-    if (!index.isValid() || row >= model->count())
+    if (!index.isValid() || row >= _model->count())
         return QVariant();
-    //    QString debug_index =
     if (role == Qt::DisplayRole) {
-        if (index.column() == 0){
-
-            //
-            std::string visualizza = model->visualizza();
-
-            QString debug_id = QString::number(getProdotto(index).getId());
-            QString debug_stampa = QString::fromStdString(getProdotto(index).stampa());
+        if (index.column() == 0)
             return QString::number(getProdotto(index).getId());
-        }
         else if (index.column() == 1)
             return QString::fromStdString(getProdotto(index).getDitta());
-        else if (index.column() == 2){
-            QString debug_nome = QString::fromStdString(getProdotto(index).getNome());
+        else if (index.column() == 2)
             return QString::fromStdString(getProdotto(index).getNome());
-        }
         else if (index.column() == 3)
             return QString::number(getProdotto(index).getCosto());
         else if (index.column() == 4)
@@ -52,15 +42,14 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
         else if (index.column() == 5)
             return QString::fromStdString(getProdotto(index).getDescrizione());
         else {
+            Prodotto& prodotto = _model->getProdotto(row);
 
-            Prodotto& prodotto = model->getProdotto(static_cast<unsigned int>(index.row()));
-
-            if (index.column() == 6){
+            if (index.column() == 6) {
                 Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
                 if(cosmetico)
                     return QString::fromStdString(cosmetico->targetToString());
             }
-            else if (index.column() == 7){
+            else if (index.column() == 7) {
                 Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
                 if(cosmetico)
                     return QString::fromStdString(cosmetico->getApplicazione());
@@ -87,14 +76,13 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
             }
 
             return QString::fromStdString("");
-
         }
     }
     else return QVariant();
 }
 
-QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) const {
-
+QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) const
+{
     if (role != Qt::DisplayRole)
         return QVariant();
     if (section == 0)
@@ -124,86 +112,53 @@ QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) c
     return QVariant();
 }
 
-
-//bool TableModelAdapter::mySetData(const QModelIndex &index,
-//            const QVariant& val, bool, bool mi, unsigned int p)
-//{
-//    if(!index.isValid() || !val.canConvert<QString>())
-//        return false;
-
-////    Prodotto& aux = getProdotto(index);
-////    aux.setContratto(contr);
-////    if(val.toString() == "Allenatore")
-////        static_cast<Allenatore&>(aux).setMinObiettiviStagionali(minObb);
-////    else if(val.toString() == "Calciatore")
-////        static_cast<Calciatore&>(aux).setPresenze(p);
-
-////    emit dataChanged(index, index);
-
-//    return true;
-//}
-
-Qt::ItemFlags TableModelAdapter::flags(const QModelIndex& index) const
+bool TableModelAdapter::removeRows(int begin, int i, const QModelIndex& parent)
 {
-    if (!index.isValid())
-        return Qt::ItemIsEnabled;
-
-    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
-}
-
-
-//chiamarla per eliminare un oggetto alla volta! (cosa obbligata
-//visto che si puo selezionare un solo oggetto alla volta nella vista)
-bool TableModelAdapter::removeRows(int begin, int count, const QModelIndex& parent)
-{
-    beginRemoveRows(parent, begin, begin + count - 1);
-    model->remove(&model->getProdotto(static_cast<unsigned int> (begin)));
+    beginRemoveRows(parent, begin, begin + i - 1);
+    _model->remove(&_model->getProdotto(static_cast<unsigned int> (begin)));
     endRemoveRows();
     return true;
 }
 
-// Inserisce 'count' nuove righe nel modello a partire dall'elemento di indice 'begin'
-bool TableModelAdapter::insertRows(int begin, int count, const QModelIndex& parent)
+bool TableModelAdapter::insertRows(int begin, int i, const QModelIndex& parent)
 {
-    beginInsertRows(parent, begin, begin + count - 1);
-    // effettuare l'aggiunta sul modello dei dati
-    model->insert(nuovoElemento);
+    beginInsertRows(parent, begin, begin + i - 1);
+    _model->insert(_nuovoProdotto);
     endInsertRows();
     return true;
 }
 
-bool TableModelAdapter::matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
+bool TableModelAdapter::matchFiltersSelected(unsigned int i, const QRegExp& exp, const QString& filtro) const
 {
-    std::string aux = (model->getProdotto(i)).getNome();
-    if(!(QString::fromStdString(aux).contains(e)))
+    if(!(QString::fromStdString((_model->getProdotto(i)).getNome()).contains(exp)))
         return false;
 
-    if(!s.isEmpty())
+    if(!filtro.isEmpty())
     {
-        if(s == "Cosmetico")
-            return model->getProdotto(i).getTipo() == "Cosmetico";
-        if(s == "Vivanda")
-            return model->getProdotto(i).getTipo() == "Vivanda";
-        if(s == "Integratore")
-            return model->getProdotto(i).getTipo() == "Integratore";
-        if(s == "Olio essenziale")
-            return model->getProdotto(i).getTipo() == "Olio essenziale";
+        if(filtro == "Cosmetico")
+            return _model->getProdotto(i).getTipo() == "Cosmetico";
+        if(filtro == "Vivanda")
+            return _model->getProdotto(i).getTipo() == "Vivanda";
+        if(filtro == "Integratore")
+            return _model->getProdotto(i).getTipo() == "Integratore";
+        if(filtro == "Olio essenziale")
+            return _model->getProdotto(i).getTipo() == "Olio essenziale";
     }
     return true; // nessun filtro selezionato ma risulta un match nella ricerca
 }
 
 Prodotto& TableModelAdapter::getProdotto(const QModelIndex &index) const
 {
-    return model->getProdotto(static_cast<unsigned int>(index.row()));
+    return _model->getProdotto(static_cast<unsigned int>(index.row()));
 }
 
-void TableModelAdapter::setNuovoElemento(Prodotto* p)
+void TableModelAdapter::setNuovoProdotto(Prodotto* p)
 {
-    nuovoElemento = p;
+    _nuovoProdotto = p;
 }
 
-Prodotto* TableModelAdapter::getNuovoElemento()
+Prodotto* TableModelAdapter::getNuovoProdotto()
 {
-    return nuovoElemento;
+    return _nuovoProdotto;
 }
 
