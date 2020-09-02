@@ -13,37 +13,35 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
-    cmb_inserimento(new combobox_items(this, "Inserisci")),
-    cmb_filtro(new combobox_items(this, "Nessuno")),
-    searchbar(new QLineEdit(this)),
-    proxymodel(new QFilterProxyModel(this)),
-    model(new TableModelAdapter(this)),
-    view(new TableView(this))
+    _cmb_inserimento(new combobox_items(this, "Inserisci")),
+    _cmb_filtro(new combobox_items(this, "Nessuno")),
+    _searchbar(new QLineEdit(this)),
+    _proxymodel(new QFilterProxyModel(this)),
+    _tablemodel(new TableModelAdapter(this)),
+    _view(new TableView(this))
 {
     // setup window
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
     setWindowTitle(("Magazzino - Erboristeria Alchimia"));
-//    setWindowIcon(QIcon(":/res/temp.jpg"));
+    setWindowIcon(QIcon(":/Risorse/logo_icona.png"));
     setFixedSize(QSize(1300, 800));
 
+    _proxymodel->setSourceModel(_tablemodel);
+    _view->setModel(_proxymodel);
+    _view->setColumnWidth(0,50);    // id
+    _view->setColumnWidth(1,150);   // ditta
+    _view->setColumnWidth(2,250);   // nome
+    _view->setColumnWidth(3,70);    // costo
+    _view->setColumnWidth(4,60);    // iva
+    _view->setColumnWidth(5,448);   // descrizione
+    _view->setColumnWidth(6,60);    // target
+    _view->setColumnWidth(7,448);   // applicazione
+    _view->setColumnWidth(8,100);   // scadenza
+    _view->setColumnWidth(9,140);   // dispositivo medico
+    _view->setColumnWidth(10,300);  // sapore
+    _view->setColumnWidth(11,250);  // profumazione
 
-    proxymodel->setSourceModel(model);
-    view->setModel(proxymodel);
-    view->setColumnWidth(0,50); // id
-    view->setColumnWidth(1,150); // ditta
-    view->setColumnWidth(2,250); // nome
-    view->setColumnWidth(3,70); // costo
-    view->setColumnWidth(4,60); // iva
-    view->setColumnWidth(5,448); // descrizione
-    view->setColumnWidth(6,60); // target
-    view->setColumnWidth(7,448); // applicazione
-    view->setColumnWidth(8,100); // scadenza
-    view->setColumnWidth(9,140); // dispositivo medico
-    view->setColumnWidth(10,300); // sapore
-    view->setColumnWidth(11,250); // profumazione
-
-
-    searchbar->setPlaceholderText("Ricerca per nome");
+    _searchbar->setPlaceholderText("Ricerca per nome");
     QLabel* l = new QLabel("Filtro: ", this);
 
     QPushButton* removeButton = new QPushButton("Rimuovi", this);
@@ -53,32 +51,32 @@ MainWindow::MainWindow(QWidget *parent) :
     // init layouts
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
-    // Searchbar sottolayout
+    // _searchbar sottolayout
     QVBoxLayout* msearchLayout = new QVBoxLayout();
     QHBoxLayout* searchLayout = new QHBoxLayout();
     QFormLayout* searchfilterLayout= new QFormLayout();
-    searchLayout->addWidget(searchbar);
+    searchLayout->addWidget(_searchbar);
     searchLayout->addWidget(clearSearchButton);
-    searchfilterLayout->addRow(l, cmb_filtro);
+    searchfilterLayout->addRow(l, _cmb_filtro);
     searchLayout->addLayout(searchfilterLayout);
     msearchLayout->addLayout(searchLayout);
 
     QHBoxLayout* buttonsLayout = new QHBoxLayout();
-    buttonsLayout->addWidget(cmb_inserimento);
+    buttonsLayout->addWidget(_cmb_inserimento);
     buttonsLayout->addWidget(removeButton);
     buttonsLayout->addWidget(saveButton);
 
     // setup layouts
     mainLayout->addLayout(msearchLayout, 50);
     mainLayout->addLayout(buttonsLayout, 100); // stretch = 50 per distanziare i bottoni
-    mainLayout->addWidget(view, 0, Qt::AlignCenter);
+    mainLayout->addWidget(_view, 0, Qt::AlignCenter);
 
     // connect
-    connect(cmb_inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
+    connect(_cmb_inserimento, SIGNAL(currentTextChanged(QString)), this, SLOT(addProdotto(const QString&)));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(removeProdotto()));
-    connect(searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
-    connect(cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
-    connect(clearSearchButton, SIGNAL(clicked()), searchbar, SLOT(clear()));
+    connect(_searchbar, SIGNAL(textChanged(QString)), this, SLOT(textFilterChanged()));
+    connect(_cmb_filtro, SIGNAL(currentTextChanged(const QString&)), this, SLOT(textFilterChanged()));
+    connect(clearSearchButton, SIGNAL(clicked()), _searchbar, SLOT(clear()));
 }
 
 MainWindow::~MainWindow() {}
@@ -87,30 +85,30 @@ void MainWindow::addProdotto(const QString& t)
 {
     if(t != "Inserisci")
     {
-        insertWidget* inserisci = new insertWidget(this, t, view, proxymodel, model);
-        cmb_inserimento->setCurrentText("Inserisci");
+        insertWidget* inserisci = new insertWidget(this, t, _view, _proxymodel, _tablemodel);
+        _cmb_inserimento->setCurrentText("Inserisci");
         inserisci->show();
     }
 }
 
 void MainWindow::removeProdotto()
 {
-    // prende l'elenco degli elementi selezionati dalla view
-    const QModelIndexList selection = view->selectionModel()->selectedIndexes();
+    // prende l'elenco degli elementi selezionati dalla _view
+    const QModelIndexList selection = _view->selectionModel()->selectedIndexes();
     if(!selection.isEmpty())
     {
+        _proxymodel->removeRows(selection.at(0).row(), 1);
         QMessageBox box;
-        proxymodel->removeRows(selection.at(0).row(), 1);
-        box.setText("Membro selezionato rimosso correttamente");
+        box.setText("Prodotto rimosso correttamente");
         box.exec();
     }
 }
 
 void MainWindow::textFilterChanged()
-{
-   if(cmb_filtro->currentText() != "Nessuno")
-        proxymodel->setFilter(cmb_filtro->currentText());
-    else  proxymodel->setFilter("");
-    QRegExp regex(searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
-    proxymodel->setFilterRegExp(regex);
+{ // maggiori info in TableModelAdapter::matchFiltersSelected()
+    if(_cmb_filtro->currentText() != "Nessuno")
+        _proxymodel->setFilter(_cmb_filtro->currentText());
+    else  _proxymodel->setFilter("");
+    QRegExp regex(_searchbar->text(), Qt::CaseInsensitive, QRegExp::Wildcard);
+    _proxymodel->setFilterRegExp(regex);
 }

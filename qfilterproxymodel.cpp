@@ -1,8 +1,9 @@
 #include "qfilterproxymodel.h"
 #include "tablemodeladapter.h"
 
-QFilterProxyModel::QFilterProxyModel(QObject* parent, const QString& f) :
-    QSortFilterProxyModel (parent), filter(f) {}
+QFilterProxyModel::QFilterProxyModel(QObject* parent, const QString& filter)
+    : QSortFilterProxyModel (parent), _filter(filter)
+{}
 
 bool QFilterProxyModel::insertRows(int begin, int count, const QModelIndex& parent)
 {
@@ -13,10 +14,10 @@ bool QFilterProxyModel::insertRows(int begin, int count, const QModelIndex& pare
 
 bool QFilterProxyModel::filterAcceptsRow(int row_source, const QModelIndex&) const
 {
-    return (static_cast<const TableModelAdapter*>(sourceModel()))->matchFiltersSelected(static_cast<unsigned int>(row_source), filterRegExp(), filter);
+    return (static_cast<const TableModelAdapter*>(sourceModel()))->matchFiltersSelected(static_cast<unsigned int>(row_source), filterRegExp(), _filter);
 }
 
 void QFilterProxyModel::setFilter(const QString& text)
 {
-    filter = text;
+    _filter = text;
 }

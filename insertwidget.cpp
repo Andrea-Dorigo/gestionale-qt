@@ -4,20 +4,20 @@
 #include <QVBoxLayout>
 #include <QMessageBox>
 
-insertWidget::insertWidget(QWidget* parent, const QString tipoProdotto, TableView* view, QFilterProxyModel* proxymodel, TableModelAdapter* tablemodel):
-    QDialog(parent), _tipoProdotto(tipoProdotto), _view(view), _proxymodel(proxymodel), _tablemodel(tablemodel),
-    _fld_id(new QSpinBox(this)),
-    _fld_nome(new QLineEdit(this)),
-    _fld_descrizione(new QLineEdit(this)),
-    _fld_ditta(new QLineEdit(this)),
-    _fld_costo(new QDoubleSpinBox(this)),
-    _fld_iva(new QSpinBox(this)),
-    _fld_target(new combobox_target(this)),
-    _fld_applicazione(new QLineEdit(this)),
-    _fld_scadenza(new QDateEdit(this)),
-    _fld_sapore(new QLineEdit(this)),
-    _fld_dispositivoMedico(new combobox_sn(this)),
-    _fld_profumazione(new QLineEdit(this))
+insertWidget::insertWidget(QWidget* parent, const QString tipoProdotto, TableView* view, QFilterProxyModel* proxymodel, TableModelAdapter* tablemodel)
+    : QDialog(parent), _tipoProdotto(tipoProdotto), _view(view), _proxymodel(proxymodel), _tablemodel(tablemodel)
+    , _fld_id(new QSpinBox(this))
+    , _fld_nome(new QLineEdit(this))
+    , _fld_descrizione(new QLineEdit(this))
+    , _fld_ditta(new QLineEdit(this))
+    , _fld_costo(new QDoubleSpinBox(this))
+    , _fld_iva(new QSpinBox(this))
+    , _fld_target(new combobox_target(this))
+    , _fld_applicazione(new QLineEdit(this))
+    , _fld_scadenza(new QDateEdit(this))
+    , _fld_sapore(new QLineEdit(this))
+    , _fld_dispositivoMedico(new combobox_sn(this))
+    , _fld_profumazione(new QLineEdit(this))
 {
     setWindowTitle(_tipoProdotto + " - Erboristeria Alchimia");
     setGeometry(200, 150, 300, 310);
@@ -142,8 +142,6 @@ void insertWidget::istanziaProdotto()
                         _fld_scadenza->text().toStdString(),
                         _fld_sapore->text().toStdString());
     }
-
-
     else if(_tipoProdotto == "Cosmetico")
     {
         p = new Cosmetico(static_cast<unsigned short>(_fld_id->value()),
@@ -155,7 +153,6 @@ void insertWidget::istanziaProdotto()
                           _fld_target->currentText().toStdString(),
                           _fld_applicazione->text().toStdString());
     }
-
     else if(_tipoProdotto == "Integratore")
     {
         p = new Integratore(static_cast<unsigned short>(_fld_id->value()),
@@ -180,9 +177,6 @@ void insertWidget::istanziaProdotto()
                                _fld_target->currentText().toStdString(),
                                _fld_applicazione->text().toStdString(),
                                _fld_profumazione->text().toStdString());
-
-
-        ;
     }
 
     if(p)

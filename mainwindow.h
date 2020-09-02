@@ -15,17 +15,18 @@ class MainWindow : public QWidget
 {
     Q_OBJECT
 
+private:
+    combobox_items* _cmb_inserimento;
+    combobox_items* _cmb_filtro;
+    QLineEdit* _searchbar;
+    QFilterProxyModel* _proxymodel;
+    TableModelAdapter* _tablemodel;
+    TableView* _view;
+
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-private:
-    combobox_items* cmb_inserimento;
-    combobox_items* cmb_filtro;
-    QLineEdit* searchbar;
-    QFilterProxyModel* proxymodel;
-    TableModelAdapter* model;
-    TableView* view;
 private slots:
     void addProdotto(const QString&);
     void removeProdotto();

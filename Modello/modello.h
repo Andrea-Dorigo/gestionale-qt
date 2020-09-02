@@ -1,31 +1,28 @@
 #ifndef MODELLO_H
 #define MODELLO_H
 
-#include <string>
-#include "container.h"
-#include "smartp.h"
 #include "Gerarchia/prodotto.h"
-#include "Gerarchia/cosmetico.h"
 #include "Gerarchia/alimentare.h"
+#include "Gerarchia/cosmetico.h"
 #include "Gerarchia/vivanda.h"
 #include "Gerarchia/integratore.h"
 #include "Gerarchia/olioEssenziale.h"
+#include "container.h"
+#include "smartp.h"
 
 class Modello {
-  private:
+private:
     Container<SmartP<Prodotto>> magazzino;
-  public:
+public:
     Modello();
     ~Modello();
-    // void save(const std::string&) const;
-    // void load(const std::string&);z
     unsigned int count() const;
     void insert(Prodotto*);
     void remove(Prodotto*);
     bool find(Prodotto*);
-    double costoTotale(std::string ="") const; // TODO: rimuovere parametro
-    double prezzoTotale(std::string ="") const;  // TODO: rimuovere parametro
-    Container<SmartP<Prodotto>> filtra(std::string ditta="", double costo=0.0) const;
+    double costoTotale(std::string = "") const;
+    double prezzoTotale(std::string = "") const;
+    Container<SmartP<Prodotto>> filtra(std::string ditta = "", double costo = 0.0) const;
     std::string visualizza() const;
     Prodotto& getProdotto(unsigned int) const;
 };

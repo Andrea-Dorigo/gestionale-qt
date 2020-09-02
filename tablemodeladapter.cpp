@@ -1,13 +1,12 @@
 #include "tablemodeladapter.h"
-//#include "qtypeconversion.h"
+#include "Modello/Gerarchia/prodotto.h"
 #include <QPixmap>
 #include <QColor>
 #include <QBrush>
 #include <typeinfo>
-#include "Modello/Gerarchia/prodotto.h"
 
 TableModelAdapter::TableModelAdapter(QObject* parent):
-QAbstractTableModel(parent), model(new Modello()){
+    QAbstractTableModel(parent), model(new Modello()){
 }
 
 TableModelAdapter::~TableModelAdapter()
@@ -29,67 +28,67 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
     unsigned int row = (short) index.row();
     if (!index.isValid() || row >= model->count())
         return QVariant();
-//    QString debug_index =
+    //    QString debug_index =
     if (role == Qt::DisplayRole) {
-           if (index.column() == 0){
+        if (index.column() == 0){
 
-//
-               std::string visualizza = model->visualizza();
+            //
+            std::string visualizza = model->visualizza();
 
-               QString debug_id = QString::number(getProdotto(index).getId());
-               QString debug_stampa = QString::fromStdString(getProdotto(index).stampa());
-               return QString::number(getProdotto(index).getId());
-           }
-           else if (index.column() == 1)
-                return QString::fromStdString(getProdotto(index).getDitta());
-           else if (index.column() == 2){
-                QString debug_nome = QString::fromStdString(getProdotto(index).getNome());
-                return QString::fromStdString(getProdotto(index).getNome());
-           }
-           else if (index.column() == 3)
-                return QString::number(getProdotto(index).getCosto());
-           else if (index.column() == 4)
-                return QString::number(getProdotto(index).getIva());
-           else if (index.column() == 5)
-                return QString::fromStdString(getProdotto(index).getDescrizione());
-           else {
+            QString debug_id = QString::number(getProdotto(index).getId());
+            QString debug_stampa = QString::fromStdString(getProdotto(index).stampa());
+            return QString::number(getProdotto(index).getId());
+        }
+        else if (index.column() == 1)
+            return QString::fromStdString(getProdotto(index).getDitta());
+        else if (index.column() == 2){
+            QString debug_nome = QString::fromStdString(getProdotto(index).getNome());
+            return QString::fromStdString(getProdotto(index).getNome());
+        }
+        else if (index.column() == 3)
+            return QString::number(getProdotto(index).getCosto());
+        else if (index.column() == 4)
+            return QString::number(getProdotto(index).getIva());
+        else if (index.column() == 5)
+            return QString::fromStdString(getProdotto(index).getDescrizione());
+        else {
 
-               Prodotto& prodotto = model->getProdotto(static_cast<unsigned int>(index.row()));
+            Prodotto& prodotto = model->getProdotto(static_cast<unsigned int>(index.row()));
 
-               if (index.column() == 6){
-                   Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
-                   if(cosmetico)
-                        return QString::fromStdString(cosmetico->targetToString());
-               }
-               else if (index.column() == 7){
-                   Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
-                   if(cosmetico)
-                        return QString::fromStdString(cosmetico->getApplicazione());
-               }
-               else if (index.column() == 8) {
-                   Alimentare* alimentare = dynamic_cast<Alimentare*>(&prodotto);
-                   if(alimentare)
-                        return QString::fromStdString(alimentare->getScadenza());
-               }
-               else if (index.column() == 9) {
-                   Integratore* integratore = dynamic_cast<Integratore*>(&prodotto);
-                   if(integratore)
-                        return QString::fromStdString(integratore->getDispositivoMedico() ? "SI" : "NO" );
-               }
-               else if (index.column() == 10) {
-                   Vivanda* vivanda = dynamic_cast<Vivanda*>(&prodotto);
-                   if(vivanda)
-                        return QString::fromStdString(vivanda->getSapore());
-               }
-               else if (index.column() == 11) {
-                   OlioEssenziale* olioessenziale = dynamic_cast<OlioEssenziale*>(&prodotto);
-                   if(olioessenziale)
-                        return QString::fromStdString(olioessenziale->getProfumazione());
-               }
+            if (index.column() == 6){
+                Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
+                if(cosmetico)
+                    return QString::fromStdString(cosmetico->targetToString());
+            }
+            else if (index.column() == 7){
+                Cosmetico* cosmetico = dynamic_cast<Cosmetico*>(&prodotto);
+                if(cosmetico)
+                    return QString::fromStdString(cosmetico->getApplicazione());
+            }
+            else if (index.column() == 8) {
+                Alimentare* alimentare = dynamic_cast<Alimentare*>(&prodotto);
+                if(alimentare)
+                    return QString::fromStdString(alimentare->getScadenza());
+            }
+            else if (index.column() == 9) {
+                Integratore* integratore = dynamic_cast<Integratore*>(&prodotto);
+                if(integratore)
+                    return QString::fromStdString(integratore->getDispositivoMedico() ? "SI" : "NO" );
+            }
+            else if (index.column() == 10) {
+                Vivanda* vivanda = dynamic_cast<Vivanda*>(&prodotto);
+                if(vivanda)
+                    return QString::fromStdString(vivanda->getSapore());
+            }
+            else if (index.column() == 11) {
+                OlioEssenziale* olioessenziale = dynamic_cast<OlioEssenziale*>(&prodotto);
+                if(olioessenziale)
+                    return QString::fromStdString(olioessenziale->getProfumazione());
+            }
 
-               return QString::fromStdString("");
+            return QString::fromStdString("");
 
-           }
+        }
     }
     else return QVariant();
 }
@@ -97,31 +96,31 @@ QVariant TableModelAdapter::data(const QModelIndex& index, int role) const
 QVariant TableModelAdapter::headerData(int section, Qt::Orientation, int role) const {
 
     if (role != Qt::DisplayRole)
-            return QVariant();
+        return QVariant();
     if (section == 0)
-            return QString::fromStdString("ID");
+        return QString::fromStdString("ID");
     if (section == 1)
-            return QString::fromStdString("Ditta");
+        return QString::fromStdString("Ditta");
     if (section == 2)
-            return QString::fromStdString("Nome");
+        return QString::fromStdString("Nome");
     if (section == 3)
-            return QString::fromStdString("Costo(€)");
+        return QString::fromStdString("Costo (€)");
     if (section == 4)
-            return QString::fromStdString("Iva(%)");
+        return QString::fromStdString("IVA (%)");
     if (section == 5)
-            return QString::fromStdString("Descrizione");
+        return QString::fromStdString("Descrizione");
     if (section == 6)
-            return QString::fromStdString("Target");
+        return QString::fromStdString("Target");
     if (section == 7)
-            return QString::fromStdString("Applicazione");
+        return QString::fromStdString("Applicazione");
     if (section == 8)
-            return QString::fromStdString("Scadenza");
+        return QString::fromStdString("Scadenza");
     if (section == 9)
-            return QString::fromStdString("Dispositivo Medico");
+        return QString::fromStdString("Dispositivo Medico");
     if (section == 10)
-            return QString::fromStdString("Sapore");
+        return QString::fromStdString("Sapore");
     if (section == 11)
-            return QString::fromStdString("Profumazione");
+        return QString::fromStdString("Profumazione");
     return QVariant();
 }
 
@@ -167,20 +166,18 @@ bool TableModelAdapter::removeRows(int begin, int count, const QModelIndex& pare
 bool TableModelAdapter::insertRows(int begin, int count, const QModelIndex& parent)
 {
     beginInsertRows(parent, begin, begin + count - 1);
-        // effettuare l'aggiunta sul modello dei dati
+    // effettuare l'aggiunta sul modello dei dati
     model->insert(nuovoElemento);
     endInsertRows();
     return true;
 }
 
-bool TableModelAdapter::
-matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
+bool TableModelAdapter::matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
 {
     std::string aux = (model->getProdotto(i)).getNome();
     if(!(QString::fromStdString(aux).contains(e)))
         return false;
 
-    /*la riga in esame "matcha" il testo immesso nella QLineEdit*/
     if(!s.isEmpty())
     {
         if(s == "Cosmetico")
@@ -192,14 +189,11 @@ matchFiltersSelected(unsigned int i, const QRegExp& e, const QString& s) const
         if(s == "Olio essenziale")
             return model->getProdotto(i).getTipo() == "Olio essenziale";
     }
-    return true; //sse nessun Filtro selezionato ma c'é match QLineEdit
- }
-
+    return true; // nessun filtro selezionato ma risulta un match nella ricerca
+}
 
 Prodotto& TableModelAdapter::getProdotto(const QModelIndex &index) const
 {
-//    unsigned int s = static_cast<unsigned int>(index.row());
-
     return model->getProdotto(static_cast<unsigned int>(index.row()));
 }
 

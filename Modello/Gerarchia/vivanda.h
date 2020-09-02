@@ -4,9 +4,9 @@
 #include "alimentare.h"
 
 class Vivanda : public Alimentare {
-  private:
+private:
     std::string _sapore;
-  public:
+public:
     Vivanda(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, std::string sapore);
     virtual bool operator==(const Prodotto& prodotto) const override;
     virtual Vivanda* clone() const override;

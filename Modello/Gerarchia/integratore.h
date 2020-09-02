@@ -4,9 +4,9 @@
 #include "alimentare.h"
 
 class Integratore : public Alimentare {
-  private:
+private:
     bool _dispositivoMedico;
-  public:
+public:
     Integratore(unsigned short id, std::string nome, std::string descrizione, double costo, std::string ditta, int iva, std::string scadenza, bool dispositivoMedico);
     virtual bool operator==(const Prodotto& prodotto) const override;
     virtual Integratore* clone() const override;

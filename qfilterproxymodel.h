@@ -1,24 +1,24 @@
 #ifndef QFILTERPROXYMODEL_H
 #define QFILTERPROXYMODEL_H
 
-
 #include <QString>
 #include <QSortFilterProxyModel>
 
 /*
- * Classe proxy che funzionerà da intermediario fra QListModelAdapter e ListView
- * per permettere alla vista di visualizzare solo certi elementi (Todo) sulla base
- * dell'input di ricerca inserito pur non dovendo effettuare alcuna operazione
- * sul reale modello dei dati sottostante e senza duplicare dati.
- */
+ * Classe intermediaria fra TableModelAdapter e TableView.
+ * Permette la visualizzazione parziale degli elementi a seconda dell'input utente.
+ * Non esegue operazioni sul modello reale.
+*/
+
 class QFilterProxyModel : public QSortFilterProxyModel {
+private:
+    QString _filter;
+
 public:
     QFilterProxyModel(QObject* = nullptr, const QString& = "");
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
     void setFilter(const QString&);
     bool filterAcceptsRow(int, const QModelIndex&) const override;
-private:
-    QString filter;
 };
 
 #endif // QFILTERPROXYMODEL_H
