@@ -54,7 +54,6 @@ HEADERS += \
     Modello/container.h \
     Modello/modello.h \
     Modello/smartp.h \
-    qtypeconversion.h \
     tableview.h \
     tablemodeladapter.h \
     combobox_items.h \

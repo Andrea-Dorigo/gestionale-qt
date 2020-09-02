@@ -17,14 +17,10 @@ class TableModelAdapter: public QAbstractTableModel
     int columnCount(const QModelIndex& = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role= 0) const override;
     QVariant headerData(int section= 0, Qt::Orientation orientation= Qt::Horizontal, int role= Qt::DisplayRole) const override;
-
     Qt::ItemFlags flags(const QModelIndex&) const override;
-
-//    bool mySetData(const QModelIndex &index, const QVariant &value,
-//                   bool , bool =true, unsigned int=0);
-
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override;
+
     bool matchFiltersSelected(unsigned int, const QRegExp&, const QString&) const;
     void setNuovoElemento(Prodotto*);
     Prodotto* getNuovoElemento();

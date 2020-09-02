@@ -1,5 +1,5 @@
 #include "tablemodeladapter.h"
-#include "qtypeconversion.h"
+//#include "qtypeconversion.h"
 #include <QPixmap>
 #include <QColor>
 #include <QBrush>
