@@ -64,3 +64,6 @@ HEADERS += \
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    Risorse/data.xml

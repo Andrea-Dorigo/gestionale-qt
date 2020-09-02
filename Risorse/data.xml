@@ -10,4 +10,14 @@
         <target>UNISEX</target>
         <applicazione>c</applicazione>
     </Prodotto>
+    <Prodotto tipo="Cosmetico">
+        <id>2</id>
+        <nome>darda</nome>
+        <descrizione>c</descrizione>
+        <costo>0</costo>
+        <ditta>c</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>c</applicazione>
+    </Prodotto>
 </rootElement>
