@@ -2,95 +2,91 @@
 #include <QMessageBox>
 #include <QDebug>
 
-fileio::fileio(QString filename): filename(filename){}
+fileio::fileio(QString filename): _filename(filename){}
 
 Container<SmartP<Prodotto>> fileio::read() const
 {
     Container<SmartP<Prodotto>> container;
-    QFile file(filename);
+    QFile file(_filename);
     try {
        if(!file.open(QIODevice::ReadOnly)) throw std::exception();
     } catch(...) {
-        qWarning() << "Non è stato possibile aprire il file" << file.errorString();
+        qWarning() << "Impossibile aprire Risorse/data.xml";
         return container;
     }
 
-    QXmlStreamReader reader(&file);
-    if(reader.readNextStartElement() && reader.name() == "rootElement")
+    QXmlStreamReader xmlreader(&file);
+    if(xmlreader.readNextStartElement() && xmlreader.name() == "rootElement")
     {
-        while(reader.readNextStartElement())
+        while(xmlreader.readNextStartElement())
         {
-            QXmlStreamAttributes classe = reader.attributes();
-
-            std::string tipoClasse;
-            unsigned short id;
+            std::string tipoProdotto;
+            unsigned short id = 0;
             std::string nome;
             std::string descrizione;
-            double costo;
+            double costo = 0.0;
             std::string ditta;
-            int iva;
+            int iva = 0;
 
-            if(classe.hasAttribute("tipo"))
-                tipoClasse = classe.value("tipo").toString().toStdString();
+            if(xmlreader.attributes().hasAttribute("tipo"))
+                tipoProdotto = xmlreader.attributes().value("tipo").toString().toStdString();
 
-            if(reader.readNextStartElement() && reader.name() == "id")
-                id = reader.readElementText().toShort();
-            if(reader.readNextStartElement() && reader.name() == "nome")
-                nome = reader.readElementText().toStdString();
-            if(reader.readNextStartElement() && reader.name() == "descrizione")
-                descrizione = reader.readElementText().toStdString();
-            if(reader.readNextStartElement() && reader.name() == "costo")
-                costo = reader.readElementText().toDouble();
-            if(reader.readNextStartElement() && reader.name() == "ditta")
-                ditta = reader.readElementText().toStdString();
-            if(reader.readNextStartElement() && reader.name() == "iva")
-                iva = reader.readElementText().toDouble();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "id")
+                id = xmlreader.readElementText().toShort();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "nome")
+                nome = xmlreader.readElementText().toStdString();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "descrizione")
+                descrizione = xmlreader.readElementText().toStdString();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "costo")
+                costo = xmlreader.readElementText().toDouble();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "ditta")
+                ditta = xmlreader.readElementText().toStdString();
+            if(xmlreader.readNextStartElement() && xmlreader.name() == "iva")
+                iva = xmlreader.readElementText().toDouble();
 
-            // individuazione tipo e istanziamento oggetto
-
-            if(tipoClasse == "Cosmetico")
+            if(tipoProdotto == "Cosmetico")
             {
                 std::string target;
                 std::string applicazione;
 
-                if(reader.readNextStartElement() && reader.name() == "target")
-                    target = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "applicazione")
-                    applicazione = reader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "target")
+                    target = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "applicazione")
+                    applicazione = xmlreader.readElementText().toStdString();
 
                 Cosmetico* c = new Cosmetico(id, nome, descrizione, costo, ditta, iva, target, applicazione);
                 container.push_back(SmartP<Prodotto>(c));
                 delete c;
             }
-            else if(tipoClasse == "Vivanda")
+            else if(tipoProdotto == "Vivanda")
             {
                 std::string scadenza;
                 std::string sapore;
 
-                if(reader.readNextStartElement() && reader.name() == "scadenza")
-                    scadenza = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "sapore")
-                    sapore = reader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "scadenza")
+                    scadenza = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "sapore")
+                    sapore = xmlreader.readElementText().toStdString();
 
                 Vivanda* v = new Vivanda(id, nome, descrizione, costo, ditta, iva, scadenza, sapore);
                 container.push_back(SmartP<Prodotto>(v));
                 delete v;
             }
-            else if(tipoClasse == "Integratore")
+            else if(tipoProdotto == "Integratore")
             {
                 std::string scadenza;
-                bool dispositivoMedico;
+                bool dispositivoMedico = false;
 
-                if(reader.readNextStartElement() && reader.name() == "scadenza")
-                    scadenza = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "dispositivoMedico")
-                    dispositivoMedico = reader.readElementText().toInt();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "scadenza")
+                    scadenza = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "dispositivoMedico")
+                    dispositivoMedico = xmlreader.readElementText().toInt();
 
                 Integratore* i = new Integratore(id, nome, descrizione, costo, ditta, iva, scadenza, dispositivoMedico);
                 container.push_back(SmartP<Prodotto>(i));
                 delete i;
             }
-            else if(tipoClasse == "Olio essenziale")
+            else if(tipoProdotto == "Olio essenziale")
             {
                 std::string target;
                 std::string applicazione;
@@ -98,22 +94,22 @@ Container<SmartP<Prodotto>> fileio::read() const
                 std::string sapore;
                 std::string profumazione;
 
-                if(reader.readNextStartElement() && reader.name() == "target")
-                    target = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "applicazione")
-                    applicazione = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "scadenza")
-                    scadenza = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "sapore")
-                    sapore = reader.readElementText().toStdString();
-                if(reader.readNextStartElement() && reader.name() == "profumazione")
-                    profumazione = reader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "target")
+                    target = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "applicazione")
+                    applicazione = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "scadenza")
+                    scadenza = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "sapore")
+                    sapore = xmlreader.readElementText().toStdString();
+                if(xmlreader.readNextStartElement() && xmlreader.name() == "profumazione")
+                    profumazione = xmlreader.readElementText().toStdString();
 
                 OlioEssenziale* o = new OlioEssenziale(id, nome, descrizione, costo, ditta, iva, scadenza, sapore, target, applicazione, profumazione);
                 container.push_back(SmartP<Prodotto>(o));
                 delete o;
             }
-            reader.skipCurrentElement();
+            xmlreader.skipCurrentElement();
         }
     }
 
@@ -123,7 +119,7 @@ Container<SmartP<Prodotto>> fileio::read() const
 
 void fileio::write(const Container<SmartP<Prodotto>>& container) const
 {
-    QSaveFile file(filename);
+    QSaveFile file(_filename);
     try {
         if(!file.open(QIODevice::WriteOnly)) throw std::exception();
     } catch(...) {
@@ -132,28 +128,22 @@ void fileio::write(const Container<SmartP<Prodotto>>& container) const
         b.exec();
     }
 
-    QXmlStreamWriter writer(&file);
-    writer.setAutoFormatting(true);
-    writer.writeStartDocument();
-    writer.writeStartElement("rootElement");
+    QXmlStreamWriter xmlwriter(&file);
+    xmlwriter.setAutoFormatting(true);
+    xmlwriter.writeStartDocument();
+    xmlwriter.writeStartElement("rootElement");
 
     Container<SmartP<Prodotto>>::const_iterator it = container.begin();
     for(; it != container.end(); ++it)
     {
-        /*Scrittura sottoogetto non istanziabile "TeamMember"*/
-
-        writer.writeStartElement("Prodotto");
-        writer.writeAttribute("tipo", QString::fromStdString((*it)->getTipo()));
-        /*Scrittura caratteristiche specifiche oggetto istanziabile*/
-        (*it)->serialize(writer);
-        writer.writeEndElement(); // <TeamMember type= (*cit)->getType()>
+        xmlwriter.writeStartElement("Prodotto");
+        xmlwriter.writeAttribute("tipo", QString::fromStdString((*it)->getTipo()));
+        (*it)->serialize(xmlwriter);
+        xmlwriter.writeEndElement();
     }
 
-    writer.writeEndElement();
-    writer.writeEndDocument();
+    xmlwriter.writeEndElement();
+    xmlwriter.writeEndDocument();
     file.commit();
-    //scrive file temporaneo su disco se non ci sono stati
-    //errori: discriminante sulla scelta di QSaveFile anziche QFile: scriverlo
-    //nella relazione!!!!!!
 }
 

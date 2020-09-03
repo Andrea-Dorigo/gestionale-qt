@@ -6,13 +6,13 @@ Modello::~Modello() {}
 
 void Modello::saveToFile() const
 {
-    fileio xml("../progetto-p2/Risorse/data.xml");
+    fileio xml("Risorse/data.xml");
     xml.write(magazzino);
 }
 
 void Modello::loadFromFile()
 {
-    fileio xml("../progetto-p2/Risorse/data.xml");
+    fileio xml("Risorse/data.xml");
     magazzino = xml.read();
 }
 

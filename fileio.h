@@ -18,7 +18,7 @@
 class fileio
 {
 private:
-    QString filename;
+    QString _filename;
 public:
     fileio(QString);
     Container<SmartP<Prodotto>> read() const;
