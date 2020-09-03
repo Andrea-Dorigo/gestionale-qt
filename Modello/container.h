@@ -93,6 +93,7 @@ public:
     iterator insert(iterator, const T&);
     iterator erase(iterator);
     bool search(const T&, iterator&) const;
+    bool modify(const T&, const T&) const;
 };
 
 /* metodi Container::nodo */
@@ -582,6 +583,16 @@ bool Container<T>::search(const T& t, iterator&) const {
         }
     }
     return found;
+}
+
+template<class T>
+bool Container<T>::modify(const T& told, const T& tnew) const {
+    auto it = begin();
+    if(search(told, it)) {
+        *it = tnew;
+        return true;
+    }
+    return false;
 }
 
 #endif // CONTAINER_H

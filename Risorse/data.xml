@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootElement>
+    <Prodotto tipo="Cosmetico">
+        <id>1</id>
+        <nome>c</nome>
+        <descrizione>c</descrizione>
+        <costo>0</costo>
+        <ditta>c</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>c</applicazione>
+    </Prodotto>
+    <Prodotto tipo="Vivanda">
+        <id>2</id>
+        <nome>v</nome>
+        <descrizione>v</descrizione>
+        <costo>0</costo>
+        <ditta>v</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <sapore>v</sapore>
+    </Prodotto>
+    <Prodotto tipo="Integratore">
+        <id>3</id>
+        <nome>i</nome>
+        <descrizione>i</descrizione>
+        <costo>0</costo>
+        <ditta>i</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <dispositivoMedico>0</dispositivoMedico>
+    </Prodotto>
+    <Prodotto tipo="Olio essenziale">
+        <id>4</id>
+        <nome>o</nome>
+        <descrizione>o</descrizione>
+        <costo>0</costo>
+        <ditta>o</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>o</applicazione>
+        <id>4</id>
+        <nome>o</nome>
+        <descrizione>o</descrizione>
+        <costo>0</costo>
+        <ditta>o</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <sapore>o</sapore>
+        <profumazione></profumazione>
+    </Prodotto>
+    <Prodotto tipo="Olio essenziale">
+        <id>5</id>
+        <nome>o2</nome>
+        <descrizione>o2</descrizione>
+        <costo>0</costo>
+        <ditta>o2</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>o2</applicazione>
+        <id>5</id>
+        <nome>o2</nome>
+        <descrizione>o2</descrizione>
+        <costo>0</costo>
+        <ditta>o2</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <sapore>o2</sapore>
+        <profumazione>o2</profumazione>
+    </Prodotto>
+    <Prodotto tipo="Integratore">
+        <id>6</id>
+        <nome>i2</nome>
+        <descrizione>i2</descrizione>
+        <costo>0</costo>
+        <ditta>i2</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <dispositivoMedico>0</dispositivoMedico>
+    </Prodotto>
+    <Prodotto tipo="Vivanda">
+        <id>7</id>
+        <nome>v2</nome>
+        <descrizione>v2</descrizione>
+        <costo>0</costo>
+        <ditta>v2</ditta>
+        <iva>0</iva>
+        <scadenza>03/09/20</scadenza>
+        <sapore>v2</sapore>
+    </Prodotto>
+    <Prodotto tipo="Cosmetico">
+        <id>8</id>
+        <nome>c2</nome>
+        <descrizione>c2</descrizione>
+        <costo>0</costo>
+        <ditta>c2</ditta>
+        <iva>0</iva>
+        <target>UNISEX</target>
+        <applicazione>c2</applicazione>
+    </Prodotto>
+</rootElement>
